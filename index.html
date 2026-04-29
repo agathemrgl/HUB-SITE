@@ -1,283 +1,30 @@
-<!DOCTYPE html>
-<html lang="fr">
+<!doctype html>
+<html class="no-js" lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Agathe</title>
-  <style>
-    .title-bar {
-      background: rgba(19, 0, 160, 0.5);
-      color: white;
-      font-family: Arial, sans-serif;
-      font-size: 12px;
-      font-weight: bold;
-      padding: 6px 8px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      cursor: grab;
-      user-select: none;
-    }
-
-    .title-bar.dragging {
-      cursor: grabbing;
-    }
-
-    .title-bar-dot {
-      width: 6px;
-      height: 6px;
-      background: #2bd40e;
-      border: 1px outset #3029ff;
-      display: inline-block;
-    }
-
-    body {
-      font-family: "Times New Roman", Times, serif;
-      background-color: #c0c0c0;
-      margin: 0;
-      padding: 16px;
-      background-image: url('Img/Fond.jpg');
-      background-repeat: repeat;
-      background-size: auto;
-      min-height: 100vh;
-      position: relative;
-    }
-
-    .window-container {
-      position: relative;
-      min-height: 100vh;
-    }
-
-    .window {
-      border: 2px inset #808080;
-      width: 320px;
-      position: absolute;
-      background: rgba(255, 255, 255, 0.95);
-      box-shadow: 6px 6px 18px rgba(0, 0, 0, 0.25);
-    }
-
-    .window[data-pos="top-left"] {
-      top: 24px;
-      left: 24px;
-    }
-
-    .window[data-pos="top-right"] {
-      top: 24px;
-      right: 24px;
-    }
-
-    .window[data-pos="bottom-left"] {
-      bottom: 24px;
-      left: 24px;
-    }
-
-    .window[data-pos="bottom-right"] {
-      bottom: 24px;
-      right: 24px;
-    }
-
-    .window[data-pos="center"] {
-      top: 180px;
-      left: calc(50% - 210px);
-      width: 420px;
-    }
-
-    .window-body {
-      background: rgba(255, 204, 245, 0.8);
-      padding: 18px 24px;
-    }
-
-    h1 {
-      font-family: Arial, sans-serif;
-      font-size: 20px;
-      font-weight: bold;
-      color: #000080;
-      text-align: center;
-      border-bottom: 2px solid #000080;
-      padding-bottom: 8px;
-      margin: 0 0 6px;
-    }
-
-    .subtitle {
-      font-family: Arial, sans-serif;
-      font-size: 11px;
-      color: #555;
-      text-align: center;
-      margin: 0 0 20px;
-    }
-
-    ul {
-      margin: 0;
-      padding-left: 50px;
-    }
-
-    li {
-      font-size: 14px;
-      margin: 5px 0;
-      line-height: 1.5;
-    }
-
-    a {
-      color: #0000EE;
-      text-decoration: underline;
-    }
-
-    a:visited {
-      color: #551A8B;
-    }
-
-    a:active {
-      color: #FF0000;
-    }
-
-    .note {
-      font-style: italic;
-      color: #c8ff23;
-      font-size: 12px;
-    }
-
-    .counter {
-      font-family: "Courier New", monospace;
-      font-size: 11px;
-      color: #555;
-      text-align: center;
-      border-top: 1px dashed #aaa;
-      padding-top: 10px;
-      margin-top: 20px;
-    }
-
-    .status-bar {
-      background: rgba(196, 196, 196, 0.8);
-      border-top: 2px inset #808080;
-      font-family: Arial, sans-serif;
-      font-size: 9px;
-      padding: 2px 8px;
-    }
-  </style>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"> 
+	<title>Agathe – for fonctional things</title>
+	<meta name="description" content="Agathe – for fonctional things">	
+	<link rel="stylesheet" href="style.css">
+	<link rel="icon" href="Img/poisson.jpg" type="image/x-icon">
+	<link rel="shortcut icon" href="Img/poisson.jpg" type="image/x-icon">
 </head>
+
 <body>
-  <div class="window-container">
-    <div class="window" data-pos="top-left">
-      <div class="title-bar">
-        <span class="title-bar-dot"></span>
-        Infos rapides
-      </div>
-      <div class="window-body">
-        <p>Bienvenue sur le hub.</p>
-        <ul>
-          <li>Page d'accueil</li>
-          <li>Trois projets WIP</li>
-          <li>Design inspiré des fenêtres classiques</li>
-        </ul>
-      </div>
-      <div class="status-bar">Prêt</div>
-    </div>
-
-    <div class="window" data-pos="top-right">
-      <div class="title-bar">
-        <span class="title-bar-dot"></span>
-        A propos
-      </div>
-      <div class="window-body">
-        <p class="subtitle">Agathe - Avril 2026</p>
-        <p>Un espace web personnel avec plusieurs fenêtres affichées à différents endroits sur la page.</p>
-      </div>
-      <div class="status-bar">Local</div>
-    </div>
-
-    <div class="window" data-pos="center">
-      <div class="title-bar">
-        <span class="title-bar-dot"></span>
-        Agathe
-      </div>
-      <div class="window-body">
-        <h1>TECHNOGROLOLO</h1>
-        <p class="subtitle">Dernière mise à jour : avril 2026</p>
-        <ul>
-          <li><a href="./site1/index.html">Dress Selec to impress</a> <span class="note">(WIP)</span></li>
-          <li><a href="./site2/index.html">Musical Dream</a> <span class="note">(WIP)</span></li>
-          <li><a href="./site3/index.html">Workaholic</a> <span class="note">(WIP)</span></li>
-        </ul>
-        <div class="counter">
-          Vous êtes le visiteur n° 000042 depuis le 01/01/2026<br>
-          Optimisé pour Internet Explorer 6.0 — résolution 800×600
-        </div>
-      </div>
-      <div class="status-bar">Terminé</div>
-    </div>
-
-    <div class="window" data-pos="bottom-left">
-      <div class="title-bar">
-        <span class="title-bar-dot"></span>
-        Notes
-      </div>
-      <div class="window-body">
-        <p class="note">N'oublie pas d'ajouter de nouveaux liens et projets ici.</p>
-      </div>
-      <div class="status-bar">Infos</div>
-    </div>
-
-    <div class="window" data-pos="bottom-right">
-      <div class="title-bar">
-        <span class="title-bar-dot"></span>
-        Menu rapide
-      </div>
-      <div class="window-body">
-        <ul>
-          <li>Portfolio</li>
-          <li>Contact</li>
-          <li>Design</li>
-        </ul>
-      </div>
-      <div class="status-bar">Accès</div>
-    </div>
-  </div>
-  <script>
-    (function() {
-      const container = document.querySelector('.window-container');
-      let draggedWindow = null;
-      let offsetX = 0;
-      let offsetY = 0;
-
-      function clamp(value, min, max) {
-        return Math.min(Math.max(value, min), max);
-      }
-
-      function onMouseMove(event) {
-        if (!draggedWindow) return;
-        const rect = container.getBoundingClientRect();
-        const left = clamp(event.clientX - offsetX - rect.left, 0, rect.width - draggedWindow.offsetWidth);
-        const top = clamp(event.clientY - offsetY - rect.top, 0, rect.height - draggedWindow.offsetHeight);
-        draggedWindow.style.left = left + 'px';
-        draggedWindow.style.top = top + 'px';
-      }
-
-      function onMouseUp() {
-        if (!draggedWindow) return;
-        draggedWindow.querySelector('.title-bar').classList.remove('dragging');
-        draggedWindow = null;
-        document.removeEventListener('mousemove', onMouseMove);
-        document.removeEventListener('mouseup', onMouseUp);
-      }
-
-      document.querySelectorAll('.window .title-bar').forEach(bar => {
-        bar.addEventListener('mousedown', function(event) {
-          event.preventDefault();
-          draggedWindow = this.closest('.window');
-          const rect = draggedWindow.getBoundingClientRect();
-          const containerRect = container.getBoundingClientRect();
-          offsetX = event.clientX - rect.left;
-          offsetY = event.clientY - rect.top;
-          draggedWindow.style.left = rect.left - containerRect.left + 'px';
-          draggedWindow.style.top = rect.top - containerRect.top + 'px';
-          draggedWindow.style.right = 'auto';
-          draggedWindow.style.bottom = 'auto';
-          this.classList.add('dragging');
-          document.addEventListener('mousemove', onMouseMove);
-          document.addEventListener('mouseup', onMouseUp);
-        });
-      });
-    })();
-  </script>
+	<p><strong>
+		Agathe Margely<br/>
+		Designer.<br/>
+		For functional things.
+	</strong></p>
+	<br/>	
+	<a><article>
+		Here my hub for all my websites ⭐️
+	</article></a>
+  <br/>	
+  	<p>
+		<a href="http://www.linkedin.com/in/da5ide">LinkedIn</a><br/>
+		<a href="http://www.instagram.com/da5ide">Instagram</a>
+	</p>
 </body>
 </html>

@@ -1,0 +1,28 @@
+/* NEW AND MONOTYPE CLEAN
+------------------------------------------------------------------------------*/
+/* 
+   License: none (public domain)
+*/
+
+body {
+  background-color: #d8d8ee;
+  font-family: monospace;
+  margin: 3.75em;
+  font-size: 135%;
+  line-height: 1.45em;
+  }
+article {
+  max-width: 30em;    
+  }
+@media only screen and (max-width: 640px) {
+  article {
+    max-width: 100%;
+    font-size: 0.75em;
+  }
+  body {
+    margin: 1.75em;
+  }
+}
+p, a {
+  color: #1b34ed;
+  }
