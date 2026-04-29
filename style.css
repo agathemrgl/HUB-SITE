@@ -26,3 +26,9 @@ article {
 p, a {
   color: #1b34ed;
   }
+
+  a:active {
+  color: #fa0025;
+  outline: none;
+  font-weight: bold;
+}
