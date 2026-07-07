@@ -1,0 +1,17 @@
+{
+  "name": "Agathe — Hub",
+  "short_name": "Agathe",
+  "description": "Faire des choses fonctionnelles",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#9ac4ee",
+  "theme_color": "#9ac4ee",
+  "icons": [
+    {
+      "src": "/Img/poisson.jpg",
+      "sizes": "any",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}
