@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="lcaron" format="1">
+  <advance width="474"/>
+  <unicode hex="013E"/>
+  <outline>
+    <contour>
+      <point x="309" y="470" type="line"/>
+      <point x="404" y="470"/>
+      <point x="448" y="532"/>
+      <point x="448" y="622" type="curve" smooth="yes"/>
+      <point x="448" y="658"/>
+      <point x="443" y="698"/>
+      <point x="429" y="740" type="curve"/>
+      <point x="298" y="740" type="line"/>
+      <point x="298" y="617" type="line"/>
+      <point x="361" y="617" type="line"/>
+      <point x="361" y="601" type="line" smooth="yes"/>
+      <point x="361" y="556"/>
+      <point x="343" y="535"/>
+      <point x="309" y="535" type="curve"/>
+    </contour>
+    <component base="l" identifier="10F8DA4C"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2025-11-04 15:13:57 +0000</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>8</integer>
+        <key>com.typesupply.AccentFactory.compileType</key>
+        <string>manual</string>
+      </dict>
+      <key>public.objectLibs</key>
+      <dict>
+        <key>10F8DA4C</key>
+        <dict>
+          <key>com.schriftgestaltung.alignment</key>
+          <integer>-1</integer>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

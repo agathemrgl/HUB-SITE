@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="croix" format="2">
+	<advance width="30"/>
+	<outline>
+		<contour>
+			<point x="0" y="16" type="line"/>
+			<point x="0" y="14" type="line"/>
+			<point x="30" y="14" type="line"/>
+			<point x="30" y="16" type="line"/>
+		</contour>
+		<contour>
+			<point x="16" y="30" type="line"/>
+			<point x="14" y="30" type="line"/>
+			<point x="14" y="0" type="line"/>
+			<point x="16" y="0" type="line"/>
+		</contour>
+		<contour>
+			<point x="31" y="30" type="line"/>
+			<point x="30" y="31" type="line"/>
+			<point x="-1" y="0" type="line"/>
+			<point x="0" y="-1" type="line"/>
+		</contour>
+		<contour>
+			<point x="-1" y="30" type="line"/>
+			<point x="30" y="-1" type="line"/>
+			<point x="31" y="0" type="line"/>
+			<point x="0" y="31" type="line"/>
+		</contour>
+	</outline>
+</glyph>

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="X_L_L_E" format="1">
+  <advance width="1873"/>
+  <unicode hex="F5680"/>
+  <outline>
+    <contour>
+      <point x="1343" y="202" type="line"/>
+      <point x="1514" y="202" type="line"/>
+      <point x="1514" y="291" type="line"/>
+      <point x="1793" y="291" type="line"/>
+      <point x="1793" y="423" type="line"/>
+      <point x="1514" y="423" type="line"/>
+      <point x="1514" y="563" type="line"/>
+      <point x="1823" y="563" type="line"/>
+      <point x="1823" y="700" type="line"/>
+      <point x="1343" y="700" type="line"/>
+    </contour>
+    <contour>
+      <point x="1584" y="137" type="line"/>
+      <point x="1584" y="0" type="line"/>
+      <point x="1823" y="0" type="line"/>
+      <point x="1823" y="137" type="line"/>
+    </contour>
+    <contour>
+      <point x="29" y="0" type="line"/>
+      <point x="223" y="0" type="line"/>
+      <point x="441" y="373" type="line"/>
+      <point x="223" y="700" type="line"/>
+      <point x="24" y="700" type="line"/>
+      <point x="253" y="356" type="line"/>
+    </contour>
+    <contour>
+      <point x="511" y="0" type="line"/>
+      <point x="1098" y="0" type="line"/>
+      <point x="1098" y="132" type="line"/>
+      <point x="682" y="132" type="line"/>
+      <point x="682" y="700" type="line"/>
+      <point x="511" y="700" type="line"/>
+    </contour>
+    <contour>
+      <point x="927" y="202" type="line"/>
+      <point x="1098" y="202" type="line"/>
+      <point x="1098" y="700" type="line"/>
+      <point x="927" y="700" type="line"/>
+    </contour>
+    <contour>
+      <point x="1168" y="132" type="line"/>
+      <point x="1168" y="0" type="line"/>
+      <point x="1514" y="0" type="line"/>
+      <point x="1514" y="132" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2025-11-04 15:06:21 +0000</string>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>X</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>E</string>
+      <key>public.markColor</key>
+      <string>0.04,0.57,0.04,0.5</string>
+    </dict>
+  </lib>
+</glyph>

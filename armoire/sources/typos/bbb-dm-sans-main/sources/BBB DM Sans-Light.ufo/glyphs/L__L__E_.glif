@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="L_L_E" format="1">
+  <advance width="1419"/>
+  <unicode hex="F3230"/>
+  <outline>
+    <contour>
+      <point x="76" y="0" type="line"/>
+      <point x="576" y="0" type="line"/>
+      <point x="576" y="57" type="line"/>
+      <point x="146" y="57" type="line"/>
+      <point x="146" y="700" type="line"/>
+      <point x="76" y="700" type="line"/>
+    </contour>
+    <contour>
+      <point x="506" y="127" type="line"/>
+      <point x="576" y="127" type="line"/>
+      <point x="576" y="700" type="line"/>
+      <point x="506" y="700" type="line"/>
+    </contour>
+    <contour>
+      <point x="936" y="127" type="line"/>
+      <point x="1006" y="127" type="line"/>
+      <point x="1006" y="323" type="line"/>
+      <point x="1331" y="323" type="line"/>
+      <point x="1331" y="381" type="line"/>
+      <point x="1006" y="381" type="line"/>
+      <point x="1006" y="642" type="line"/>
+      <point x="1361" y="642" type="line"/>
+      <point x="1361" y="700" type="line"/>
+      <point x="936" y="700" type="line"/>
+    </contour>
+    <contour>
+      <point x="1077" y="58" type="line"/>
+      <point x="1077" y="0" type="line"/>
+      <point x="1361" y="0" type="line"/>
+      <point x="1361" y="58" type="line"/>
+    </contour>
+    <contour>
+      <point x="646" y="57" type="line"/>
+      <point x="646" y="0" type="line"/>
+      <point x="1007" y="0" type="line"/>
+      <point x="1007" y="57" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2025-11-04 15:06:21 +0000</string>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>L</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>E</string>
+      <key>public.markColor</key>
+      <string>0.04,0.57,0.04,0.5</string>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="dieresis.comb" format="2">
+	<advance width="600"/>
+	<anchor x="325" y="485" name="top"/>
+	<outline>
+		<component base="croix" xOffset="224" yOffset="609"/>
+		<component base="croix" xOffset="254" yOffset="639"/>
+		<component base="croix" xOffset="224" yOffset="669"/>
+		<component base="croix" xOffset="194" yOffset="639"/>
+		<component base="croix" xOffset="374" yOffset="609"/>
+		<component base="croix" xOffset="404" yOffset="639"/>
+		<component base="croix" xOffset="374" yOffset="669"/>
+		<component base="croix" xOffset="344" yOffset="639"/>
+	</outline>
+	<lib>
+		<dict>
+			<key>public.markColor</key>
+			<string>0.5,0.09,0.79,1</string>
+		</dict>
+	</lib>
+</glyph>

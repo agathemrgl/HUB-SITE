@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="semicolon" format="2">
+	<advance width="192"/>
+	<unicode hex="003B"/>
+	<outline>
+		<component base="croix" xOffset="70" yOffset="253"/>
+		<component base="croix" xOffset="40" yOffset="283"/>
+		<component base="croix" xOffset="100" yOffset="283"/>
+		<component base="croix" xOffset="70" yOffset="313"/>
+		<component base="croix" xOffset="51" yOffset="-179"/>
+		<component base="croix" xOffset="21" yOffset="-149"/>
+		<component base="croix" xOffset="81" yOffset="-149"/>
+		<component base="croix" xOffset="51" yOffset="-119"/>
+		<component base="croix" xOffset="141" yOffset="1"/>
+		<component base="croix" xOffset="141" yOffset="31"/>
+		<component base="croix" xOffset="111" yOffset="61"/>
+		<component base="croix" xOffset="141" yOffset="-59"/>
+		<component base="croix" xOffset="141" yOffset="-29"/>
+		<component base="croix" xOffset="111" yOffset="-89"/>
+		<component base="croix" xOffset="81" yOffset="-119"/>
+	</outline>
+	<lib>
+		<dict>
+			<key>public.markColor</key>
+			<string>0.5,0.09,0.79,1</string>
+		</dict>
+	</lib>
+</glyph>

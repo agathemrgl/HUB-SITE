@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="onequarter" format="1">
+  <advance width="599"/>
+  <unicode hex="00BC"/>
+  <outline>
+    <contour>
+      <point x="57" y="0" type="line"/>
+      <point x="124" y="0" type="line"/>
+      <point x="490" y="700" type="line"/>
+      <point x="424" y="700" type="line"/>
+    </contour>
+    <contour>
+      <point x="458" y="0" type="line"/>
+      <point x="515" y="0" type="line"/>
+      <point x="515" y="71" type="line"/>
+      <point x="565" y="71" type="line"/>
+      <point x="565" y="110" type="line"/>
+      <point x="515" y="110" type="line"/>
+      <point x="515" y="354" type="line"/>
+      <point x="442" y="354" type="line"/>
+      <point x="279" y="106" type="line"/>
+      <point x="279" y="71" type="line"/>
+      <point x="458" y="71" type="line"/>
+    </contour>
+    <contour>
+      <point x="337" y="110" type="line"/>
+      <point x="459" y="296" type="line"/>
+      <point x="459" y="110" type="line"/>
+    </contour>
+    <component base="onesuperior" xOffset="9" identifier="D76F0B7D"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2019-05-20 08:55:17 +0000</string>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>onehalf</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>4</integer>
+      </dict>
+      <key>public.objectLibs</key>
+      <dict>
+        <key>D76F0B7D</key>
+        <dict>
+          <key>com.schriftgestaltung.alignment</key>
+          <integer>-1</integer>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="colon" format="2">
+	<advance width="134"/>
+	<unicode hex="003A"/>
+	<outline>
+		<component base="croix" xOffset="51"/>
+		<component base="croix" xOffset="21" yOffset="30"/>
+		<component base="croix" xOffset="81" yOffset="30"/>
+		<component base="croix" xOffset="51" yOffset="60"/>
+		<component base="croix" xOffset="53" yOffset="253"/>
+		<component base="croix" xOffset="23" yOffset="283"/>
+		<component base="croix" xOffset="83" yOffset="283"/>
+		<component base="croix" xOffset="53" yOffset="313"/>
+	</outline>
+	<lib>
+		<dict>
+			<key>public.markColor</key>
+			<string>0.5,0.09,0.79,1</string>
+		</dict>
+	</lib>
+</glyph>

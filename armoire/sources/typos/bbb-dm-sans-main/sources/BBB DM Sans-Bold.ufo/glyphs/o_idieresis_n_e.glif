@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="o_idieresis_n_e" format="1">
+  <advance width="1625"/>
+  <unicode hex="F3980"/>
+  <outline>
+    <contour>
+      <point x="329" y="358" type="curve"/>
+      <point x="329" y="507" type="line"/>
+      <point x="323" y="508"/>
+      <point x="317" y="508"/>
+      <point x="310" y="508" type="curve" smooth="yes"/>
+      <point x="164" y="508"/>
+      <point x="50" y="398"/>
+      <point x="50" y="248" type="curve" smooth="yes"/>
+      <point x="50" y="98"/>
+      <point x="164" y="-12"/>
+      <point x="310" y="-12" type="curve" smooth="yes"/>
+      <point x="456" y="-12"/>
+      <point x="570" y="98"/>
+      <point x="570" y="248" type="curve" smooth="yes"/>
+      <point x="570" y="496" type="line"/>
+      <point x="399" y="496" type="line"/>
+      <point x="399" y="249" type="line" smooth="yes"/>
+      <point x="399" y="175"/>
+      <point x="359" y="136"/>
+      <point x="310" y="136" type="curve" smooth="yes"/>
+      <point x="261" y="136"/>
+      <point x="224" y="174"/>
+      <point x="224" y="248" type="curve" smooth="yes"/>
+      <point x="224" y="322"/>
+      <point x="261" y="360"/>
+      <point x="310" y="360" type="curve" smooth="yes"/>
+      <point x="317" y="360"/>
+      <point x="323" y="359"/>
+    </contour>
+    <component base="dieresis" xOffset="301" identifier="5D1F807E"/>
+    <component base="n_e" xOffset="585" identifier="4F6870BC"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2025-11-04 15:06:21 +0000</string>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>o</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>e</string>
+      <key>public.markColor</key>
+      <string>0.04,0.57,0.04,0.5</string>
+      <key>public.objectLibs</key>
+      <dict>
+        <key>4F6870BC</key>
+        <dict>
+          <key>com.schriftgestaltung.alignment</key>
+          <integer>-1</integer>
+        </dict>
+        <key>5D1F807E</key>
+        <dict>
+          <key>com.schriftgestaltung.alignment</key>
+          <integer>-1</integer>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

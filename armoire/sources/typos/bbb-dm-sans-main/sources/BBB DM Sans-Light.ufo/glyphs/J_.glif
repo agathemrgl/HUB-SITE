@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="J" format="1">
+  <advance width="489"/>
+  <unicode hex="004A"/>
+  <outline>
+    <contour>
+      <point x="223" y="-12" type="curve" smooth="yes"/>
+      <point x="343" y="-12"/>
+      <point x="413" y="59"/>
+      <point x="413" y="180" type="curve" smooth="yes"/>
+      <point x="413" y="700" type="line"/>
+      <point x="343" y="700" type="line"/>
+      <point x="343" y="180" type="line" smooth="yes"/>
+      <point x="343" y="107"/>
+      <point x="314" y="50"/>
+      <point x="223" y="50" type="curve" smooth="yes"/>
+      <point x="130" y="50"/>
+      <point x="99" y="109"/>
+      <point x="98" y="181" type="curve"/>
+      <point x="27" y="181" type="line"/>
+      <point x="27" y="61"/>
+      <point x="100" y="-12"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2019-05-10 10:24:02 +0000</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>H</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>4</integer>
+        <key>com.typesupply.AccentFactory.yCoordinates</key>
+        <dict>
+          <key>bottom</key>
+          <dict>
+            <key>name</key>
+            <string>origin</string>
+            <key>type</key>
+            <string>glyphMetric</string>
+          </dict>
+          <key>top</key>
+          <dict>
+            <key>name</key>
+            <string>capHeight</string>
+            <key>type</key>
+            <string>fontInfo</string>
+          </dict>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

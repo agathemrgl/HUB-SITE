@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="guillemetleft" format="2">
+	<advance width="142"/>
+	<unicode hex="00AB"/>
+	<outline>
+		<component base="croix" xOffset="71" yOffset="686"/>
+		<component base="croix" xOffset="71" yOffset="716"/>
+		<component base="croix" xOffset="101" yOffset="716"/>
+		<component base="croix" xOffset="41" yOffset="776"/>
+		<component base="croix" xOffset="11" yOffset="776"/>
+		<component base="croix" xOffset="11" yOffset="746"/>
+	</outline>
+	<lib>
+		<dict>
+			<key>public.markColor</key>
+			<string>0.5,0.09,0.79,1</string>
+		</dict>
+	</lib>
+</glyph>

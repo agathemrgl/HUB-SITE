@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="multiply" format="2">
+	<advance width="512"/>
+	<unicode hex="00D7"/>
+	<outline>
+		<component base="croix" xOffset="241" yOffset="276"/>
+		<component base="croix" xScale="-1" xOffset="211" yOffset="336"/>
+		<component base="croix" xScale="-1" xOffset="151" yOffset="366"/>
+		<component base="croix" xScale="-1" xOffset="121" yOffset="396"/>
+		<component base="croix" xScale="-1" xOffset="181" yOffset="396"/>
+		<component base="croix" xScale="-1" xOffset="151" yOffset="426"/>
+		<component base="croix" xOffset="211" yOffset="306"/>
+		<component base="croix" xScale="-1" xOffset="181" yOffset="366"/>
+		<component base="croix" xOffset="301" yOffset="336"/>
+		<component base="croix" xOffset="361" yOffset="366"/>
+		<component base="croix" xOffset="391" yOffset="396"/>
+		<component base="croix" xOffset="331" yOffset="396"/>
+		<component base="croix" xOffset="361" yOffset="426"/>
+		<component base="croix" xScale="-1" xOffset="301" yOffset="306"/>
+		<component base="croix" xOffset="331" yOffset="366"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="211" yOffset="246"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="151" yOffset="216"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="121" yOffset="186"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="181" yOffset="186"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="151" yOffset="156"/>
+		<component base="croix" yScale="-1" xOffset="211" yOffset="276"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="181" yOffset="216"/>
+		<component base="croix" yScale="-1" xOffset="301" yOffset="246"/>
+		<component base="croix" yScale="-1" xOffset="361" yOffset="216"/>
+		<component base="croix" yScale="-1" xOffset="391" yOffset="186"/>
+		<component base="croix" yScale="-1" xOffset="331" yOffset="186"/>
+		<component base="croix" yScale="-1" xOffset="361" yOffset="156"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="301" yOffset="276"/>
+		<component base="croix" yScale="-1" xOffset="331" yOffset="216"/>
+	</outline>
+	<lib>
+		<dict>
+			<key>public.markColor</key>
+			<string>0.5,0.09,0.79,1</string>
+		</dict>
+	</lib>
+</glyph>

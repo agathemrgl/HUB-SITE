@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="T_E" format="1">
+  <advance width="1073"/>
+  <unicode hex="F4810"/>
+  <outline>
+    <contour>
+      <point x="240" y="0" type="line"/>
+      <point x="310" y="0" type="line"/>
+      <point x="310" y="642" type="line"/>
+      <point x="1015" y="642" type="line"/>
+      <point x="1015" y="700" type="line"/>
+      <point x="30" y="700" type="line"/>
+      <point x="30" y="642" type="line"/>
+      <point x="240" y="642" type="line"/>
+    </contour>
+    <contour>
+      <point x="590" y="0" type="line"/>
+      <point x="1015" y="0" type="line"/>
+      <point x="1015" y="58" type="line"/>
+      <point x="660" y="58" type="line"/>
+      <point x="660" y="323" type="line"/>
+      <point x="985" y="323" type="line"/>
+      <point x="985" y="381" type="line"/>
+      <point x="660" y="381" type="line"/>
+      <point x="660" y="572" type="line"/>
+      <point x="590" y="572" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2025-11-04 15:06:21 +0000</string>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>T</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>E</string>
+      <key>public.markColor</key>
+      <string>0.04,0.57,0.04,0.5</string>
+    </dict>
+  </lib>
+</glyph>

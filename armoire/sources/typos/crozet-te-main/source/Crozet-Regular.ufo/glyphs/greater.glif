@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="greater" format="2">
+	<advance width="242"/>
+	<unicode hex="003E"/>
+	<outline>
+		<component base="croix" xScale="-1" xOffset="211" yOffset="330"/>
+		<component base="croix" xScale="-1" xOffset="181" yOffset="330"/>
+		<component base="croix" xScale="-1" xOffset="151" yOffset="360"/>
+		<component base="croix" xScale="-1" xOffset="121" yOffset="270"/>
+		<component base="croix" xScale="-1" xOffset="91" yOffset="270"/>
+		<component base="croix" xScale="-1" xOffset="91" yOffset="240"/>
+		<component base="croix" xScale="-1" xOffset="91" yOffset="210"/>
+		<component base="croix" xScale="-1" xOffset="91" yOffset="180"/>
+		<component base="croix" xScale="-1" xOffset="91" yOffset="150"/>
+		<component base="croix" xScale="-1" xOffset="61" yOffset="240"/>
+		<component base="croix" xScale="-1" xOffset="61" yOffset="210"/>
+		<component base="croix" xScale="-1" xOffset="61" yOffset="180"/>
+		<component base="croix" xScale="-1" xOffset="91" yOffset="510"/>
+		<component base="croix" xScale="-1" xOffset="91" yOffset="480"/>
+		<component base="croix" xScale="-1" xOffset="91" yOffset="450"/>
+		<component base="croix" xScale="-1" xOffset="91" yOffset="420"/>
+		<component base="croix" xScale="-1" xOffset="121" yOffset="390"/>
+		<component base="croix" xScale="-1" xOffset="61" yOffset="480"/>
+		<component base="croix" xScale="-1" xOffset="61" yOffset="450"/>
+		<component base="croix" xScale="-1" xOffset="61" yOffset="420"/>
+		<component base="croix" xScale="-1" xOffset="151" yOffset="300"/>
+		<component base="croix" xScale="-1" xOffset="91" yOffset="390"/>
+	</outline>
+	<lib>
+		<dict>
+			<key>public.markColor</key>
+			<string>0.5,0.09,0.79,1</string>
+		</dict>
+	</lib>
+</glyph>

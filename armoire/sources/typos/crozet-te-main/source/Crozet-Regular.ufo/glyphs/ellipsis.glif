@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="ellipsis" format="2">
+	<advance width="412"/>
+	<unicode hex="2026"/>
+	<outline>
+		<component base="croix" xOffset="51"/>
+		<component base="croix" xOffset="21" yOffset="30"/>
+		<component base="croix" xOffset="81" yOffset="30"/>
+		<component base="croix" xOffset="51" yOffset="60"/>
+		<component base="croix" xOffset="190"/>
+		<component base="croix" xOffset="160" yOffset="30"/>
+		<component base="croix" xOffset="220" yOffset="30"/>
+		<component base="croix" xOffset="190" yOffset="60"/>
+		<component base="croix" xOffset="331"/>
+		<component base="croix" xOffset="301" yOffset="30"/>
+		<component base="croix" xOffset="361" yOffset="30"/>
+		<component base="croix" xOffset="331" yOffset="60"/>
+	</outline>
+	<lib>
+		<dict>
+			<key>public.markColor</key>
+			<string>0.5,0.09,0.79,1</string>
+		</dict>
+	</lib>
+</glyph>

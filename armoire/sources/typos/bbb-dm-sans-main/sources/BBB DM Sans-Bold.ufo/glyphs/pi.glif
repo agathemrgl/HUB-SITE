@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="pi" format="1">
+  <advance width="647"/>
+  <unicode hex="03C0"/>
+  <outline>
+    <contour>
+      <point x="90" y="0" type="line"/>
+      <point x="261" y="0" type="line"/>
+      <point x="261" y="366" type="line"/>
+      <point x="386" y="366" type="line"/>
+      <point x="386" y="0" type="line"/>
+      <point x="557" y="0" type="line"/>
+      <point x="557" y="366" type="line"/>
+      <point x="627" y="366" type="line"/>
+      <point x="627" y="496" type="line"/>
+      <point x="20" y="496" type="line"/>
+      <point x="20" y="366" type="line"/>
+      <point x="90" y="366" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2019-05-10 10:24:02 +0000</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>8</integer>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

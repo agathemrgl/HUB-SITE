@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="rcommaaccent" format="1">
+  <advance width="353"/>
+  <unicode hex="0157"/>
+  <outline>
+    <contour>
+      <point x="69" y="-226" type="line"/>
+      <point x="126" y="-226"/>
+      <point x="159" y="-197"/>
+      <point x="159" y="-119" type="curve" smooth="yes"/>
+      <point x="159" y="-100"/>
+      <point x="157" y="-76"/>
+      <point x="151" y="-52" type="curve"/>
+      <point x="72" y="-52" type="line"/>
+      <point x="72" y="-121" type="line"/>
+      <point x="115" y="-121" type="line"/>
+      <point x="115" y="-135" type="line" smooth="yes"/>
+      <point x="115" y="-171"/>
+      <point x="102" y="-191"/>
+      <point x="69" y="-191" type="curve"/>
+    </contour>
+    <component base="r" identifier="827867E4"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2019-05-10 10:24:02 +0000</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>r</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>8</integer>
+        <key>com.typesupply.AccentFactory.compileType</key>
+        <string>manual</string>
+      </dict>
+      <key>public.objectLibs</key>
+      <dict>
+        <key>827867E4</key>
+        <dict>
+          <key>com.schriftgestaltung.alignment</key>
+          <integer>-1</integer>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

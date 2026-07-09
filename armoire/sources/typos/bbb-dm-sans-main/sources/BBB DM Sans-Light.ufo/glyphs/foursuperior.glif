@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="foursuperior" format="1">
+  <advance width="313"/>
+  <unicode hex="2074"/>
+  <outline>
+    <contour>
+      <point x="194" y="352" type="line"/>
+      <point x="250" y="352" type="line"/>
+      <point x="250" y="420" type="line"/>
+      <point x="298" y="420" type="line"/>
+      <point x="298" y="469" type="line"/>
+      <point x="250" y="469" type="line"/>
+      <point x="250" y="700" type="line"/>
+      <point x="186" y="700" type="line"/>
+      <point x="20" y="464" type="line"/>
+      <point x="20" y="420" type="line"/>
+      <point x="194" y="420" type="line"/>
+    </contour>
+    <contour>
+      <point x="81" y="469" type="line"/>
+      <point x="198" y="638" type="line"/>
+      <point x="198" y="469" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>RMXScaler</key>
+      <dict>
+        <key>height</key>
+        <real>49.7</real>
+        <key>verticalShift</key>
+        <integer>352</integer>
+        <key>weight</key>
+        <integer>-14</integer>
+        <key>width</key>
+        <integer>50</integer>
+      </dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2019-06-06 14:45:36 +0000</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>RMXScaler</key>
+        <dict>
+          <key>source</key>
+          <string>four</string>
+        </dict>
+      </dict>
+      <key>com.schriftgestaltung.guides</key>
+      <array>
+        <dict>
+          <key>angle</key>
+          <integer>0</integer>
+          <key>x</key>
+          <integer>279</integer>
+          <key>y</key>
+          <integer>352</integer>
+        </dict>
+      </array>
+    </dict>
+  </lib>
+</glyph>

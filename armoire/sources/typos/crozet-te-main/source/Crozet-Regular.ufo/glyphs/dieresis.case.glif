@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="dieresis.case" format="2">
+	<advance width="600"/>
+	<outline>
+		<component base="croix" xOffset="225" yOffset="852"/>
+		<component base="croix" xOffset="255" yOffset="882"/>
+		<component base="croix" xOffset="225" yOffset="912"/>
+		<component base="croix" xOffset="195" yOffset="882"/>
+		<component base="croix" xOffset="375" yOffset="852"/>
+		<component base="croix" xOffset="405" yOffset="882"/>
+		<component base="croix" xOffset="375" yOffset="912"/>
+		<component base="croix" xOffset="345" yOffset="882"/>
+	</outline>
+	<lib>
+		<dict>
+			<key>public.markColor</key>
+			<string>0.5,0.09,0.79,1</string>
+		</dict>
+	</lib>
+</glyph>

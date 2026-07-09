@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="circumflex" format="2">
+	<advance width="570"/>
+	<unicode hex="02C6"/>
+	<outline>
+		<component base="croix" xOffset="211" yOffset="665"/>
+		<component base="croix" xOffset="241" yOffset="695"/>
+		<component base="croix" xOffset="270" yOffset="724"/>
+		<component base="croix" xOffset="299" yOffset="695"/>
+		<component base="croix" xOffset="329" yOffset="665"/>
+		<component base="croix" xOffset="359" yOffset="635"/>
+		<component base="croix" xOffset="389" yOffset="605"/>
+		<component base="croix" xOffset="419" yOffset="605"/>
+		<component base="croix" xOffset="449" yOffset="635"/>
+		<component base="croix" xOffset="449" yOffset="665"/>
+		<component base="croix" xOffset="479" yOffset="695"/>
+		<component base="croix" xOffset="509" yOffset="665"/>
+		<component base="croix" xOffset="479" yOffset="635"/>
+		<component base="croix" xOffset="181" yOffset="635"/>
+		<component base="croix" xOffset="151" yOffset="605"/>
+		<component base="croix" xOffset="121" yOffset="605"/>
+		<component base="croix" xOffset="91" yOffset="635"/>
+		<component base="croix" xOffset="91" yOffset="665"/>
+		<component base="croix" xOffset="61" yOffset="695"/>
+		<component base="croix" xOffset="31" yOffset="665"/>
+		<component base="croix" xOffset="61" yOffset="635"/>
+	</outline>
+	<lib>
+		<dict>
+			<key>public.markColor</key>
+			<string>0.5,0.09,0.79,1</string>
+		</dict>
+	</lib>
+</glyph>

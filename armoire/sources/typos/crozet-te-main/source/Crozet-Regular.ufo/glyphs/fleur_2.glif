@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="fleur_2" format="2">
+	<advance width="222"/>
+	<outline>
+		<component base="croix" xOffset="81" yOffset="215"/>
+		<component base="croix" xOffset="111" yOffset="245"/>
+		<component base="croix" xOffset="141" yOffset="245"/>
+		<component base="croix" xOffset="111" yOffset="275"/>
+		<component base="croix" xOffset="171" yOffset="275"/>
+		<component base="croix" xOffset="141" yOffset="305"/>
+		<component base="croix" xOffset="51" yOffset="245"/>
+		<component base="croix" xOffset="21" yOffset="275"/>
+		<component base="croix" xOffset="21" yOffset="305"/>
+		<component base="croix" xOffset="21" yOffset="335"/>
+		<component base="croix" xOffset="51" yOffset="335"/>
+		<component base="croix" xOffset="21" yOffset="365"/>
+		<component base="croix" xOffset="51" yOffset="365"/>
+		<component base="croix" xOffset="51" yOffset="395"/>
+		<component base="croix" xOffset="81" yOffset="395"/>
+		<component base="croix" xOffset="81" yOffset="425"/>
+		<component base="croix" xOffset="111" yOffset="425"/>
+		<component base="croix" xOffset="81" yOffset="455"/>
+		<component base="croix" xOffset="111" yOffset="455"/>
+		<component base="croix" xOffset="111" yOffset="485"/>
+		<component base="croix" xOffset="141" yOffset="455"/>
+		<component base="croix" xOffset="141" yOffset="485"/>
+		<component base="croix" xOffset="171" yOffset="485"/>
+		<component base="croix" xOffset="141" yOffset="515"/>
+		<component base="croix" xOffset="171" yOffset="515"/>
+		<component base="croix" xOffset="171" yOffset="545"/>
+		<component base="croix" xOffset="171" yOffset="575"/>
+		<component base="croix" xOffset="141" yOffset="605"/>
+		<component base="croix" xOffset="111" yOffset="635"/>
+		<component base="croix" xOffset="81" yOffset="605"/>
+		<component base="croix" xOffset="51" yOffset="605"/>
+		<component base="croix" xOffset="81" yOffset="575"/>
+		<component base="croix" xOffset="21" yOffset="575"/>
+		<component base="croix" xOffset="51" yOffset="545"/>
+	</outline>
+	<lib>
+		<dict>
+			<key>public.markColor</key>
+			<string>0.5,0.09,0.79,1</string>
+		</dict>
+	</lib>
+</glyph>

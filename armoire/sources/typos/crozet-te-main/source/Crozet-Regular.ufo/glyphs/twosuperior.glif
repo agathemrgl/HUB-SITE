@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="twosuperior" format="2">
+	<advance width="262"/>
+	<unicode hex="00B2"/>
+	<outline>
+		<component base="croix" xOffset="191" yOffset="766"/>
+		<component base="croix" xOffset="161" yOffset="706"/>
+		<component base="croix" xOffset="191" yOffset="736"/>
+		<component base="croix" xOffset="131" yOffset="826"/>
+		<component base="croix" xOffset="161" yOffset="796"/>
+		<component base="croix" xOffset="101" yOffset="826"/>
+		<component base="croix" xOffset="71" yOffset="796"/>
+		<component base="croix" xOffset="41" yOffset="736"/>
+		<component base="croix" xOffset="101" yOffset="646"/>
+		<component base="croix" xOffset="131" yOffset="586"/>
+		<component base="croix" xOffset="71" yOffset="616"/>
+		<component base="croix" xOffset="131" yOffset="676"/>
+		<component base="croix" xOffset="101" yOffset="586"/>
+		<component base="croix" xOffset="41" yOffset="586"/>
+		<component base="croix" xScale="-1" xOffset="191" yOffset="586"/>
+		<component base="croix" xScale="-1" xOffset="221" yOffset="586"/>
+		<component base="croix" xScale="-1" xOffset="251" yOffset="616"/>
+		<component base="croix" xOffset="41" yOffset="766"/>
+		<component base="croix" xOffset="11" yOffset="616"/>
+	</outline>
+	<lib>
+		<dict>
+			<key>public.markColor</key>
+			<string>0.98,0.36,0.67,1</string>
+		</dict>
+	</lib>
+</glyph>

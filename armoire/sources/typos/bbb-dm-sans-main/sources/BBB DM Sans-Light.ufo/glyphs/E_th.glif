@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Eth" format="1">
+  <advance width="715"/>
+  <unicode hex="00D0"/>
+  <outline>
+    <contour>
+      <point x="9" y="316" type="line"/>
+      <point x="379" y="316" type="line"/>
+      <point x="379" y="381" type="line"/>
+      <point x="9" y="381" type="line"/>
+    </contour>
+    <component base="D" xOffset="24"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2019-05-10 10:24:02 +0000</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>O</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>4</integer>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="daggerdbl" format="1">
+  <advance width="512"/>
+  <unicode hex="2021"/>
+  <outline>
+    <contour>
+      <point x="221" y="-258" type="line"/>
+      <point x="290" y="-258" type="line"/>
+      <point x="284" y="-18" type="line"/>
+      <point x="472" y="-25" type="line"/>
+      <point x="472" y="32" type="line"/>
+      <point x="284" y="25" type="line"/>
+      <point x="284" y="496" type="line"/>
+      <point x="472" y="489" type="line"/>
+      <point x="472" y="546" type="line"/>
+      <point x="284" y="539" type="line"/>
+      <point x="290" y="779" type="line"/>
+      <point x="221" y="779" type="line"/>
+      <point x="229" y="539" type="line"/>
+      <point x="41" y="546" type="line"/>
+      <point x="41" y="489" type="line"/>
+      <point x="229" y="496" type="line"/>
+      <point x="229" y="25" type="line"/>
+      <point x="41" y="32" type="line"/>
+      <point x="41" y="-25" type="line"/>
+      <point x="229" y="-18" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2019-05-10 10:24:02 +0000</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>4</integer>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

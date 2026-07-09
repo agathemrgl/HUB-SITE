@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="A_U_L_A" format="1">
+  <advance width="1905"/>
+  <unicode hex="F1050"/>
+  <outline>
+    <contour>
+      <point x="1360" y="0" type="line"/>
+      <point x="1381" y="57" type="line"/>
+      <point x="1049" y="57" type="line"/>
+      <point x="1049" y="700" type="line"/>
+      <point x="979" y="700" type="line"/>
+      <point x="979" y="34" type="line" smooth="yes"/>
+      <point x="979" y="-111"/>
+      <point x="905" y="-170"/>
+      <point x="796" y="-170" type="curve" smooth="yes"/>
+      <point x="714" y="-170"/>
+      <point x="639" y="-129"/>
+      <point x="582" y="41" type="curve" smooth="yes"/>
+      <point x="362" y="700" type="line"/>
+      <point x="291" y="700" type="line"/>
+      <point x="32" y="0" type="line"/>
+      <point x="106" y="0" type="line"/>
+      <point x="325" y="606" type="line"/>
+      <point x="554" y="-67" type="line" smooth="yes"/>
+      <point x="587" y="-165"/>
+      <point x="658" y="-232"/>
+      <point x="795" y="-232" type="curve" smooth="yes"/>
+      <point x="928" y="-232"/>
+      <point x="1034" y="-161"/>
+      <point x="1048" y="0" type="curve"/>
+    </contour>
+    <contour>
+      <point x="1333" y="127" type="line"/>
+      <point x="1406" y="127" type="line"/>
+      <point x="1596" y="654" type="line"/>
+      <point x="1562" y="654" type="line"/>
+      <point x="1799" y="0" type="line"/>
+      <point x="1873" y="0" type="line"/>
+      <point x="1615" y="700" type="line"/>
+      <point x="1544" y="700" type="line"/>
+    </contour>
+    <contour>
+      <point x="1355" y="186" type="line"/>
+      <point x="1753" y="186" type="line"/>
+      <point x="1732" y="244" type="line"/>
+      <point x="1376" y="244" type="line"/>
+    </contour>
+    <contour>
+      <point x="152" y="186" type="line"/>
+      <point x="398" y="186" type="line"/>
+      <point x="378" y="244" type="line"/>
+      <point x="173" y="244" type="line"/>
+    </contour>
+    <component base="gravecomb.cap" xOffset="165"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2025-11-04 15:06:21 +0000</string>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>A</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>A</string>
+      <key>public.markColor</key>
+      <string>0.04,0.57,0.04,0.5</string>
+    </dict>
+  </lib>
+</glyph>

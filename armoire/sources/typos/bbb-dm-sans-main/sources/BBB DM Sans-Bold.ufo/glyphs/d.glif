@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="d" format="1">
+  <advance width="675"/>
+  <unicode hex="0064"/>
+  <outline>
+    <contour>
+      <point x="292" y="-12" type="curve" smooth="yes"/>
+      <point x="368" y="-12"/>
+      <point x="411" y="20"/>
+      <point x="442" y="60" type="curve"/>
+      <point x="462" y="0" type="line"/>
+      <point x="613" y="0" type="line"/>
+      <point x="613" y="720" type="line"/>
+      <point x="442" y="720" type="line"/>
+      <point x="442" y="443" type="line"/>
+      <point x="408" y="484"/>
+      <point x="360" y="508"/>
+      <point x="292" y="508" type="curve" smooth="yes"/>
+      <point x="159" y="508"/>
+      <point x="50" y="398"/>
+      <point x="50" y="249" type="curve" smooth="yes"/>
+      <point x="50" y="100"/>
+      <point x="159" y="-12"/>
+    </contour>
+    <contour>
+      <point x="337" y="137" type="curve" smooth="yes"/>
+      <point x="272" y="137"/>
+      <point x="224" y="187"/>
+      <point x="224" y="249" type="curve" smooth="yes"/>
+      <point x="224" y="311"/>
+      <point x="272" y="359"/>
+      <point x="337" y="359" type="curve" smooth="yes"/>
+      <point x="403" y="359"/>
+      <point x="450" y="311"/>
+      <point x="450" y="248" type="curve" smooth="yes"/>
+      <point x="450" y="187"/>
+      <point x="403" y="137"/>
+    </contour>
+    <contour>
+      <point x="347" y="0" type="move" name="bottom"/>
+    </contour>
+    <contour>
+      <point x="347" y="248" type="move" name="center"/>
+    </contour>
+    <contour>
+      <point x="347" y="720" type="move" name="top"/>
+    </contour>
+    <contour>
+      <point x="671" y="496" type="move" name="topright"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2019-05-10 10:24:02 +0000</string>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>o</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>l</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>4</integer>
+        <key>com.typesupply.AccentFactory.yCoordinates</key>
+        <dict>
+          <key>bottom</key>
+          <dict>
+            <key>name</key>
+            <string>origin</string>
+            <key>type</key>
+            <string>glyphMetric</string>
+          </dict>
+          <key>top</key>
+          <dict>
+            <key>name</key>
+            <string>ascender</string>
+            <key>type</key>
+            <string>fontInfo</string>
+          </dict>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="approxequal" format="1">
+  <advance width="636"/>
+  <unicode hex="2248"/>
+  <outline>
+    <component base="asciitilde" yOffset="-146" identifier="5E42DBD1"/>
+    <component base="asciitilde" yOffset="104" identifier="29EEA7C1"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2025-11-04 15:13:57 +0000</string>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>asciitilde</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>asciitilde</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>8</integer>
+      </dict>
+      <key>public.objectLibs</key>
+      <dict>
+        <key>29EEA7C1</key>
+        <dict>
+          <key>com.schriftgestaltung.alignment</key>
+          <integer>-1</integer>
+        </dict>
+        <key>5E42DBD1</key>
+        <dict>
+          <key>com.schriftgestaltung.alignment</key>
+          <integer>-1</integer>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="F_V_E" format="2">
+	<advance width="2042"/>
+	<unicode hex="F2060"/>
+	<outline>
+		<component base="croix" xOffset="181" yOffset="4"/>
+		<component base="croix" xOffset="151" yOffset="34"/>
+		<component base="croix" xOffset="151" yOffset="64"/>
+		<component base="croix" xOffset="211" yOffset="4"/>
+		<component base="croix" xOffset="241" yOffset="4"/>
+		<component base="croix" xOffset="271" yOffset="34"/>
+		<component base="croix" xOffset="271" yOffset="64"/>
+		<component base="croix" xOffset="301" yOffset="64"/>
+		<component base="croix" xOffset="271" yOffset="94"/>
+		<component base="croix" xOffset="301" yOffset="94"/>
+		<component base="croix" xOffset="271" yOffset="124"/>
+		<component base="croix" xOffset="301" yOffset="124"/>
+		<component base="croix" xOffset="271" yOffset="154"/>
+		<component base="croix" xOffset="301" yOffset="154"/>
+		<component base="croix" xOffset="271" yOffset="184"/>
+		<component base="croix" xOffset="301" yOffset="184"/>
+		<component base="croix" xOffset="271" yOffset="214"/>
+		<component base="croix" xOffset="301" yOffset="214"/>
+		<component base="croix" xOffset="301" yOffset="244"/>
+		<component base="croix" xOffset="241" yOffset="244"/>
+		<component base="croix" xOffset="211" yOffset="244"/>
+		<component base="croix" xOffset="211" yOffset="214"/>
+		<component base="croix" xOffset="211" yOffset="184"/>
+		<component base="croix" xOffset="241" yOffset="274"/>
+		<component base="croix" xOffset="211" yOffset="274"/>
+		<component base="croix" xOffset="271" yOffset="274"/>
+		<component base="croix" xOffset="151" yOffset="94"/>
+		<component base="croix" xOffset="121" yOffset="64"/>
+		<component base="croix" xOffset="121" yOffset="94"/>
+		<component base="croix" xOffset="121" yOffset="124"/>
+		<component base="croix" xOffset="91" yOffset="154"/>
+		<component base="croix" xOffset="61" yOffset="154"/>
+		<component base="croix" xOffset="31" yOffset="124"/>
+		<component base="croix" xOffset="31" yOffset="94"/>
+		<component base="croix" xOffset="31" yOffset="64"/>
+		<component base="croix" xOffset="61" yOffset="34"/>
+		<component base="croix" xOffset="331" yOffset="34"/>
+		<component base="croix" xOffset="361" yOffset="4"/>
+		<component base="croix" xOffset="391" yOffset="4"/>
+		<component base="croix" xOffset="421" yOffset="34"/>
+		<component base="croix" xOffset="421" yOffset="64"/>
+		<component base="croix" xOffset="391" yOffset="94"/>
+		<component base="croix" xOffset="271" yOffset="304"/>
+		<component base="croix" xOffset="241" yOffset="304"/>
+		<component base="croix" xOffset="301" yOffset="304"/>
+		<component base="croix" xOffset="301" yOffset="334"/>
+		<component base="croix" xOffset="271" yOffset="334"/>
+		<component base="croix" xOffset="331" yOffset="334"/>
+		<component base="croix" xOffset="331" yOffset="364"/>
+		<component base="croix" xOffset="301" yOffset="364"/>
+		<component base="croix" xOffset="361" yOffset="364"/>
+		<component base="croix" xOffset="331" yOffset="394"/>
+		<component base="croix" xOffset="361" yOffset="394"/>
+		<component base="croix" xOffset="361" yOffset="424"/>
+		<component base="croix" xOffset="361" yOffset="454"/>
+		<component base="croix" xOffset="361" yOffset="484"/>
+		<component base="croix" xOffset="241" yOffset="364"/>
+		<component base="croix" xOffset="211" yOffset="394"/>
+		<component base="croix" xOffset="181" yOffset="424"/>
+		<component base="croix" xOffset="151" yOffset="394"/>
+		<component base="croix" xOffset="121" yOffset="394"/>
+		<component base="croix" xOffset="151" yOffset="364"/>
+		<component base="croix" xOffset="91" yOffset="364"/>
+		<component base="croix" xOffset="121" yOffset="334"/>
+		<component base="croix" xOffset="271" yOffset="394"/>
+		<component base="croix" xOffset="301" yOffset="424"/>
+		<component base="croix" xOffset="271" yOffset="424"/>
+		<component base="croix" xOffset="301" yOffset="454"/>
+		<component base="croix" xOffset="271" yOffset="454"/>
+		<component base="croix" xOffset="301" yOffset="484"/>
+		<component base="croix" xOffset="271" yOffset="484"/>
+		<component base="croix" xOffset="301" yOffset="514"/>
+		<component base="croix" xOffset="271" yOffset="514"/>
+		<component base="croix" xOffset="301" yOffset="544"/>
+		<component base="croix" xOffset="271" yOffset="544"/>
+		<component base="croix" xOffset="301" yOffset="574"/>
+		<component base="croix" xOffset="271" yOffset="574"/>
+		<component base="croix" xOffset="331" yOffset="604"/>
+		<component base="croix" xOffset="271" yOffset="604"/>
+		<component base="croix" xOffset="271" yOffset="634"/>
+		<component base="croix" xOffset="271" yOffset="664"/>
+		<component base="croix" xOffset="271" yOffset="694"/>
+		<component base="croix" xOffset="241" yOffset="724"/>
+		<component base="croix" xOffset="211" yOffset="724"/>
+		<component base="croix" xOffset="181" yOffset="724"/>
+		<component base="croix" xOffset="151" yOffset="694"/>
+		<component base="croix" xOffset="151" yOffset="664"/>
+		<component base="croix" xOffset="151" yOffset="634"/>
+		<component base="croix" xOffset="121" yOffset="664"/>
+		<component base="croix" xOffset="121" yOffset="634"/>
+		<component base="croix" xOffset="121" yOffset="604"/>
+		<component base="croix" xOffset="91" yOffset="634"/>
+		<component base="croix" xOffset="91" yOffset="604"/>
+		<component base="croix" xOffset="61" yOffset="634"/>
+		<component base="croix" xOffset="61" yOffset="604"/>
+		<component base="croix" xOffset="31" yOffset="664"/>
+		<component base="croix" xOffset="31" yOffset="634"/>
+		<component base="croix" xOffset="331" yOffset="634"/>
+		<component base="croix" xOffset="361" yOffset="664"/>
+		<component base="croix" xOffset="391" yOffset="694"/>
+		<component base="croix" xOffset="421" yOffset="724"/>
+		<component base="croix" xOffset="451" yOffset="724"/>
+		<component base="croix" xOffset="481" yOffset="724"/>
+		<component base="croix" xOffset="511" yOffset="724"/>
+		<component base="croix" xOffset="541" yOffset="724"/>
+		<component base="croix" xOffset="571" yOffset="694"/>
+		<component base="croix" xOffset="601" yOffset="664"/>
+		<component base="croix" xOffset="631" yOffset="664"/>
+		<component base="croix" xOffset="631" yOffset="694"/>
+		<component base="croix" xOffset="661" yOffset="694"/>
+		<component base="croix" xOffset="691" yOffset="694"/>
+		<component base="croix" xOffset="661" yOffset="724"/>
+		<component base="croix" xOffset="601" yOffset="634"/>
+		<component base="croix" xOffset="631" yOffset="634"/>
+		<component base="croix" xOffset="601" yOffset="604"/>
+		<component base="croix" xOffset="631" yOffset="604"/>
+		<component base="croix" xOffset="601" yOffset="574"/>
+		<component base="croix" xOffset="631" yOffset="574"/>
+		<component base="croix" xOffset="601" yOffset="544"/>
+		<component base="croix" xOffset="631" yOffset="544"/>
+		<component base="croix" xOffset="631" yOffset="514"/>
+		<component base="croix" xOffset="631" yOffset="484"/>
+		<component base="croix" xOffset="661" yOffset="484"/>
+		<component base="croix" xOffset="661" yOffset="454"/>
+		<component base="croix" xOffset="691" yOffset="454"/>
+		<component base="croix" xOffset="391" yOffset="334"/>
+		<component base="croix" xOffset="421" yOffset="334"/>
+		<component base="croix" xOffset="451" yOffset="334"/>
+		<component base="croix" xOffset="451" yOffset="364"/>
+		<component base="croix" xOffset="451" yOffset="304"/>
+		<component base="croix" xOffset="481" yOffset="304"/>
+		<component base="croix" xOffset="481" yOffset="274"/>
+		<component base="croix" xOffset="511" yOffset="274"/>
+		<component base="croix" xOffset="481" yOffset="244"/>
+		<component base="croix" xOffset="511" yOffset="244"/>
+		<component base="croix" xOffset="481" yOffset="214"/>
+		<component base="croix" xOffset="511" yOffset="214"/>
+		<component base="croix" xOffset="481" yOffset="184"/>
+		<component base="croix" xOffset="481" yOffset="484"/>
+		<component base="croix" xOffset="481" yOffset="454"/>
+		<component base="croix" xOffset="511" yOffset="454"/>
+		<component base="croix" xOffset="481" yOffset="424"/>
+		<component base="croix" xOffset="511" yOffset="424"/>
+		<component base="croix" xOffset="481" yOffset="394"/>
+		<component base="croix" xOffset="511" yOffset="394"/>
+		<component base="croix" xOffset="481" yOffset="364"/>
+		<component base="croix" xOffset="901" yOffset="-326"/>
+		<component base="croix" xOffset="931" yOffset="-326"/>
+		<component base="croix" xOffset="871" yOffset="-296"/>
+		<component base="croix" xOffset="901" yOffset="-296"/>
+		<component base="croix" xOffset="841" yOffset="-266"/>
+		<component base="croix" xOffset="871" yOffset="-266"/>
+		<component base="croix" xOffset="811" yOffset="-296"/>
+		<component base="croix" xOffset="961" yOffset="-296"/>
+		<component base="croix" xOffset="991" yOffset="-296"/>
+		<component base="croix" xScale="-1" xOffset="1111" yOffset="-326"/>
+		<component base="croix" xScale="-1" xOffset="1081" yOffset="-326"/>
+		<component base="croix" xScale="-1" xOffset="1141" yOffset="-296"/>
+		<component base="croix" xScale="-1" xOffset="1111" yOffset="-296"/>
+		<component base="croix" xScale="-1" xOffset="1171" yOffset="-266"/>
+		<component base="croix" xScale="-1" xOffset="1141" yOffset="-266"/>
+		<component base="croix" xScale="-1" xOffset="1201" yOffset="-296"/>
+		<component base="croix" xScale="-1" xOffset="1051" yOffset="-326"/>
+		<component base="croix" xOffset="961" yOffset="-266"/>
+		<component base="croix" xOffset="991" yOffset="-266"/>
+		<component base="croix" xOffset="1021" yOffset="-266"/>
+		<component base="croix" xOffset="1021" yOffset="-236"/>
+		<component base="croix" xOffset="1021" yOffset="-206"/>
+		<component base="croix" xOffset="1021" yOffset="-176"/>
+		<component base="croix" xOffset="1051" yOffset="-146"/>
+		<component base="croix" xOffset="961" yOffset="-236"/>
+		<component base="croix" xOffset="961" yOffset="-206"/>
+		<component base="croix" xOffset="961" yOffset="-176"/>
+		<component base="croix" xOffset="931" yOffset="-176"/>
+		<component base="croix" xOffset="931" yOffset="-146"/>
+		<component base="croix" xOffset="931" yOffset="-116"/>
+		<component base="croix" xOffset="931" yOffset="-86"/>
+		<component base="croix" xOffset="931" yOffset="-56"/>
+		<component base="croix" xOffset="961" yOffset="-26"/>
+		<component base="croix" xOffset="961" yOffset="4"/>
+		<component base="croix" xOffset="931" yOffset="34"/>
+		<component base="croix" xOffset="901" yOffset="34"/>
+		<component base="croix" xOffset="901" yOffset="4"/>
+		<component base="croix" xOffset="871" yOffset="34"/>
+		<component base="croix" xOffset="871" yOffset="4"/>
+		<component base="croix" xOffset="871" yOffset="-26"/>
+		<component base="croix" xOffset="871" yOffset="-56"/>
+		<component base="croix" xOffset="871" yOffset="-86"/>
+		<component base="croix" xOffset="841" yOffset="-56"/>
+		<component base="croix" xOffset="811" yOffset="-26"/>
+		<component base="croix" xOffset="781" yOffset="-56"/>
+		<component base="croix" xOffset="751" yOffset="-56"/>
+		<component base="croix" xOffset="781" yOffset="-86"/>
+		<component base="croix" xOffset="721" yOffset="-86"/>
+		<component base="croix" xOffset="751" yOffset="-116"/>
+		<component base="croix" xOffset="901" yOffset="64"/>
+		<component base="croix" xOffset="931" yOffset="64"/>
+		<component base="croix" xOffset="931" yOffset="94"/>
+		<component base="croix" xOffset="961" yOffset="64"/>
+		<component base="croix" xOffset="961" yOffset="94"/>
+		<component base="croix" xOffset="961" yOffset="124"/>
+		<component base="croix" xOffset="991" yOffset="94"/>
+		<component base="croix" xOffset="991" yOffset="124"/>
+		<component base="croix" xOffset="991" yOffset="154"/>
+		<component base="croix" xOffset="1021" yOffset="124"/>
+		<component base="croix" xOffset="1021" yOffset="154"/>
+		<component base="croix" xOffset="1021" yOffset="184"/>
+		<component base="croix" xOffset="1021" yOffset="214"/>
+		<component base="croix" xOffset="1021" yOffset="244"/>
+		<component base="croix" xOffset="871" yOffset="94"/>
+		<component base="croix" xOffset="901" yOffset="124"/>
+		<component base="croix" xOffset="871" yOffset="124"/>
+		<component base="croix" xOffset="901" yOffset="154"/>
+		<component base="croix" xOffset="871" yOffset="154"/>
+		<component base="croix" xOffset="841" yOffset="154"/>
+		<component base="croix" xOffset="901" yOffset="184"/>
+		<component base="croix" xOffset="871" yOffset="184"/>
+		<component base="croix" xOffset="841" yOffset="184"/>
+		<component base="croix" xOffset="871" yOffset="214"/>
+		<component base="croix" xOffset="841" yOffset="214"/>
+		<component base="croix" xOffset="871" yOffset="244"/>
+		<component base="croix" xOffset="841" yOffset="244"/>
+		<component base="croix" xOffset="811" yOffset="244"/>
+		<component base="croix" xOffset="841" yOffset="274"/>
+		<component base="croix" xOffset="811" yOffset="274"/>
+		<component base="croix" xOffset="841" yOffset="304"/>
+		<component base="croix" xOffset="811" yOffset="304"/>
+		<component base="croix" xOffset="841" yOffset="334"/>
+		<component base="croix" xOffset="811" yOffset="334"/>
+		<component base="croix" xOffset="841" yOffset="364"/>
+		<component base="croix" xOffset="781" yOffset="364"/>
+		<component base="croix" xOffset="751" yOffset="394"/>
+		<component base="croix" xOffset="721" yOffset="394"/>
+		<component base="croix" xOffset="691" yOffset="394"/>
+		<component base="croix" xOffset="661" yOffset="364"/>
+		<component base="croix" xOffset="661" yOffset="334"/>
+		<component base="croix" xOffset="661" yOffset="304"/>
+		<component base="croix" xOffset="661" yOffset="274"/>
+		<component base="croix" xOffset="691" yOffset="304"/>
+		<component base="croix" xOffset="691" yOffset="274"/>
+		<component base="croix" xOffset="691" yOffset="244"/>
+		<component base="croix" xOffset="721" yOffset="244"/>
+		<component base="croix" xOffset="721" yOffset="214"/>
+		<component base="croix" xOffset="721" yOffset="184"/>
+		<component base="croix" xOffset="691" yOffset="154"/>
+		<component base="croix" xOffset="1051" yOffset="-116"/>
+		<component base="croix" xOffset="1081" yOffset="-86"/>
+		<component base="croix" xOffset="1081" yOffset="-56"/>
+		<component base="croix" xOffset="1081" yOffset="-26"/>
+		<component base="croix" xOffset="1081" yOffset="4"/>
+		<component base="croix" xOffset="1081" yOffset="34"/>
+		<component base="croix" xOffset="1111" yOffset="64"/>
+		<component base="croix" xOffset="1111" yOffset="94"/>
+		<component base="croix" xOffset="1141" yOffset="124"/>
+		<component base="croix" xOffset="1141" yOffset="154"/>
+		<component base="croix" xOffset="1141" yOffset="184"/>
+		<component base="croix" xOffset="1141" yOffset="214"/>
+		<component base="croix" xOffset="1171" yOffset="244"/>
+		<component base="croix" xOffset="1171" yOffset="274"/>
+		<component base="croix" xOffset="1171" yOffset="304"/>
+		<component base="croix" xOffset="1171" yOffset="334"/>
+		<component base="croix" xOffset="1201" yOffset="364"/>
+		<component base="croix" xOffset="1231" yOffset="394"/>
+		<component base="croix" xOffset="1261" yOffset="394"/>
+		<component base="croix" xOffset="1291" yOffset="364"/>
+		<component base="croix" xOffset="1291" yOffset="334"/>
+		<component base="croix" xOffset="1261" yOffset="274"/>
+		<component base="croix" xOffset="1261" yOffset="244"/>
+		<component base="croix" xOffset="1261" yOffset="214"/>
+		<component base="croix" xOffset="1231" yOffset="244"/>
+		<component base="croix" xOffset="1231" yOffset="214"/>
+		<component base="croix" xOffset="1291" yOffset="214"/>
+		<component base="croix" xOffset="1291" yOffset="184"/>
+		<component base="croix" xOffset="1261" yOffset="184"/>
+		<component base="croix" xOffset="1321" yOffset="244"/>
+		<component base="croix" xOffset="1321" yOffset="214"/>
+		<component base="croix" xOffset="1261" yOffset="304"/>
+		<component base="croix" xOffset="691" yOffset="424"/>
+		<component base="croix" xOffset="1471" yOffset="-326"/>
+		<component base="croix" xOffset="1501" yOffset="-326"/>
+		<component base="croix" xOffset="1531" yOffset="-326"/>
+		<component base="croix" xOffset="1441" yOffset="-296"/>
+		<component base="croix" xOffset="1441" yOffset="-266"/>
+		<component base="croix" xOffset="1411" yOffset="-266"/>
+		<component base="croix" xOffset="1441" yOffset="-236"/>
+		<component base="croix" xOffset="1411" yOffset="-236"/>
+		<component base="croix" xOffset="1411" yOffset="-206"/>
+		<component base="croix" xOffset="1381" yOffset="-176"/>
+		<component base="croix" xOffset="1351" yOffset="-176"/>
+		<component base="croix" xOffset="1321" yOffset="-206"/>
+		<component base="croix" xOffset="1321" yOffset="-236"/>
+		<component base="croix" xOffset="1321" yOffset="-266"/>
+		<component base="croix" xOffset="1351" yOffset="-296"/>
+		<component base="croix" xOffset="1561" yOffset="-296"/>
+		<component base="croix" xOffset="1561" yOffset="-266"/>
+		<component base="croix" xOffset="1561" yOffset="-236"/>
+		<component base="croix" xOffset="1591" yOffset="-266"/>
+		<component base="croix" xOffset="1591" yOffset="-236"/>
+		<component base="croix" xOffset="1621" yOffset="-296"/>
+		<component base="croix" xOffset="1651" yOffset="-326"/>
+		<component base="croix" xOffset="1681" yOffset="-326"/>
+		<component base="croix" xOffset="1711" yOffset="-326"/>
+		<component base="croix" xOffset="1741" yOffset="-326"/>
+		<component base="croix" xOffset="1771" yOffset="-326"/>
+		<component base="croix" xOffset="1801" yOffset="-326"/>
+		<component base="croix" xOffset="1831" yOffset="-296"/>
+		<component base="croix" xOffset="1861" yOffset="-296"/>
+		<component base="croix" xOffset="1891" yOffset="-266"/>
+		<component base="croix" xOffset="1891" yOffset="-236"/>
+		<component base="croix" xOffset="1921" yOffset="-266"/>
+		<component base="croix" xOffset="1921" yOffset="-236"/>
+		<component base="croix" xOffset="1951" yOffset="-266"/>
+		<component base="croix" xOffset="1951" yOffset="-236"/>
+		<component base="croix" xOffset="1951" yOffset="-296"/>
+		<component base="croix" xOffset="1981" yOffset="-326"/>
+		<component base="croix" xOffset="1921" yOffset="-206"/>
+		<component base="croix" xOffset="1921" yOffset="-176"/>
+		<component base="croix" xOffset="1921" yOffset="-146"/>
+		<component base="croix" xOffset="1561" yOffset="-206"/>
+		<component base="croix" xOffset="1561" yOffset="-176"/>
+		<component base="croix" xOffset="1591" yOffset="-206"/>
+		<component base="croix" xOffset="1591" yOffset="-176"/>
+		<component base="croix" xOffset="1561" yOffset="-146"/>
+		<component base="croix" xOffset="1591" yOffset="-146"/>
+		<component base="croix" xOffset="1591" yOffset="-116"/>
+		<component base="croix" xOffset="1531" yOffset="-86"/>
+		<component base="croix" xOffset="1501" yOffset="-86"/>
+		<component base="croix" xOffset="1501" yOffset="-116"/>
+		<component base="croix" xOffset="1501" yOffset="-146"/>
+		<component base="croix" xOffset="1531" yOffset="-56"/>
+		<component base="croix" xOffset="1501" yOffset="-56"/>
+		<component base="croix" xOffset="1561" yOffset="-56"/>
+		<component base="croix" xOffset="1561" yOffset="-26"/>
+		<component base="croix" xOffset="1531" yOffset="-26"/>
+		<component base="croix" xOffset="1591" yOffset="-26"/>
+		<component base="croix" xOffset="1591" yOffset="4"/>
+		<component base="croix" xOffset="1561" yOffset="4"/>
+		<component base="croix" xOffset="1621" yOffset="4"/>
+		<component base="croix" xOffset="1621" yOffset="34"/>
+		<component base="croix" xOffset="1591" yOffset="34"/>
+		<component base="croix" xOffset="1651" yOffset="34"/>
+		<component base="croix" xOffset="1621" yOffset="64"/>
+		<component base="croix" xOffset="1651" yOffset="64"/>
+		<component base="croix" xOffset="1651" yOffset="94"/>
+		<component base="croix" xOffset="1651" yOffset="124"/>
+		<component base="croix" xOffset="1651" yOffset="154"/>
+		<component base="croix" xOffset="1501" yOffset="4"/>
+		<component base="croix" xOffset="1471" yOffset="34"/>
+		<component base="croix" xOffset="1441" yOffset="64"/>
+		<component base="croix" xOffset="1411" yOffset="34"/>
+		<component base="croix" xOffset="1381" yOffset="34"/>
+		<component base="croix" xOffset="1411" yOffset="4"/>
+		<component base="croix" xOffset="1351" yOffset="4"/>
+		<component base="croix" xOffset="1381" yOffset="-26"/>
+		<component base="croix" xOffset="1561" yOffset="-116"/>
+		<component base="croix" xOffset="1561" yOffset="64"/>
+		<component base="croix" xOffset="1591" yOffset="-86"/>
+		<component base="croix" xOffset="1561" yOffset="94"/>
+		<component base="croix" xOffset="1591" yOffset="94"/>
+		<component base="croix" xOffset="1561" yOffset="124"/>
+		<component base="croix" xOffset="1591" yOffset="124"/>
+		<component base="croix" xOffset="1561" yOffset="154"/>
+		<component base="croix" xOffset="1591" yOffset="154"/>
+		<component base="croix" xOffset="1561" yOffset="184"/>
+		<component base="croix" xOffset="1591" yOffset="184"/>
+		<component base="croix" xOffset="1561" yOffset="214"/>
+		<component base="croix" xOffset="1561" yOffset="244"/>
+		<component base="croix" xOffset="1561" yOffset="274"/>
+		<component base="croix" xOffset="1561" yOffset="304"/>
+		<component base="croix" xOffset="1591" yOffset="214"/>
+		<component base="croix" xOffset="1561" yOffset="334"/>
+		<component base="croix" xOffset="1531" yOffset="394"/>
+		<component base="croix" xOffset="1501" yOffset="394"/>
+		<component base="croix" xOffset="1471" yOffset="394"/>
+		<component base="croix" xOffset="1441" yOffset="364"/>
+		<component base="croix" xOffset="1441" yOffset="334"/>
+		<component base="croix" xOffset="1441" yOffset="304"/>
+		<component base="croix" xOffset="1411" yOffset="334"/>
+		<component base="croix" xOffset="1411" yOffset="304"/>
+		<component base="croix" xOffset="1411" yOffset="274"/>
+		<component base="croix" xOffset="1381" yOffset="304"/>
+		<component base="croix" xOffset="1381" yOffset="274"/>
+		<component base="croix" xOffset="1351" yOffset="244"/>
+		<component base="croix" xOffset="1351" yOffset="274"/>
+		<component base="croix" xOffset="1591" yOffset="244"/>
+		<component base="croix" xOffset="1651" yOffset="334"/>
+		<component base="croix" xOffset="1681" yOffset="364"/>
+		<component base="croix" xOffset="1711" yOffset="394"/>
+		<component base="croix" xOffset="1741" yOffset="394"/>
+		<component base="croix" xOffset="1771" yOffset="394"/>
+		<component base="croix" xOffset="1801" yOffset="394"/>
+		<component base="croix" xOffset="1831" yOffset="394"/>
+		<component base="croix" xOffset="1861" yOffset="364"/>
+		<component base="croix" xOffset="1891" yOffset="334"/>
+		<component base="croix" xOffset="1921" yOffset="334"/>
+		<component base="croix" xOffset="1921" yOffset="364"/>
+		<component base="croix" xOffset="1951" yOffset="394"/>
+		<component base="croix" xOffset="1981" yOffset="364"/>
+		<component base="croix" xOffset="1891" yOffset="304"/>
+		<component base="croix" xOffset="1921" yOffset="304"/>
+		<component base="croix" xOffset="1891" yOffset="274"/>
+		<component base="croix" xOffset="1921" yOffset="274"/>
+		<component base="croix" xOffset="1891" yOffset="244"/>
+		<component base="croix" xOffset="1921" yOffset="244"/>
+		<component base="croix" xOffset="1921" yOffset="214"/>
+		<component base="croix" xOffset="1921" yOffset="184"/>
+		<component base="croix" xOffset="1951" yOffset="154"/>
+		<component base="croix" xOffset="1681" yOffset="4"/>
+		<component base="croix" xOffset="1711" yOffset="4"/>
+		<component base="croix" xOffset="1741" yOffset="4"/>
+		<component base="croix" xOffset="1741" yOffset="34"/>
+		<component base="croix" xOffset="1741" yOffset="-26"/>
+		<component base="croix" xOffset="1771" yOffset="-26"/>
+		<component base="croix" xOffset="1771" yOffset="-56"/>
+		<component base="croix" xOffset="1771" yOffset="-86"/>
+		<component base="croix" xOffset="1771" yOffset="-116"/>
+		<component base="croix" xOffset="1771" yOffset="-146"/>
+		<component base="croix" xOffset="1801" yOffset="-56"/>
+		<component base="croix" xOffset="1801" yOffset="-86"/>
+		<component base="croix" xOffset="1801" yOffset="-116"/>
+		<component base="croix" xOffset="1771" yOffset="154"/>
+		<component base="croix" xOffset="1771" yOffset="124"/>
+		<component base="croix" xOffset="1771" yOffset="94"/>
+		<component base="croix" xOffset="1771" yOffset="64"/>
+		<component base="croix" xOffset="1771" yOffset="34"/>
+		<component base="croix" xOffset="1801" yOffset="124"/>
+		<component base="croix" xOffset="1801" yOffset="94"/>
+		<component base="croix" xOffset="1801" yOffset="64"/>
+		<component base="croix" xOffset="1561" yOffset="364"/>
+		<component base="croix" xOffset="1621" yOffset="274"/>
+		<component base="croix" xOffset="1621" yOffset="304"/>
+		<component base="croix" xOffset="1951" yOffset="-206"/>
+		<component base="croix" xOffset="1381" yOffset="244"/>
+		<component base="croix" xOffset="1351" yOffset="214"/>
+		<component base="croix" xOffset="1321" yOffset="184"/>
+		<component base="croix" xOffset="360" yOffset="-193"/>
+		<component base="croix" xOffset="390" yOffset="-163"/>
+		<component base="croix" xOffset="420" yOffset="-163"/>
+		<component base="croix" xOffset="450" yOffset="-133"/>
+		<component base="croix" xOffset="390" yOffset="-133"/>
+		<component base="croix" xOffset="420" yOffset="-103"/>
+		<component base="croix" xScale="-1" xOffset="360" yOffset="-163"/>
+		<component base="croix" xScale="-1" xOffset="330" yOffset="-163"/>
+		<component base="croix" xScale="-1" xOffset="300" yOffset="-133"/>
+		<component base="croix" xScale="-1" xOffset="360" yOffset="-133"/>
+		<component base="croix" xScale="-1" xOffset="330" yOffset="-103"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="360" yOffset="-193"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="330" yOffset="-193"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="300" yOffset="-223"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="360" yOffset="-223"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="330" yOffset="-253"/>
+		<component base="croix" yScale="-1" xOffset="390" yOffset="-193"/>
+		<component base="croix" yScale="-1" xOffset="420" yOffset="-193"/>
+		<component base="croix" yScale="-1" xOffset="450" yOffset="-223"/>
+		<component base="croix" yScale="-1" xOffset="390" yOffset="-223"/>
+		<component base="croix" yScale="-1" xOffset="420" yOffset="-253"/>
+		<component base="croix" xOffset="972" yOffset="616"/>
+		<component base="croix" xOffset="1002" yOffset="646"/>
+		<component base="croix" xOffset="1032" yOffset="646"/>
+		<component base="croix" xOffset="1062" yOffset="676"/>
+		<component base="croix" xOffset="1002" yOffset="676"/>
+		<component base="croix" xOffset="1032" yOffset="706"/>
+		<component base="croix" xScale="-1" xOffset="972" yOffset="646"/>
+		<component base="croix" xScale="-1" xOffset="942" yOffset="646"/>
+		<component base="croix" xScale="-1" xOffset="912" yOffset="676"/>
+		<component base="croix" xScale="-1" xOffset="972" yOffset="676"/>
+		<component base="croix" xScale="-1" xOffset="942" yOffset="706"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="972" yOffset="616"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="942" yOffset="616"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="912" yOffset="586"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="972" yOffset="586"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="942" yOffset="556"/>
+		<component base="croix" yScale="-1" xOffset="1002" yOffset="616"/>
+		<component base="croix" yScale="-1" xOffset="1032" yOffset="616"/>
+		<component base="croix" yScale="-1" xOffset="1062" yOffset="586"/>
+		<component base="croix" yScale="-1" xOffset="1002" yOffset="586"/>
+		<component base="croix" yScale="-1" xOffset="1032" yOffset="556"/>
+		<component base="croix" xOffset="1318" yOffset="715"/>
+		<component base="croix" xOffset="1348" yOffset="745"/>
+		<component base="croix" xOffset="1378" yOffset="745"/>
+		<component base="croix" xOffset="1408" yOffset="775"/>
+		<component base="croix" xOffset="1348" yOffset="775"/>
+		<component base="croix" xOffset="1378" yOffset="805"/>
+		<component base="croix" xScale="-1" xOffset="1318" yOffset="745"/>
+		<component base="croix" xScale="-1" xOffset="1288" yOffset="745"/>
+		<component base="croix" xScale="-1" xOffset="1258" yOffset="775"/>
+		<component base="croix" xScale="-1" xOffset="1318" yOffset="775"/>
+		<component base="croix" xScale="-1" xOffset="1288" yOffset="805"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="1318" yOffset="715"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="1288" yOffset="715"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="1258" yOffset="685"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="1318" yOffset="685"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="1288" yOffset="655"/>
+		<component base="croix" yScale="-1" xOffset="1348" yOffset="715"/>
+		<component base="croix" yScale="-1" xOffset="1378" yOffset="715"/>
+		<component base="croix" yScale="-1" xOffset="1408" yOffset="685"/>
+		<component base="croix" yScale="-1" xOffset="1348" yOffset="685"/>
+		<component base="croix" yScale="-1" xOffset="1378" yOffset="655"/>
+		<component base="croix" xOffset="1662" yOffset="617"/>
+		<component base="croix" xOffset="1692" yOffset="647"/>
+		<component base="croix" xOffset="1722" yOffset="647"/>
+		<component base="croix" xOffset="1752" yOffset="677"/>
+		<component base="croix" xOffset="1692" yOffset="677"/>
+		<component base="croix" xOffset="1722" yOffset="707"/>
+		<component base="croix" xScale="-1" xOffset="1662" yOffset="647"/>
+		<component base="croix" xScale="-1" xOffset="1632" yOffset="647"/>
+		<component base="croix" xScale="-1" xOffset="1602" yOffset="677"/>
+		<component base="croix" xScale="-1" xOffset="1662" yOffset="677"/>
+		<component base="croix" xScale="-1" xOffset="1632" yOffset="707"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="1662" yOffset="617"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="1632" yOffset="617"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="1602" yOffset="587"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="1662" yOffset="587"/>
+		<component base="croix" xScale="-1" yScale="-1" xOffset="1632" yOffset="557"/>
+		<component base="croix" yScale="-1" xOffset="1692" yOffset="617"/>
+		<component base="croix" yScale="-1" xOffset="1722" yOffset="617"/>
+		<component base="croix" yScale="-1" xOffset="1752" yOffset="587"/>
+		<component base="croix" yScale="-1" xOffset="1692" yOffset="587"/>
+		<component base="croix" yScale="-1" xOffset="1722" yOffset="557"/>
+	</outline>
+	<lib>
+		<dict>
+			<key>public.markColor</key>
+			<string>0.97,0.9,0,1</string>
+		</dict>
+	</lib>
+</glyph>

@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="h" format="1">
+  <advance width="643"/>
+  <unicode hex="0068"/>
+  <outline>
+    <contour>
+      <point x="417" y="0" type="line"/>
+      <point x="587" y="0" type="line"/>
+      <point x="587" y="270" type="line" smooth="yes"/>
+      <point x="587" y="420"/>
+      <point x="521" y="508"/>
+      <point x="392" y="508" type="curve" smooth="yes"/>
+      <point x="296" y="508"/>
+      <point x="236" y="455"/>
+      <point x="211" y="386" type="curve"/>
+      <point x="233" y="255" type="line"/>
+      <point x="233" y="323"/>
+      <point x="272" y="365"/>
+      <point x="329" y="365" type="curve" smooth="yes"/>
+      <point x="394" y="365"/>
+      <point x="417" y="323"/>
+      <point x="417" y="255" type="curve" smooth="yes"/>
+    </contour>
+    <contour>
+      <point x="62" y="0" type="line"/>
+      <point x="233" y="0" type="line"/>
+      <point x="233" y="720" type="line"/>
+      <point x="62" y="720" type="line"/>
+    </contour>
+    <contour>
+      <point x="327" y="0" type="move" name="bottom"/>
+    </contour>
+    <contour>
+      <point x="327" y="360" type="move" name="center"/>
+    </contour>
+    <contour>
+      <point x="146" y="720" type="move" name="top"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2019-05-10 10:24:02 +0000</string>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>l</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>n</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>4</integer>
+        <key>com.typesupply.AccentFactory.yCoordinates</key>
+        <dict>
+          <key>bottom</key>
+          <dict>
+            <key>name</key>
+            <string>origin</string>
+            <key>type</key>
+            <string>glyphMetric</string>
+          </dict>
+          <key>top</key>
+          <dict>
+            <key>name</key>
+            <string>ascender</string>
+            <key>type</key>
+            <string>fontInfo</string>
+          </dict>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

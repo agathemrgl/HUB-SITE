@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="M" format="1">
+  <advance width="835"/>
+  <unicode hex="004D"/>
+  <outline>
+    <contour>
+      <point x="76" y="0" type="line"/>
+      <point x="146" y="0" type="line"/>
+      <point x="146" y="620" type="line"/>
+      <point x="119" y="621" type="line"/>
+      <point x="392" y="100" type="line"/>
+      <point x="443" y="100" type="line"/>
+      <point x="715" y="621" type="line"/>
+      <point x="689" y="620" type="line"/>
+      <point x="689" y="0" type="line"/>
+      <point x="759" y="0" type="line"/>
+      <point x="759" y="700" type="line"/>
+      <point x="678" y="700" type="line"/>
+      <point x="400" y="164" type="line"/>
+      <point x="435" y="164" type="line"/>
+      <point x="156" y="700" type="line"/>
+      <point x="76" y="700" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2025-09-25 13:46:19 +0000</string>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>H</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>H</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>4</integer>
+        <key>com.typesupply.AccentFactory.yCoordinates</key>
+        <dict>
+          <key>bottom</key>
+          <dict>
+            <key>name</key>
+            <string>origin</string>
+            <key>type</key>
+            <string>glyphMetric</string>
+          </dict>
+          <key>top</key>
+          <dict>
+            <key>name</key>
+            <string>capHeight</string>
+            <key>type</key>
+            <string>fontInfo</string>
+          </dict>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="divide" format="1">
+  <advance width="556"/>
+  <unicode hex="00F7"/>
+  <outline>
+    <contour>
+      <point x="48" y="218" type="line"/>
+      <point x="508" y="218" type="line"/>
+      <point x="508" y="360" type="line"/>
+      <point x="48" y="360" type="line"/>
+    </contour>
+    <component base="period" xOffset="137" yOffset="-5" identifier="9315A896"/>
+    <component base="period" xOffset="137" yOffset="413" identifier="0A9C85AF"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2025-11-04 15:13:57 +0000</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>3</integer>
+      </dict>
+      <key>com.schriftgestaltung.guides</key>
+      <array>
+        <dict>
+          <key>angle</key>
+          <integer>0</integer>
+          <key>x</key>
+          <integer>248</integer>
+          <key>y</key>
+          <integer>360</integer>
+        </dict>
+        <dict>
+          <key>angle</key>
+          <integer>180</integer>
+          <key>x</key>
+          <integer>248</integer>
+          <key>y</key>
+          <integer>218</integer>
+        </dict>
+        <dict>
+          <key>angle</key>
+          <integer>0</integer>
+          <key>x</key>
+          <integer>170</integer>
+          <key>y</key>
+          <integer>405</integer>
+        </dict>
+        <dict>
+          <key>angle</key>
+          <integer>0</integer>
+          <key>x</key>
+          <integer>157</integer>
+          <key>y</key>
+          <integer>173</integer>
+        </dict>
+      </array>
+      <key>public.objectLibs</key>
+      <dict>
+        <key>0A9C85AF</key>
+        <dict>
+          <key>com.schriftgestaltung.alignment</key>
+          <integer>-1</integer>
+        </dict>
+        <key>9315A896</key>
+        <dict>
+          <key>com.schriftgestaltung.alignment</key>
+          <integer>-1</integer>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>
