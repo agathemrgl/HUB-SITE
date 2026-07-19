@@ -83,36 +83,86 @@
 
         <div class="wardrobe">
 
-          <!-- Bloc Outfit -->
-          <div class="wardrobe-left">
-            <div class="w-block w-block--outfit">
-              <div class="w-block-header">Outfit</div>
-            </div>
-          </div>
-
-          <!-- Blocs catégories -->
-          <div class="wardrobe-right">
-            <div class="w-block">
-              <div class="w-block-header">Hauts</div>
-              <div class="wardrobe-items" id="tops-list"></div>
-            </div>
-            <div class="w-block">
-              <div class="w-block-header">Bas</div>
-              <div class="wardrobe-items" id="bottoms-list"></div>
-            </div>
-            <div class="wardrobe-right-bottom">
-              <div class="w-block w-block--small">
-                <div class="w-block-header">Chaussures</div>
-                <div class="wardrobe-items" id="shoes-list"></div>
+          <!-- Blocs catégories + Outfits, empilés dans un ordre réordonnable (par les titres) -->
+          <div class="wardrobe-stack" id="wardrobe-stack">
+            <div class="wardrobe-columns">
+            <div class="w-block w-block--movable" data-block-id="tops">
+              <div class="w-block-header">
+                <span>Hauts</span>
+                <label class="w-add-btn" title="Ajouter un vêtement">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                  </svg>
+                  <input type="file" accept="image/*" multiple class="category-file-input" data-category="tops" />
+                </label>
               </div>
-              <div class="w-block w-block--small">
-                <div class="w-block-header">Accessoires</div>
-                <div class="wardrobe-items" id="accessories-list"></div>
+              <div class="wardrobe-items" id="tops-list" data-category="tops"></div>
+            </div>
+            <div class="w-block w-block--movable" data-block-id="bottoms">
+              <div class="w-block-header">
+                <span>Bas</span>
+                <label class="w-add-btn" title="Ajouter un vêtement">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                  </svg>
+                  <input type="file" accept="image/*" multiple class="category-file-input" data-category="bottoms" />
+                </label>
+              </div>
+              <div class="wardrobe-items" id="bottoms-list" data-category="bottoms"></div>
+            </div>
+            <div class="w-block w-block--movable" data-block-id="shoes">
+              <div class="w-block-header">
+                <span>Chaussures</span>
+                <label class="w-add-btn" title="Ajouter un vêtement">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                  </svg>
+                  <input type="file" accept="image/*" multiple class="category-file-input" data-category="shoes" />
+                </label>
+              </div>
+              <div class="wardrobe-items" id="shoes-list" data-category="shoes"></div>
+            </div>
+            <div class="w-block w-block--movable" data-block-id="accessories">
+              <div class="w-block-header">
+                <span>Accessoires</span>
+                <label class="w-add-btn" title="Ajouter un vêtement">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                  </svg>
+                  <input type="file" accept="image/*" multiple class="category-file-input" data-category="accessories" />
+                </label>
+              </div>
+              <div class="wardrobe-items" id="accessories-list" data-category="accessories"></div>
+            </div>
+            </div>
+            <div class="w-block w-block--outfit w-block--movable" data-block-id="outfit">
+              <div class="w-block-header"><span>Outfits</span></div>
+              <div class="wardrobe-items wardrobe-items--tags" id="tags-list"></div>
+              <div class="outfit-resize-handle" id="outfit-resize-handle" title="Redimensionner">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+                  <line x1="12" y1="2" x2="2" y2="12"/>
+                  <line x1="12" y1="8" x2="8" y2="12"/>
+                </svg>
               </div>
             </div>
           </div>
 
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bg-processing-toast" id="bg-toast">
+    <span class="spinner"></span>
+    <span id="bg-toast-text">Traitement de l'image…</span>
+  </div>
+
+  <div class="confirm-overlay" id="confirm-overlay">
+    <div class="confirm-modal">
+      <p class="confirm-text">Supprimer définitivement ce vêtement ?</p>
+      <div class="confirm-actions">
+        <button class="confirm-btn confirm-btn--cancel" id="confirm-cancel">Annuler</button>
+        <button class="confirm-btn confirm-btn--danger" id="confirm-ok">Oui, supprimer</button>
       </div>
     </div>
   </div>
