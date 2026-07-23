@@ -280,7 +280,7 @@ p { margin: 0 0 1px 0; }
 	}
 
 	#layout {
-		padding: 24px 16px;
+		padding: 100px 90px;
 		align-items: flex-start;
 	}
 
@@ -340,7 +340,7 @@ p { margin: 0 0 1px 0; }
 /* ── RESPONSIVE MOBILE : petits écrans ── */
 @media (max-width: 480px) {
 	#layout {
-		padding: 12px 10px;
+		padding: 70px 50px;
 	}
 
 	.cv-title {
