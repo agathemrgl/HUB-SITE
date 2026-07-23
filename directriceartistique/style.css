@@ -280,7 +280,7 @@ p { margin: 0 0 1px 0; }
 	}
 
 	#layout {
-		padding: 62px 72px;
+		padding: 24px 16px;
 		align-items: flex-start;
 	}
 
@@ -296,15 +296,26 @@ p { margin: 0 0 1px 0; }
 	.cv-title {
 		border-right: none;
 		border-bottom: 1px solid #565655;
+		padding: 16px;
+		font-size: 26px;
+	}
+	.cv-title-sub {
+		font-size: 13px;
+		margin-top: 3px;
+	}
+	.cv-intro {
+		padding: 16px;
 	}
 
 	.cv-note {
 		flex-direction: column;
 	}
 	.cv-note-cell {
-		padding: 6px 14px;
+		padding: 8px 16px;
 		border-right: none;
 		border-bottom: 1px solid #565655;
+		white-space: normal;
+		word-break: break-word;
 	}
 	.cv-note-cell:last-child { border-bottom: none; }
 
@@ -314,6 +325,7 @@ p { margin: 0 0 1px 0; }
 	}
 
 	.cv-col {
+		padding: 16px;
 		border-right: none;
 		border-bottom: 1px solid #565655;
 	}
@@ -322,5 +334,25 @@ p { margin: 0 0 1px 0; }
 	.win-scroll {
 		max-height: none;
 		overflow-y: visible;
+	}
+}
+
+/* ── RESPONSIVE MOBILE : petits écrans ── */
+@media (max-width: 480px) {
+	#layout {
+		padding: 12px 10px;
+	}
+
+	.cv-title {
+		font-size: 21px;
+		padding: 14px;
+	}
+	.cv-title-sub {
+		font-size: 12px;
+	}
+
+	.cv-photo {
+		width: 72px;
+		height: 84px;
 	}
 }
