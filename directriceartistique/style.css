@@ -108,11 +108,19 @@ p { margin: 0 0 1px 0; }
 	padding: 20px 14px;
 	border-right: 1px solid #565655;
 	display: flex;
-	align-items: center;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
 	font-size: 38px;
 	font-weight: 400;
 	line-height: 1.1;
 	color: #222;
+}
+.cv-title-sub {
+	font-size: 18px;
+	font-weight: 400;
+	color: #222222;
+	margin-top: 4px;
 }
 .cv-intro {
 	margin: 0;
@@ -155,12 +163,25 @@ p { margin: 0 0 1px 0; }
 	margin-bottom: 12px;
 }
 .cv-photo {
+	position: relative;
 	width: 90px;
 	height: 106px;
 	flex-shrink: 0;
 	background: #cfe3fb;
 	border-radius: 2px;
+	overflow: hidden;
+}
+.cv-photo img {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 	object-fit: cover;
+	opacity: 0;
+}
+.cv-photo img.active {
+	opacity: 1;
 }
 .cv-profile-text {
 	min-width: 0;

@@ -38,8 +38,8 @@
     </div>
     <div class="win-scroll">
       <div class="cv-header">
-        <h1 class="cv-title">Directrice artistique</h1>
-        <p class="cv-intro">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin justo nibh, semper quis condimentum sed, posuere a ligula. Nulla blandit magna eu sapien blandit imperdiet. Aenean pulvinar elit elit, eget rhoncus mauris maximus id. Donec ullamcorper id quam ut finibus. Nam a mi nisi. Praesent ut dignissim velit. Phasellus imperdiet, ligula et tincidunt mollis, augue eros luctus massa, vel facilisis justo mi ut metus. Maecenas nisl justo, pulvinar non justo ut, rhoncus condimentum ante.</p>
+        <h1 class="cv-title">Directrice artistique<span class="cv-title-sub">(junior)</span></h1>
+        <p class="cv-intro">Je raffole des univers forts et des concepts qui racontent une histoire. Formée à l'ECV Paris et à l'ENSAAMA — Olivier de Serres, j'ai développé une vision qui part du why : penser un univers créatif cohérent, du concept à la déclinaison. Dans le sport, j'ai piloté des univers visuels pour des événements internationaux, où chaque détail doit servir plusieurs cibles. J’ai la conviction que le fond nourrit la forme, jamais l'inverse. J’aime creuser un brief jusqu'à trouver le storytelling qui fera la différence.</p>
       </div>
       <div class="cv-note">
         <p class="cv-note-cell"><span id="cv-contact"></span></p>
@@ -117,10 +117,21 @@
           <h2 class="cv-heading">À propos</h2>
 
           <div class="cv-profile">
-            <img class="cv-photo" src="Img/portrait_agathe.jpg" alt="Agathe Margely">
+            <div class="cv-photo" id="cv-photo-carousel">
+              <img src="Img/portrait_agathe.jpg" alt="Agathe Margely" class="active">
+              <img src="Img/arbitrage.JPG" alt="">
+              <img src="Img/arduino-techno.jpg" alt="">
+              <img src="Img/artisan-papa.JPG" alt="">
+              <img src="Img/ciel-bretagne.jpg" alt="">
+              <img src="Img/mer-bretagne.JPG" alt="">
+              <img src="Img/peche-agathe.JPG" alt="">
+              <img src="Img/peinture.JPG" alt="">
+              <img src="Img/petite-agathe.jpg" alt="">
+              <img src="Img/prespective-art.JPG" alt="">
+            </div>
             <div class="cv-profile-text">
               <p class="cv-name">Agathe Margely</p>
-              <p class="cv-bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin justo nibh, semper quis condimentum sed, posuere a ligula. Nulla blandit magna eu sapien blandit imperdiet.</p>
+              <p class="cv-bio">Ma terre bretonne natale est un point d'ancrage auquel je reviens sans cesse. Curieuse de tout ce qui se pense, se fabrique ou se raconte. Mes mains ont toujours besoin d'un projet en cours : un ourlet, une recette, une pièce en argile.</p>
             </div>
           </div>
 
@@ -171,6 +182,17 @@
   b.textContent = phoneDisplay;
   b.className = "cv-contact-link";
   document.getElementById("cv-phone").appendChild(b);
+})();
+
+(function () {
+  var photos = document.querySelectorAll("#cv-photo-carousel img");
+  if (!photos.length) return;
+  var index = 0;
+  setInterval(function () {
+    photos[index].classList.remove("active");
+    index = (index + 1) % photos.length;
+    photos[index].classList.add("active");
+  }, 800);
 })();
 </script>
 
