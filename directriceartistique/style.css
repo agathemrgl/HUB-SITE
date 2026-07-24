@@ -389,7 +389,7 @@ p { margin: 0 0 1px 0; }
 /* ── RESPONSIVE MOBILE : petits écrans ── */
 @media (max-width: 480px) {
 	#layout {
-		padding: 70px 50px;
+		padding: 70px 40px;
 	}
 
 	.cv-title {
