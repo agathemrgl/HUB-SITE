@@ -5,7 +5,6 @@ const resetButton = document.getElementById('reset-button');
 const zoomInButton = document.getElementById('zoom-in-button');
 const zoomOutButton = document.getElementById('zoom-out-button');
 const fileInput = document.getElementById('file-input');
-const uploadCategory = document.getElementById('upload-category');
 const categoryFileInputs = document.querySelectorAll('.category-file-input');
 const bgToast = document.getElementById('bg-toast');
 const bgToastText = document.getElementById('bg-toast-text');
@@ -19,6 +18,12 @@ const wardrobeStack = document.getElementById('wardrobe-stack');
 const movableBlocks = document.querySelectorAll('.w-block--movable');
 let pendingDelete = null;
 const blockPositions = {};
+
+// Sous 720px, le plateau de travail desktop (canvas, pan/zoom, drag & drop) est masqué au
+// profit d'une app à onglets indépendante (voir renderMobile* plus bas) : ce n'est jamais
+// la même mise en page redimensionnée, mais une expérience distincte pensée pour le tactile.
+const mobileQuery = window.matchMedia('(max-width: 720px)');
+const DELETE_ICON_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
 
 // Fige la position/largeur actuelle (issue de la mise en page flex de départ) de chaque bloc
 // déplaçable, pour pouvoir ensuite le déplacer librement n'importe où sans que le reste ne bouge.
@@ -198,6 +203,7 @@ function reanchorElement(element, state) {
       state.y = newTop;
       state.anchor = insideOutfit ? 'outfit' : 'board';
     }
+    renderCreaCanvas();
   } else if (state) {
     state.x = parseInt(element.style.left, 10);
     state.y = parseInt(element.style.top, 10);
@@ -244,6 +250,11 @@ function askDeleteTag(label) {
   confirmOverlay.classList.add('is-visible');
 }
 
+function askDeleteOutfit(outfit) {
+  pendingDelete = { type: 'outfit', outfit };
+  confirmOverlay.classList.add('is-visible');
+}
+
 function closeConfirm() {
   confirmOverlay.classList.remove('is-visible');
   pendingDelete = null;
@@ -259,6 +270,13 @@ confirmOkBtn.addEventListener('click', () => {
     const idx = TAGS.indexOf(pendingDelete.label);
     if (idx !== -1) TAGS.splice(idx, 1);
     populateTags();
+    saveCurrentState();
+    closeConfirm();
+    return;
+  }
+  if (pendingDelete.type === 'outfit') {
+    savedOutfits = savedOutfits.filter(o => o.id !== pendingDelete.outfit.id);
+    populateSavedOutfits();
     saveCurrentState();
     closeConfirm();
     return;
@@ -333,7 +351,7 @@ async function handleFilesForCategory(files, category) {
   hideBgToast();
 }
 
-const STATE_VERSION = 7;
+const STATE_VERSION = 8;
 
 const ICON_SAVE = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>`;
 const ICON_CHECK = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
@@ -355,6 +373,8 @@ const categories = {
 
 let workspaceItems = [];
 let workspaceTags = [];
+let savedOutfits = [];
+let outfitCounter = 0;
 let boardOffset = { x: 0, y: 0 };
 let scale = window.matchMedia('(max-width: 720px)').matches ? 0.7 : 1;
 const SCALE_MIN = 0.2;
@@ -438,6 +458,22 @@ function createItemCard(item, category) {
   return card;
 }
 
+// Retire un item/tag posé sur le plateau (board ou bloc Outfits), DOM + état, quel que
+// soit l'endroit d'où l'action est déclenchée (croix desktop ou croix de l'app mobile).
+function removeWorkspaceItemById(id) {
+  const el = document.querySelector(`.workspace-item[data-id="${id}"]`);
+  if (el) el.remove();
+  workspaceItems = workspaceItems.filter(i => i.id !== id);
+  renderCreaCanvas();
+}
+
+function removeWorkspaceTagById(id) {
+  const el = document.querySelector(`.workspace-tag[data-id="${id}"]`);
+  if (el) el.remove();
+  workspaceTags = workspaceTags.filter(t => t.id !== id);
+  renderCreaCanvas();
+}
+
 function buildWorkspaceEl(item, id, category) {
   const el = document.createElement('div');
   el.className = 'workspace-item';
@@ -471,8 +507,7 @@ function buildWorkspaceEl(item, id, category) {
   deleteBtn.addEventListener('pointerdown', e => e.stopPropagation());
   deleteBtn.addEventListener('click', e => {
     e.stopPropagation();
-    el.remove();
-    workspaceItems = workspaceItems.filter(i => i.id !== id);
+    removeWorkspaceItemById(id);
     saveCurrentState();
   });
   el.appendChild(deleteBtn);
@@ -494,6 +529,8 @@ function populateCategories() {
       list.appendChild(createItemCard(item, category));
     });
   });
+  renderMobileDressing();
+  renderCreaStrip();
 }
 
 const DRAG_THRESHOLD = 6; // px avant de considérer le geste comme un vrai drag (sinon = clic)
@@ -624,9 +661,12 @@ function addWorkspaceItem(item, category, x, y, parent = board) {
   const id = `ws-${item.id}-${Date.now()}`;
   const element = buildWorkspaceEl(item, id, category);
   // Bornes dynamiques (basées sur la taille réelle du parent) pour pouvoir
-  // déposer un vêtement n'importe où dessus, y compris tout en bas près du bloc Outfit
-  const maxX = parent.clientWidth - 40;
-  const maxY = parent.clientHeight - 40;
+  // déposer un vêtement n'importe où dessus, y compris tout en bas près du bloc Outfit.
+  // Si le parent est masqué (display:none, ex. le plateau desktop pendant qu'on est en
+  // vue mobile), sa taille vaut 0 : on ne borne alors pas du tout, plutôt que d'écraser
+  // toute position à (0,0) — ce qui viendrait empiler tous les éléments au même endroit.
+  const maxX = parent.clientWidth > 0 ? parent.clientWidth - 40 : Infinity;
+  const maxY = parent.clientHeight > 0 ? parent.clientHeight - 40 : Infinity;
   element.style.left = `${Math.max(0, Math.min(maxX, x))}px`;
   element.style.top = `${Math.max(0, Math.min(maxY, y))}px`;
   parent.appendChild(element);
@@ -639,6 +679,7 @@ function addWorkspaceItem(item, category, x, y, parent = board) {
     anchor: parent === outfitBlock ? 'outfit' : 'board'
   });
   updateWorkspaceVisibility();
+  renderCreaCanvas();
   saveCurrentState();
 }
 
@@ -655,8 +696,7 @@ function buildWorkspaceTagEl(label, id) {
   deleteBtn.addEventListener('pointerdown', e => e.stopPropagation());
   deleteBtn.addEventListener('click', e => {
     e.stopPropagation();
-    el.remove();
-    workspaceTags = workspaceTags.filter(t => t.id !== id);
+    removeWorkspaceTagById(id);
     saveCurrentState();
   });
   el.appendChild(deleteBtn);
@@ -667,8 +707,8 @@ function buildWorkspaceTagEl(label, id) {
 function addWorkspaceTag(label, x, y, parent = board) {
   const id = `tag-${Date.now()}-${Math.random().toString(16).slice(2)}`;
   const element = buildWorkspaceTagEl(label, id);
-  const maxX = parent.clientWidth - 40;
-  const maxY = parent.clientHeight - 40;
+  const maxX = parent.clientWidth > 0 ? parent.clientWidth - 40 : Infinity;
+  const maxY = parent.clientHeight > 0 ? parent.clientHeight - 40 : Infinity;
   element.style.left = `${Math.max(0, Math.min(maxX, x))}px`;
   element.style.top = `${Math.max(0, Math.min(maxY, y))}px`;
   parent.appendChild(element);
@@ -680,6 +720,7 @@ function addWorkspaceTag(label, x, y, parent = board) {
     y: parseInt(element.style.top, 10),
     anchor: parent === outfitBlock ? 'outfit' : 'board'
   });
+  renderCreaCanvas();
   saveCurrentState();
 }
 
@@ -714,6 +755,7 @@ function populateTags() {
   const list = document.getElementById('tags-list');
   list.innerHTML = '';
   TAGS.forEach(label => list.appendChild(createTagCard(label)));
+  renderCreaTagsPalette();
 }
 
 function beginTagDrag(event, card, label) {
@@ -836,6 +878,361 @@ board.addEventListener('click', e => {
 
 function updateWorkspaceVisibility() {}
 
+// Récupère un instantané (données pures, sans DOM) de tout ce qui est actuellement
+// ancré au bloc Outfits : c'est ce qui compose la "tenue" en cours de composition.
+function snapshotCurrentOutfit() {
+  const items = workspaceItems
+    .filter(i => i.anchor === 'outfit')
+    .map(i => ({ item: i.item, category: i.category, x: i.x, y: i.y }));
+  const tags = workspaceTags
+    .filter(t => t.anchor === 'outfit')
+    .map(t => ({ label: t.label, x: t.x, y: t.y }));
+  return { items, tags };
+}
+
+function saveCurrentOutfit() {
+  const snapshot = snapshotCurrentOutfit();
+  if (snapshot.items.length === 0 && snapshot.tags.length === 0) return; // rien à sauvegarder
+  outfitCounter += 1;
+  savedOutfits.push({
+    id: `outfit-${Date.now()}`,
+    name: `Tenue ${outfitCounter}`,
+    ...snapshot
+  });
+  populateSavedOutfits();
+  saveCurrentState();
+}
+
+// Retire du bloc Outfits (DOM + états) tout ce qui y est actuellement ancré,
+// pour laisser la place à une tenue sauvegardée qu'on va charger.
+function clearOutfitCanvas() {
+  workspaceItems
+    .filter(i => i.anchor === 'outfit')
+    .forEach(i => {
+      const el = outfitBlock.querySelector(`.workspace-item[data-id="${i.id}"]`);
+      if (el) el.remove();
+    });
+  workspaceItems = workspaceItems.filter(i => i.anchor !== 'outfit');
+
+  workspaceTags
+    .filter(t => t.anchor === 'outfit')
+    .forEach(t => {
+      const el = outfitBlock.querySelector(`.workspace-tag[data-id="${t.id}"]`);
+      if (el) el.remove();
+    });
+  workspaceTags = workspaceTags.filter(t => t.anchor !== 'outfit');
+}
+
+function loadSavedOutfit(outfit) {
+  clearOutfitCanvas();
+  outfit.items.forEach(saved => {
+    addWorkspaceItem(saved.item, saved.category, saved.x, saved.y, outfitBlock);
+  });
+  outfit.tags.forEach(saved => {
+    addWorkspaceTag(saved.label, saved.x, saved.y, outfitBlock);
+  });
+  if (mobileQuery.matches) setMobileTab('crea');
+}
+
+function createOutfitCard(outfit) {
+  const card = document.createElement('div');
+  card.className = 'wardrobe-item outfit-card';
+  card.title = outfit.name;
+
+  const preview = document.createElement('div');
+  preview.className = 'outfit-card-preview';
+  const thumbs = outfit.items.slice(0, 3);
+  if (thumbs.length > 0) {
+    thumbs.forEach(saved => {
+      if (saved.item.image) {
+        const img = document.createElement('img');
+        img.src = saved.item.image;
+        img.alt = saved.item.label;
+        img.draggable = false;
+        preview.appendChild(img);
+      } else {
+        const swatch = document.createElement('div');
+        swatch.className = 'outfit-card-swatch';
+        swatch.style.background = saved.item.color;
+        preview.appendChild(swatch);
+      }
+    });
+  } else {
+    preview.classList.add('is-empty');
+    preview.textContent = outfit.tags.map(t => t.label).join(', ') || '—';
+  }
+  card.appendChild(preview);
+
+  const label = document.createElement('div');
+  label.className = 'outfit-card-label';
+  label.textContent = outfit.name;
+  card.appendChild(label);
+
+  const deleteBtn = document.createElement('button');
+  deleteBtn.className = 'wardrobe-item-delete';
+  deleteBtn.title = 'Supprimer';
+  deleteBtn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+  deleteBtn.addEventListener('pointerdown', e => e.stopPropagation());
+  deleteBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    askDeleteOutfit(outfit);
+  });
+  card.appendChild(deleteBtn);
+
+  card.addEventListener('click', e => {
+    if (e.target.closest('.wardrobe-item-delete')) return;
+    loadSavedOutfit(outfit);
+  });
+
+  return card;
+}
+
+function populateSavedOutfits() {
+  const list = document.getElementById('saved-outfits-list');
+  list.innerHTML = '';
+  if (savedOutfits.length === 0) {
+    const empty = document.createElement('p');
+    empty.className = 'wardrobe-empty';
+    empty.textContent = "Il n'y a pas d'éléments ici. Ajoutes-en !";
+    list.appendChild(empty);
+  }
+  savedOutfits.forEach(outfit => list.appendChild(createOutfitCard(outfit)));
+  renderMobileSaved();
+}
+
+// --- App mobile à onglets (Vêtements / Créa / Tenues) ---
+// Rendu indépendant du plateau de travail desktop. Les fonctions ci-dessous lisent les
+// mêmes données (categories, workspaceItems, workspaceTags, TAGS, savedOutfits) mais
+// construisent leur propre DOM, dans les panneaux #mobile-panel-*.
+
+function setMobileTab(tab) {
+  document.querySelectorAll('.mobile-tab').forEach(btn => btn.classList.toggle('is-active', btn.dataset.tab === tab));
+  document.querySelectorAll('.mobile-panel').forEach(panel => panel.classList.toggle('is-active', panel.dataset.panel === tab));
+}
+
+document.querySelectorAll('.mobile-tab').forEach(btn => {
+  btn.addEventListener('click', () => setMobileTab(btn.dataset.tab));
+});
+
+document.querySelectorAll('[data-upload-category]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const category = btn.dataset.uploadCategory;
+    const input = document.querySelector(`.category-file-input[data-category="${category}"]`);
+    if (input) input.click();
+  });
+});
+
+function buildItemVisual(item) {
+  if (item.image) {
+    const img = document.createElement('img');
+    img.className = 'wardrobe-item-img';
+    img.src = item.image;
+    img.alt = item.label;
+    img.draggable = false;
+    return img;
+  }
+  const swatch = document.createElement('div');
+  swatch.className = 'wardrobe-item-swatch';
+  swatch.style.background = item.color;
+  return swatch;
+}
+
+function createMobileDeleteBtn(onDelete) {
+  const deleteBtn = document.createElement('button');
+  deleteBtn.className = 'wardrobe-item-delete';
+  deleteBtn.title = 'Supprimer';
+  deleteBtn.innerHTML = DELETE_ICON_SVG;
+  deleteBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    onDelete();
+  });
+  return deleteBtn;
+}
+
+function createMobileItemCard(item, category) {
+  const card = document.createElement('div');
+  card.className = 'wardrobe-item mobile-item-card';
+  card.appendChild(buildItemVisual(item));
+  card.appendChild(createMobileDeleteBtn(() => askDeleteWardrobeItem(item, category)));
+  card.addEventListener('click', e => {
+    if (e.target.closest('.wardrobe-item-delete')) return;
+    addItemToCrea(item, category);
+  });
+  return card;
+}
+
+function renderMobileDressing() {
+  ['tops', 'bottoms', 'shoes', 'accessories'].forEach(category => {
+    const list = document.getElementById(`m-${category}-list`);
+    if (!list) return;
+    list.innerHTML = '';
+    categories[category].forEach(item => list.appendChild(createMobileItemCard(item, category)));
+  });
+}
+
+// --- Créa : bibliothèque compacte (gauche) + canvas collage libre (droite) ---
+
+let creaCascade = 0;
+function nextCreaOffset() {
+  const offset = 16 + (creaCascade % 6) * 28;
+  creaCascade++;
+  return offset;
+}
+
+function addItemToCrea(item, category) {
+  const offset = nextCreaOffset();
+  addWorkspaceItem(item, category, offset, offset, outfitBlock);
+}
+
+function addTagToCrea(label) {
+  const offset = nextCreaOffset();
+  addWorkspaceTag(label, offset, offset, outfitBlock);
+}
+
+function createCreaStripCard(item, category) {
+  const card = document.createElement('div');
+  card.className = 'crea-strip-card';
+  card.appendChild(buildItemVisual(item));
+  const label = document.createElement('div');
+  label.className = 'crea-strip-label';
+  label.textContent = item.label;
+  card.appendChild(label);
+  card.addEventListener('click', () => addItemToCrea(item, category));
+  return card;
+}
+
+function renderCreaStrip() {
+  const list = document.getElementById('crea-strip-list');
+  if (!list) return;
+  list.innerHTML = '';
+  ['tops', 'bottoms', 'shoes', 'accessories'].forEach(category => {
+    categories[category].forEach(item => list.appendChild(createCreaStripCard(item, category)));
+  });
+}
+
+document.getElementById('crea-scroll-up')?.addEventListener('click', () => {
+  document.getElementById('crea-strip-list').scrollBy({ top: -160, behavior: 'smooth' });
+});
+document.getElementById('crea-scroll-down')?.addEventListener('click', () => {
+  document.getElementById('crea-strip-list').scrollBy({ top: 160, behavior: 'smooth' });
+});
+
+function renderCreaTagsPalette() {
+  const row = document.getElementById('crea-tags-row');
+  if (!row) return;
+  row.innerHTML = '';
+  TAGS.forEach(label => {
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'tag-item';
+    chip.textContent = label;
+    chip.addEventListener('click', () => addTagToCrea(label));
+    row.appendChild(chip);
+  });
+}
+
+// Glisser une carte à main levée dans le canvas Créa (indépendant du drag desktop : pas de
+// division par `scale`, puisqu'aucun zoom n'est appliqué à ce canvas).
+function enableCreaCardDrag(card, state) {
+  card.addEventListener('pointerdown', event => {
+    if (event.target.closest('.wardrobe-item-delete')) return;
+    event.preventDefault();
+    event.stopPropagation();
+    card.setPointerCapture(event.pointerId);
+    card.classList.add('is-dragging');
+    const startX = event.clientX;
+    const startY = event.clientY;
+    const originLeft = parseFloat(card.style.left) || 0;
+    const originTop = parseFloat(card.style.top) || 0;
+
+    const move = moveEvent => {
+      card.style.left = `${originLeft + (moveEvent.clientX - startX)}px`;
+      card.style.top = `${originTop + (moveEvent.clientY - startY)}px`;
+    };
+    const up = () => {
+      card.classList.remove('is-dragging');
+      card.releasePointerCapture(event.pointerId);
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', up);
+      state.x = parseFloat(card.style.left);
+      state.y = parseFloat(card.style.top);
+      saveCurrentState();
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', up);
+  });
+}
+
+function renderCreaCanvas() {
+  const canvas = document.getElementById('crea-canvas');
+  const empty = document.getElementById('crea-empty');
+  if (!canvas || !empty) return;
+  canvas.querySelectorAll('.crea-card').forEach(el => el.remove());
+
+  const items = workspaceItems.filter(i => i.anchor === 'outfit');
+  const tags = workspaceTags.filter(t => t.anchor === 'outfit');
+  empty.style.display = (items.length === 0 && tags.length === 0) ? 'block' : 'none';
+
+  items.forEach(entry => {
+    const card = document.createElement('div');
+    card.className = 'crea-card';
+    card.style.left = `${entry.x}px`;
+    card.style.top = `${entry.y}px`;
+    card.appendChild(buildItemVisual(entry.item));
+    const label = document.createElement('div');
+    label.className = 'crea-card-label';
+    label.textContent = entry.item.label;
+    card.appendChild(label);
+    card.appendChild(createMobileDeleteBtn(() => {
+      removeWorkspaceItemById(entry.id);
+      saveCurrentState();
+    }));
+    canvas.appendChild(card);
+    enableCreaCardDrag(card, entry);
+  });
+
+  tags.forEach(entry => {
+    const chip = document.createElement('div');
+    chip.className = 'crea-card crea-card--tag';
+    chip.style.left = `${entry.x}px`;
+    chip.style.top = `${entry.y}px`;
+    chip.textContent = entry.label;
+    chip.appendChild(createMobileDeleteBtn(() => {
+      removeWorkspaceTagById(entry.id);
+      saveCurrentState();
+    }));
+    canvas.appendChild(chip);
+    enableCreaCardDrag(chip, entry);
+  });
+}
+
+function renderMobileSaved() {
+  const list = document.getElementById('m-saved-outfits-list');
+  if (!list) return;
+  list.innerHTML = '';
+  if (savedOutfits.length === 0) {
+    const empty = document.createElement('p');
+    empty.className = 'wardrobe-empty';
+    empty.textContent = "Il n'y a pas d'éléments ici. Ajoutes-en !";
+    list.appendChild(empty);
+  }
+  savedOutfits.forEach(outfit => list.appendChild(createOutfitCard(outfit)));
+}
+
+document.getElementById('crea-save-btn').addEventListener('click', () => {
+  saveCurrentOutfit();
+  const btn = document.getElementById('crea-save-btn');
+  const original = btn.innerHTML;
+  btn.innerHTML = ICON_CHECK;
+  setTimeout(() => (btn.innerHTML = original), 1400);
+});
+
+document.getElementById('crea-clear-btn').addEventListener('click', () => {
+  clearOutfitCanvas();
+  renderCreaCanvas();
+  saveCurrentState();
+});
+
 function saveCurrentState() {
   const state = {
     boardOffset,
@@ -852,7 +1249,9 @@ function saveCurrentState() {
     blockPositions: { outfit: blockPositions.outfit },
     // On sauvegarde le classement complet (y compris les items par défaut) pour que
     // les reclassements entre étagères (drag & drop) survivent au rechargement.
-    categories
+    categories,
+    savedOutfits,
+    outfitCounter
   };
   localStorage.setItem('armoire-proto-state', JSON.stringify(state));
 }
@@ -886,6 +1285,13 @@ function restoreState() {
       state.tags.forEach(label => TAGS.push(label));
     }
     populateTags();
+    if (Array.isArray(state.savedOutfits)) {
+      savedOutfits = state.savedOutfits;
+    }
+    if (typeof state.outfitCounter === 'number') {
+      outfitCounter = state.outfitCounter;
+    }
+    populateSavedOutfits();
     if (state.blockPositions) {
       // Seul le bloc Outfits garde une position mémorisée ; les blocs vêtements restent
       // toujours alignés sur la disposition de base (voir saveCurrentState).
@@ -919,6 +1325,7 @@ function restoreState() {
       });
     }
     updateWorkspaceVisibility();
+    renderCreaCanvas();
   } catch (error) {
     console.warn('Impossible de restaurer l\'état', error);
   }
@@ -943,6 +1350,73 @@ viewport.addEventListener('wheel', event => {
   saveCurrentState();
 }, { passive: false });
 
+// --- Pan et zoom tactiles ---
+// L'événement wheel (scroll/pincement trackpad) ne se déclenche jamais au toucher : sans ça,
+// impossible de déplacer le plan de travail sur mobile. Un doigt = pan, deux doigts = zoom
+// (en réutilisant zoomTo, la même fonction que pour la molette).
+const activeTouches = new Map();
+let touchPanStart = null;
+let touchPinch = null;
+
+function isInteractiveDragTarget(target) {
+  return (
+    target.closest('.workspace-item') ||
+    target.closest('.workspace-tag') ||
+    target.closest('button') ||
+    target.closest('select') ||
+    target.closest('input') ||
+    target.closest('label')
+  );
+}
+
+board.addEventListener('pointerdown', event => {
+  if (event.pointerType !== 'touch' || isInteractiveDragTarget(event.target)) return;
+
+  activeTouches.set(event.pointerId, { x: event.clientX, y: event.clientY });
+
+  if (activeTouches.size === 1) {
+    touchPanStart = { x: event.clientX, y: event.clientY, boardOffset: { ...boardOffset } };
+    touchPinch = null;
+  } else if (activeTouches.size === 2) {
+    touchPanStart = null;
+    const pts = Array.from(activeTouches.values());
+    touchPinch = {
+      startDistance: Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y),
+      startScale: scale,
+      midpoint: { x: (pts[0].x + pts[1].x) / 2, y: (pts[0].y + pts[1].y) / 2 }
+    };
+  }
+});
+
+window.addEventListener('pointermove', event => {
+  if (event.pointerType !== 'touch' || !activeTouches.has(event.pointerId)) return;
+  activeTouches.set(event.pointerId, { x: event.clientX, y: event.clientY });
+
+  if (touchPinch && activeTouches.size === 2) {
+    const pts = Array.from(activeTouches.values());
+    const distance = Math.hypot(pts[0].x - pts[1].x, pts[0].y - pts[1].y);
+    const newScale = touchPinch.startScale * (distance / touchPinch.startDistance);
+    const viewportRect = viewport.getBoundingClientRect();
+    zoomTo(newScale, touchPinch.midpoint.x - viewportRect.left, touchPinch.midpoint.y - viewportRect.top);
+  } else if (touchPanStart && activeTouches.size === 1) {
+    boardOffset.x = touchPanStart.boardOffset.x + (event.clientX - touchPanStart.x);
+    boardOffset.y = touchPanStart.boardOffset.y + (event.clientY - touchPanStart.y);
+    updateBoardTransform();
+  }
+});
+
+function endTouchTracking(event) {
+  if (event.pointerType !== 'touch') return;
+  activeTouches.delete(event.pointerId);
+  if (activeTouches.size === 0) {
+    touchPanStart = null;
+    touchPinch = null;
+    saveCurrentState();
+  }
+}
+window.addEventListener('pointerup', endTouchTracking);
+window.addEventListener('pointercancel', endTouchTracking);
+
 zoomInButton.addEventListener('click', () => {
   const c = viewportCenter();
   zoomTo(scale * (1 + SCALE_STEP), c.x, c.y);
@@ -965,12 +1439,92 @@ resetButton.addEventListener('click', () => {
   window.location.reload();
 });
 
+document.getElementById('save-outfit-btn').addEventListener('click', () => {
+  saveCurrentOutfit();
+});
+
 fileInput.addEventListener('change', event => {
   const files = Array.from(event.target.files);
-  const category = uploadCategory.value;
+  const category = uploadCategoryValue;
   event.target.value = '';
   handleFilesForCategory(files, category);
 });
+
+// Dropdown accessible (remplace le <select> natif) : bouton + listbox ARIA,
+// navigable au clavier (flèches, Entrée, Échap) en plus du clic/tap.
+let uploadCategoryValue = 'tops';
+
+function setupCategoryDropdown() {
+  const dropdown = document.getElementById('category-dropdown');
+  const trigger = document.getElementById('category-trigger');
+  const triggerLabel = document.getElementById('category-trigger-label');
+  const listbox = document.getElementById('category-listbox');
+  const options = Array.from(listbox.querySelectorAll('.dropdown-option'));
+  let highlighted = options.findIndex(o => o.getAttribute('aria-selected') === 'true');
+
+  function highlight(index) {
+    highlighted = Math.max(0, Math.min(options.length - 1, index));
+    options.forEach((o, i) => o.classList.toggle('is-active', i === highlighted));
+    listbox.setAttribute('aria-activedescendant', options[highlighted].id);
+    options[highlighted].scrollIntoView({ block: 'nearest' });
+  }
+
+  function open() {
+    listbox.hidden = false;
+    dropdown.classList.add('is-open');
+    trigger.setAttribute('aria-expanded', 'true');
+    highlight(highlighted);
+    listbox.focus();
+  }
+
+  function close(returnFocus) {
+    listbox.hidden = true;
+    dropdown.classList.remove('is-open');
+    trigger.setAttribute('aria-expanded', 'false');
+    if (returnFocus) trigger.focus();
+  }
+
+  function select(index) {
+    options.forEach((o, i) => o.setAttribute('aria-selected', i === index ? 'true' : 'false'));
+    triggerLabel.textContent = options[index].textContent;
+    uploadCategoryValue = options[index].dataset.value;
+    highlighted = index;
+  }
+
+  trigger.addEventListener('click', () => {
+    if (listbox.hidden) open(); else close(false);
+  });
+
+  listbox.addEventListener('keydown', event => {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      highlight(highlighted + 1);
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      highlight(highlighted - 1);
+    } else if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      select(highlighted);
+      close(true);
+    } else if (event.key === 'Escape') {
+      close(true);
+    } else if (event.key === 'Tab') {
+      close(false);
+    }
+  });
+
+  options.forEach((option, index) => {
+    option.addEventListener('click', () => {
+      select(index);
+      close(true);
+    });
+    option.addEventListener('pointerenter', () => highlight(index));
+  });
+
+  document.addEventListener('pointerdown', event => {
+    if (!listbox.hidden && !dropdown.contains(event.target)) close(false);
+  });
+}
 
 // Boutons "+" à côté de chaque titre d'étagère (Hauts, Bas, Chaussures, Accessoires)
 categoryFileInputs.forEach(input => {
@@ -1025,8 +1579,6 @@ document.addEventListener('keydown', event => {
   }
 });
 
-const mobileQuery = window.matchMedia('(max-width: 720px)');
-
 function animateToBreakpoint(isMobile) {
   const targetScale = isMobile ? 0.7 : 1;
   const welcome = document.querySelector('.bg-welcome');
@@ -1056,11 +1608,17 @@ window.addEventListener('resize', onResize);
 window.addEventListener('DOMContentLoaded', () => {
   populateCategories();
   populateTags();
+  populateSavedOutfits();
+  setupCategoryDropdown();
   restoreState();
-  freezeWardrobeLayout();
-  resolveBlockOverlaps();
+  // Sous 720px le plateau desktop est masqué (display:none) : ses mesures ne veulent rien
+  // dire tant qu'il n'est pas affiché, donc on ne fige/ré-aligne rien dans ce cas au chargement.
+  if (!mobileQuery.matches) {
+    freezeWardrobeLayout();
+    resolveBlockOverlaps();
+  }
   document.fonts.ready.then(() => {
-    centerOnWelcome();
+    if (!mobileQuery.matches) centerOnWelcome();
     lastViewportSize = { w: viewport.clientWidth, h: viewport.clientHeight };
   });
 });

@@ -49,12 +49,20 @@
         </svg>
         <input id="file-input" type="file" accept="image/*" multiple />
       </label>
-      <select id="upload-category" class="toolbar-select" title="Catégorie">
-        <option value="tops">Hauts</option>
-        <option value="bottoms">Bas</option>
-        <option value="shoes">Chaussures</option>
-        <option value="accessories">Accessoires</option>
-      </select>
+      <div class="dropdown" id="category-dropdown">
+        <button type="button" class="dropdown-trigger toolbar-select" id="category-trigger" title="Catégorie" aria-haspopup="listbox" aria-expanded="false" aria-controls="category-listbox">
+          <span id="category-trigger-label">Hauts</span>
+          <svg class="dropdown-chevron" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 12 15 18 9"/>
+          </svg>
+        </button>
+        <ul class="dropdown-list" id="category-listbox" role="listbox" tabindex="-1" aria-label="Catégorie" hidden>
+          <li class="dropdown-option" role="option" id="opt-tops" data-value="tops" aria-selected="true">Hauts</li>
+          <li class="dropdown-option" role="option" id="opt-bottoms" data-value="bottoms" aria-selected="false">Bas</li>
+          <li class="dropdown-option" role="option" id="opt-shoes" data-value="shoes" aria-selected="false">Chaussures</li>
+          <li class="dropdown-option" role="option" id="opt-accessories" data-value="accessories" aria-selected="false">Accessoires</li>
+        </ul>
+      </div>
 
       <div class="toolbar-sep"></div>
 
@@ -145,11 +153,125 @@
                 </svg>
               </div>
             </div>
+
+            <!-- Bloc Tenues sauvegardées -->
+            <div class="w-block w-block--movable" data-block-id="saved-outfits">
+              <div class="w-block-header">
+                <span>Tenues</span>
+                <button type="button" class="w-add-btn" id="save-outfit-btn" title="Sauvegarder la tenue actuelle">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+                  </svg>
+                </button>
+              </div>
+              <div class="wardrobe-items" id="saved-outfits-list"></div>
+            </div>
           </div>
 
         </div>
       </div>
     </div>
+
+    <!-- Version mobile : app à onglets (Vêtements / Créa / Tenues), indépendante du plateau
+         de travail desktop. Masquée sur desktop, affichée à la place du board sous 720px. -->
+    <div class="mobile-app" id="mobile-app">
+      <section class="mobile-panel" id="mobile-panel-dressing" data-panel="dressing">
+        <h2 class="mobile-panel-title">Bibliothèque</h2>
+        <div class="mobile-section" data-category="tops">
+          <div class="mobile-section-header">
+            <h2>Hauts</h2>
+            <button type="button" class="w-add-btn" data-upload-category="tops" title="Ajouter un vêtement">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </button>
+          </div>
+          <div class="mobile-grid" id="m-tops-list"></div>
+        </div>
+        <div class="mobile-section" data-category="bottoms">
+          <div class="mobile-section-header">
+            <h2>Bas</h2>
+            <button type="button" class="w-add-btn" data-upload-category="bottoms" title="Ajouter un vêtement">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </button>
+          </div>
+          <div class="mobile-grid" id="m-bottoms-list"></div>
+        </div>
+        <div class="mobile-section" data-category="shoes">
+          <div class="mobile-section-header">
+            <h2>Chaussures</h2>
+            <button type="button" class="w-add-btn" data-upload-category="shoes" title="Ajouter un vêtement">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </button>
+          </div>
+          <div class="mobile-grid" id="m-shoes-list"></div>
+        </div>
+        <div class="mobile-section" data-category="accessories">
+          <div class="mobile-section-header">
+            <h2>Accessoires</h2>
+            <button type="button" class="w-add-btn" data-upload-category="accessories" title="Ajouter un vêtement">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+              </svg>
+            </button>
+          </div>
+          <div class="mobile-grid" id="m-accessories-list"></div>
+        </div>
+      </section>
+
+      <!-- Créa : onglet de composition, deux volets. À gauche, la bibliothèque compacte
+           (tous les vêtements, défilement par flèches). À droite, le canvas de la tenue en
+           cours, en collage libre (les éléments peuvent être glissés/superposés à la main). -->
+      <section class="mobile-panel is-active mobile-panel--crea" id="mobile-panel-crea" data-panel="crea">
+        <div class="crea-strip">
+          <button type="button" class="crea-scroll-btn" id="crea-scroll-up" title="Défiler vers le haut">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="18 15 12 9 6 15"/>
+            </svg>
+          </button>
+          <div class="crea-strip-list" id="crea-strip-list"></div>
+          <button type="button" class="crea-scroll-btn" id="crea-scroll-down" title="Défiler vers le bas">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </button>
+        </div>
+        <div class="crea-canvas" id="crea-canvas">
+          <div class="crea-tags-row" id="crea-tags-row"></div>
+          <div class="crea-actions">
+            <button type="button" class="crea-action-btn" id="crea-save-btn" title="Enregistrer la tenue">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/>
+                <polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/>
+              </svg>
+            </button>
+            <button type="button" class="crea-action-btn" id="crea-clear-btn" title="Vider la tenue">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="3 6 5 6 21 6"/>
+                <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+                <path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/>
+              </svg>
+            </button>
+          </div>
+          <p class="mobile-empty crea-empty" id="crea-empty">Ta tenue est vide. Ajoute des vêtements depuis la bibliothèque à gauche.</p>
+        </div>
+      </section>
+
+      <section class="mobile-panel" id="mobile-panel-saved" data-panel="saved">
+        <h2 class="mobile-panel-title">Tenues sauvegardées</h2>
+        <div class="mobile-grid" id="m-saved-outfits-list"></div>
+      </section>
+    </div>
+
+    <nav class="mobile-tabbar" id="mobile-tabbar">
+      <button type="button" class="mobile-tab" data-tab="dressing">Vêtements</button>
+      <button type="button" class="mobile-tab is-active" data-tab="crea">Créa</button>
+      <button type="button" class="mobile-tab" data-tab="saved">Tenues</button>
+    </nav>
   </div>
 
   <div class="bg-processing-toast" id="bg-toast">

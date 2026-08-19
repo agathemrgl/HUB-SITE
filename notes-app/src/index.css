@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+/* Même police que /graphiste : on réutilise les fichiers déjà déployés à cet endroit du
+   hub plutôt que de les dupliquer dans notes-app. */
+@font-face {
+  font-family: "IBM Plex Sans";
+  src: url('/graphiste/Font/IBMPlexSans-VariableFont_wdth,wght.ttf') format('truetype');
+  font-style: normal;
+}
+@font-face {
+  font-family: "IBM Plex Sans";
+  src: url('/graphiste/Font/IBMPlexSans-Italic-VariableFont_wdth,wght.ttf') format('truetype');
+  font-style: italic;
+}
+
+/* Palette reprise de /graphiste (fond bleu comme le CV, bordures fines sombres, accent
+   bleu) plutôt que la palette macOS d'origine. En tokens Tailwind (variables CSS sous le
+   capot) pour permettre le mode sombre plus tard sans re-thème complet. Le mode sombre
+   s'applique déjà automatiquement selon les préférences système ; un bouton de bascule
+   manuelle est prévu pour une prochaine session. */
+@theme {
+  --color-sidebar: #edf6ff;
+  --color-list-bg: #edf6ff;
+  --color-editor-bg: #ffffff;
+  --color-selected: #d3ebff;
+  --color-accent: #3b9dff;
+  --color-accent-strong: #3b9dff;
+  --color-text-primary: #222222;
+  --color-text-secondary: #626262;
+  --color-border: #565655;
+  --color-danger: #e0483e;
+  --color-link: #0000ee;
+  --color-pinned: #c311c0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-sidebar: #0f1b2d;
+    --color-list-bg: #0f1b2d;
+    --color-editor-bg: #0a1420;
+    --color-selected: #1c3c5c;
+    --color-accent: #3b9dff;
+    --color-accent-strong: #3b9dff;
+    --color-text-primary: #f2f0ed;
+    --color-text-secondary: #a3a19d;
+    --color-border: #3a4a5f;
+    --color-danger: #ff6961;
+    --color-link: #6ea8ff;
+    --color-pinned: #e360e1;
+  }
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  color: var(--color-text-primary);
+  background: var(--color-list-bg);
+}
+
+.note-editor-content {
+  font-size: 16px;
+  line-height: 1.5;
+  outline: none;
+  min-height: 200px;
+}
+
+.note-editor-content p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: var(--color-text-secondary);
+  opacity: 0.6;
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.note-editor-content a {
+  color: var(--color-link);
+  text-decoration: underline;
+}
+
+.note-editor-content h1 { font-size: 26px; font-weight: 700; margin: 0.5em 0; }
+.note-editor-content h2 { font-size: 20px; font-weight: 700; margin: 0.5em 0; }
+.note-editor-content h3 { font-size: 17px; font-weight: 600; margin: 0.5em 0; }
+
+.note-editor-content ul,
+.note-editor-content ol {
+  padding-left: 22px;
+  margin: 0.3em 0;
+}
+
+.note-editor-content blockquote {
+  border-left: 3px solid var(--color-border);
+  margin: 0.5em 0;
+  padding-left: 12px;
+  color: var(--color-text-secondary);
+}
+
+.note-editor-content pre {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  font-size: 14px;
+  background: color-mix(in srgb, var(--color-text-primary) 5%, transparent);
+  border-radius: 6px;
+  padding: 10px 12px;
+  white-space: pre-wrap;
+  margin: 0.5em 0;
+}
+
+.note-editor-content pre code {
+  background: none;
+  padding: 0;
+}
+
+.note-editor-content table {
+  border-collapse: collapse;
+  margin: 0.6em 0;
+}
+
+.note-editor-content table td,
+.note-editor-content table th {
+  border: 1px solid var(--color-border);
+  padding: 6px 10px;
+  min-width: 60px;
+}
+
+.note-editor-content table th {
+  background: color-mix(in srgb, var(--color-text-primary) 5%, transparent);
+  font-weight: 600;
+}
+
+.note-editor-content img {
+  max-width: 100%;
+  border-radius: 6px;
+  display: block;
+  margin: 0.5em 0;
+}
+
+.note-editor-content ul[data-type="taskList"] {
+  list-style: none;
+  padding-left: 0;
+}
+
+.note-editor-content ul[data-type="taskList"] li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 4px 0;
+}
+
+.note-editor-content ul[data-type="taskList"] li > label {
+  margin-top: 3px;
+}
+
+.note-editor-content ul[data-type="taskList"] input[type="checkbox"] {
+  accent-color: var(--color-accent);
+}
+
+.note-editor-content ul[data-type="taskList"] li > div {
+  flex: 1;
+}
+
+.note-editor-content ul[data-type="taskList"] li[data-checked="true"] > div {
+  text-decoration: line-through;
+  color: var(--color-text-secondary);
+}

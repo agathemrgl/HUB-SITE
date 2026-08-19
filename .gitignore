@@ -1,0 +1,6 @@
+.DS_Store
+
+# Dépendances de notes-app/ (source React) : jamais committées.
+# notes-app/dist n'existe pas — le build sort directement dans notes/, qui lui reste tracké.
+notes-app/node_modules/
+notes-app/.vite/
