@@ -23,7 +23,7 @@ function Root() {
 
   if (session === undefined) {
     return (
-      <div className="flex h-screen w-screen items-center justify-center text-sm text-text-secondary">
+      <div className="flex h-dvh w-screen items-center justify-center text-sm max-md:text-base text-text-secondary">
         Chargement…
       </div>
     )

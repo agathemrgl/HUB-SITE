@@ -1,8 +1,10 @@
 import { useRef } from 'react';
 import { Plus, Trash2, StickyNote, Upload } from 'lucide-react';
 import { useNotesStore } from '../store/useNotesStore';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 export default function FoldersSidebar() {
+  const isMobile = useIsMobile();
   const folders = useNotesStore((s) => s.folders);
   const currentFolderId = useNotesStore((s) => s.currentFolderId);
   const setCurrentFolderId = useNotesStore((s) => s.setCurrentFolderId);
@@ -53,20 +55,20 @@ export default function FoldersSidebar() {
   }
 
   return (
-    <aside className="flex h-full w-full flex-col bg-sidebar">
-      <div className="flex h-11 items-center justify-between border-b border-border px-3">
-        <span className="text-sm font-semibold text-text-primary">Dossiers</span>
+    <aside className="flex h-full w-full flex-col overflow-y-auto overscroll-contain bg-sidebar [-webkit-overflow-scrolling:touch]">
+      <div className="flex h-11 shrink-0 items-center justify-between border-b border-border bg-sidebar px-3 sticky top-0 z-20">
+        <span className="text-sm max-md:text-base font-semibold text-text-primary">Dossiers</span>
         <button
           type="button"
           onClick={handleCreateFolder}
           title="Nouveau dossier"
           className="flex h-6 w-6 items-center justify-center rounded-sm text-accent-strong hover:bg-black/5"
         >
-          <Plus size={15} strokeWidth={2.2} />
+          <Plus size={isMobile ? 18 : 15} strokeWidth={2.2} />
         </button>
       </div>
 
-      <nav className="flex-1 overflow-y-auto px-2 pb-3 pt-2">
+      <nav className="flex-1 px-2 pb-3 pt-2">
         <FolderRow
           label="Toutes les notes"
           icon={StickyNote}
@@ -102,9 +104,9 @@ export default function FoldersSidebar() {
         <button
           type="button"
           onClick={() => importInputRef.current?.click()}
-          className="flex w-full items-center gap-2 rounded px-2 py-1.5 text-left text-[13px] text-text-secondary hover:bg-black/5"
+          className="flex w-full items-center gap-2 rounded px-2 py-1.5 text-left text-[13px] max-md:text-[15px] text-text-secondary hover:bg-black/5"
         >
-          <Upload size={15} strokeWidth={1.8} className="shrink-0 opacity-70" />
+          <Upload size={isMobile ? 18 : 15} strokeWidth={1.8} className="shrink-0 opacity-70" />
           <span>Importer depuis Apple Notes</span>
         </button>
         <input ref={importInputRef} type="file" accept="application/json,.json" hidden onChange={handleImportFile} />
@@ -114,19 +116,20 @@ export default function FoldersSidebar() {
 }
 
 function FolderRow({ label, icon: Icon, count, active, danger, ...props }) {
+  const isMobile = useIsMobile();
   return (
     <button
       type="button"
       className={
-        'flex w-full items-center gap-2 rounded px-2 py-1.5 text-left text-[13px] ' +
+        'flex w-full items-center gap-2 rounded px-2 py-1.5 text-left text-[13px] max-md:text-[15px] ' +
         (active ? 'bg-selected font-medium text-text-primary' : 'text-text-primary hover:bg-black/5') +
         (danger && !active ? ' text-danger/90' : '')
       }
       {...props}
     >
-      {Icon && <Icon size={15} strokeWidth={1.8} className="shrink-0 opacity-70" />}
+      {Icon && <Icon size={isMobile ? 18 : 15} strokeWidth={1.8} className="shrink-0 opacity-70" />}
       <span className="flex-1 truncate">{label}</span>
-      {count > 0 && <span className="text-xs text-text-secondary">{count}</span>}
+      {count > 0 && <span className="text-xs max-md:text-sm text-text-secondary">{count}</span>}
     </button>
   );
 }

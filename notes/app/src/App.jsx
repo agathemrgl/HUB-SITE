@@ -76,7 +76,7 @@ export default function App() {
 
   if (initError) {
     return (
-      <div className="flex h-screen w-screen flex-col items-center justify-center gap-3 text-sm text-text-secondary">
+      <div className="flex h-dvh w-screen flex-col items-center justify-center gap-3 text-sm max-md:text-base text-text-secondary">
         <p>Impossible de charger tes notes.</p>
         <button type="button" className="text-accent underline" onClick={() => window.location.reload()}>
           Réessayer
@@ -87,7 +87,7 @@ export default function App() {
 
   if (!ready) {
     return (
-      <div className="flex h-screen w-screen items-center justify-center text-sm text-text-secondary">
+      <div className="flex h-dvh w-screen items-center justify-center text-sm max-md:text-base text-text-secondary">
         Chargement…
       </div>
     );
@@ -95,7 +95,7 @@ export default function App() {
 
   if (isMobile) {
     return (
-      <div className="flex h-screen w-screen flex-col overflow-hidden">
+      <div className="flex h-dvh w-screen flex-col overflow-hidden">
         {mobileView === 'folders' && <FoldersSidebar />}
         {mobileView === 'notes' && <NotesList onContextMenu={openContextMenu} />}
         {mobileView === 'editor' && <EditorPane onOpenMenu={openContextMenuFromButton} />}
@@ -106,7 +106,7 @@ export default function App() {
   }
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden">
+    <div className="flex h-dvh w-screen overflow-hidden">
       {!sidebarCollapsed && (
         <div className="w-[220px] shrink-0 border-r border-border">
           <FoldersSidebar />

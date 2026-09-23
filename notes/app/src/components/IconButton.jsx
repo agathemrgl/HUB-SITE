@@ -1,4 +1,7 @@
+import { useIsMobile } from '../hooks/useIsMobile';
+
 export default function IconButton({ icon: Icon, active, danger, accent, className = '', ...props }) {
+  const isMobile = useIsMobile();
   return (
     <button
       type="button"
@@ -10,7 +13,7 @@ export default function IconButton({ icon: Icon, active, danger, accent, classNa
       }
       {...props}
     >
-      <Icon size={16} strokeWidth={1.8} />
+      <Icon size={isMobile ? 19 : 16} strokeWidth={1.8} />
     </button>
   );
 }

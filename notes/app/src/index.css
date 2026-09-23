@@ -93,6 +93,10 @@
 html, body, #root {
   height: 100%;
   margin: 0;
+  /* Empêche la page elle-même de défiler (au-delà des zones internes en overflow-y-auto) :
+     sans ça, le header "fixe" partait avec le rebond. overscroll-behavior: none ici
+     supprimait aussi le rebond des zones internes censées le garder — pas repris. */
+  overflow: hidden;
 }
 
 body {

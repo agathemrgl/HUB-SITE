@@ -70,7 +70,7 @@ export default function ContextMenu({ x, y, noteId, onClose }) {
   }
 
   const itemClass =
-    'flex w-full items-center justify-between rounded px-2.5 py-1.5 text-left text-[13px] hover:bg-accent hover:text-white';
+    'flex w-full items-center justify-between rounded px-2.5 py-1.5 text-left text-[13px] max-md:text-[15px] hover:bg-accent hover:text-white';
 
   return (
     <div
@@ -113,7 +113,7 @@ export default function ContextMenu({ x, y, noteId, onClose }) {
             <div className="ml-2.5 mt-0.5 flex flex-col gap-0.5 border-l-2 border-border pl-2">
               <button
                 className={
-                  'rounded px-2.5 py-1.5 text-left text-[13px] hover:bg-accent hover:text-white ' +
+                  'rounded px-2.5 py-1.5 text-left text-[13px] max-md:text-[15px] hover:bg-accent hover:text-white ' +
                   (!note.folderId ? 'font-semibold' : '')
                 }
                 onClick={() => { moveNoteToFolder(note.id, null); onClose(); }}
@@ -124,7 +124,7 @@ export default function ContextMenu({ x, y, noteId, onClose }) {
                 <button
                   key={f.id}
                   className={
-                    'rounded px-2.5 py-1.5 text-left text-[13px] hover:bg-accent hover:text-white ' +
+                    'rounded px-2.5 py-1.5 text-left text-[13px] max-md:text-[15px] hover:bg-accent hover:text-white ' +
                     (note.folderId === f.id ? 'font-semibold' : '')
                   }
                   onClick={() => { moveNoteToFolder(note.id, f.id); onClose(); }}

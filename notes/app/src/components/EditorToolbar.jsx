@@ -63,14 +63,14 @@ export default function EditorToolbar({ editor, note, isLockedHidden, onOpenMenu
   }
 
   return (
-    <div className="flex h-11 items-center gap-0.5 overflow-x-auto border-b border-border px-3">
+    <div className="flex h-11 shrink-0 items-center gap-0.5 border-b border-border bg-editor-bg px-3 sticky top-0 z-20">
       {isMobile && (
         <button
           type="button"
           onClick={() => setMobileView('notes')}
-          className="mr-1 flex h-7 shrink-0 items-center gap-0.5 truncate rounded pr-1 text-[13px] text-accent-strong hover:bg-black/5"
+          className="mr-1 flex h-7 shrink-0 items-center gap-0.5 truncate rounded pr-1 text-[13px] max-md:text-[15px] text-accent-strong hover:bg-black/5"
         >
-          <ChevronLeft size={18} strokeWidth={2} className="shrink-0" />
+          <ChevronLeft size={21} strokeWidth={2} className="shrink-0" />
           <span className="truncate">{folderLabel}</span>
         </button>
       )}

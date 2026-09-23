@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
 const BLOCKS = [
-  { key: 'h1', label: 'Titre', className: 'text-[19px] font-bold' },
-  { key: 'h2', label: 'Sous-titre', className: 'text-[15px] font-bold' },
-  { key: 'h3', label: 'Titre secondaire', className: 'text-[13px] font-bold' },
-  { key: 'p', label: 'Corps', className: 'text-[13px]' },
-  { key: 'mono', label: 'Monostyle', className: 'text-[13px] font-mono' },
+  { key: 'h1', label: 'Titre', className: 'text-[19px] max-md:text-[21px] font-bold' },
+  { key: 'h2', label: 'Sous-titre', className: 'text-[15px] max-md:text-[17px] font-bold' },
+  { key: 'h3', label: 'Titre secondaire', className: 'text-[13px] max-md:text-[15px] font-bold' },
+  { key: 'p', label: 'Corps', className: 'text-[13px] max-md:text-[15px]' },
+  { key: 'mono', label: 'Monostyle', className: 'text-[13px] max-md:text-[15px] font-mono' },
 ];
 
 function isBlockActive(editor, key) {
@@ -29,14 +29,20 @@ export default function AaFormatPanel({ editor }) {
   if (!editor) return null;
 
   return (
-    <div className="relative" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
+    <div className="relative">
       <button
         type="button"
         title="Format du texte"
-        className="flex h-7 w-7 items-center justify-center rounded text-[13px] font-semibold text-text-primary/70 hover:bg-black/5"
+        onClick={() => setOpen((v) => !v)}
+        className={
+          'flex h-7 w-7 items-center justify-center rounded text-[13px] max-md:text-[15px] font-semibold hover:bg-black/5 ' +
+          (open ? 'bg-black/10 text-text-primary' : 'text-text-primary/70')
+        }
       >
         Aa
       </button>
+
+      {open && <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />}
 
       {open && (
         <div className="absolute left-0 top-8 z-20 w-56 rounded border border-border bg-list-bg p-1.5 shadow-lg">
@@ -59,7 +65,7 @@ export default function AaFormatPanel({ editor }) {
                     'relative rounded py-1.5 pl-6 pr-2 text-left hover:bg-black/5 ' + b.className
                   }
                 >
-                  {active && <span className="absolute left-1.5 text-xs font-semibold">✓</span>}
+                  {active && <span className="absolute left-1.5 text-xs max-md:text-sm font-semibold">✓</span>}
                   {b.label}
                 </button>
               );
@@ -69,7 +75,7 @@ export default function AaFormatPanel({ editor }) {
           <button
             type="button"
             onClick={() => editor.chain().focus().toggleBlockquote().run()}
-            className="w-full rounded py-1.5 pl-6 pr-2 text-left text-[13px] text-text-secondary hover:bg-black/5"
+            className="w-full rounded py-1.5 pl-6 pr-2 text-left text-[13px] max-md:text-[15px] text-text-secondary hover:bg-black/5"
           >
             ❙ Bloc de citation
           </button>
@@ -85,7 +91,7 @@ function StyleBtn({ editor, mark, label }) {
     <button
       type="button"
       onClick={() => editor.chain().focus().toggleMark(mark).run()}
-      className={'flex h-7 flex-1 items-center justify-center rounded text-[13px] ' + (active ? 'bg-black/10' : 'hover:bg-black/5')}
+      className={'flex h-7 flex-1 items-center justify-center rounded text-[13px] max-md:text-[15px] ' + (active ? 'bg-black/10' : 'hover:bg-black/5')}
     >
       {label}
     </button>
