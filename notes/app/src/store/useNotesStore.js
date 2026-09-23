@@ -1,7 +1,9 @@
 import { create } from 'zustand';
-import { liveQuery } from 'dexie';
-import { db } from '../db/db';
+import { supabase } from '../lib/supabaseClient';
 import { convertAppleBodyToHtml } from '../lib/appleImport';
+import { migrateFromLocalStorage } from '../db/migrateFromLocalStorage';
+import { migrateLocalDbToSupabase } from '../db/migrateToSupabase';
+import { noteFromRow, noteToRow, folderFromRow, folderToRow } from '../db/rows';
 
 const TRASH_RETENTION_MS = 30 * 24 * 60 * 60 * 1000; // 30 jours, comme "Récemment supprimées"
 
@@ -9,10 +11,24 @@ function newId(prefix) {
   return prefix + Date.now() + Math.random().toString(16).slice(2);
 }
 
+let userId = null;
+
+async function requireUserId() {
+  if (userId) return userId;
+  // getSession() relit la session déjà stockée en local, sans requête de revalidation au
+  // serveur (contrairement à getUser()) — plus robuste face aux restrictions de stockage/
+  // cookies tiers de certains navigateurs (Safari en particulier).
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+  if (!session?.user) throw new Error('Aucune session Supabase active.');
+  userId = session.user.id;
+  return userId;
+}
+
 export const useNotesStore = create((set, get) => ({
-  // Miroir réactif d'IndexedDB (voir les abonnements liveQuery en bas de fichier) : Dexie
-  // reste la seule source de vérité pour les données persistées, ce store ne duplique pas
-  // la logique d'écriture ailleurs que dans ses propres actions.
+  // Supabase (Postgres) est la seule source de vérité : ce store en garde un miroir en
+  // mémoire, mis à jour localement après chaque écriture réussie (pas de resync globale).
   notes: [],
   folders: [],
   sortKey: 'updated',
@@ -31,14 +47,42 @@ export const useNotesStore = create((set, get) => ({
   setSearchQuery: (q) => set({ searchQuery: q }),
   toggleSidebar: () => set((s) => ({ sidebarCollapsed: !s.sidebarCollapsed })),
 
+  // À appeler une fois au montage : migre l'ancien stockage local si besoin, puis charge
+  // tout depuis Supabase.
+  initialize: async () => {
+    await migrateFromLocalStorage();
+    const uid = await requireUserId();
+    await migrateLocalDbToSupabase(uid);
+
+    const [{ data: noteRows, error: notesError }, { data: folderRows, error: foldersError }, { data: metaRow }] =
+      await Promise.all([
+        supabase.from('notes').select('*').eq('user_id', uid),
+        supabase.from('folders').select('*').eq('user_id', uid),
+        supabase.from('notes_meta').select('*').eq('user_id', uid).maybeSingle(),
+      ]);
+
+    if (notesError) console.error('Erreur chargement notes :', notesError);
+    if (foldersError) console.error('Erreur chargement dossiers :', foldersError);
+
+    set({
+      notes: (noteRows || []).map(noteFromRow),
+      folders: (folderRows || []).map(folderFromRow).sort((a, b) => a.position - b.position),
+      sortKey: metaRow?.sort_key || 'updated',
+      passcode: metaRow?.passcode || null,
+      dataLoaded: true,
+    });
+  },
+
   setSortKey: async (key) => {
     set({ sortKey: key });
-    await db.meta.put({ key: 'sortKey', value: key });
+    const uid = await requireUserId();
+    await supabase.from('notes_meta').upsert({ user_id: uid, sort_key: key });
   },
 
   // ---------- Notes ----------
 
   createNote: async () => {
+    const uid = await requireUserId();
     const { currentFolderId } = get();
     const now = Date.now();
     const note = {
@@ -52,30 +96,36 @@ export const useNotesStore = create((set, get) => ({
       deleted: false,
       deletedAt: null,
     };
-    await db.notes.put(note);
-    set({ currentNoteId: note.id });
+    await supabase.from('notes').insert(noteToRow(note, uid));
+    set((s) => ({ notes: [...s.notes, note], currentNoteId: note.id }));
     return note.id;
   },
 
   updateNoteContent: async (id, content) => {
     if (!id) return;
-    await db.notes.update(id, { content, updatedAt: Date.now() });
+    const updatedAt = Date.now();
+    await supabase.from('notes').update({ content, updated_at: updatedAt }).eq('id', id);
+    set((s) => ({ notes: s.notes.map((n) => (n.id === id ? { ...n, content, updatedAt } : n)) }));
   },
 
   // Une note vide (jamais remplie) quittée est supprimée silencieusement, comme dans Notes
   // d'Apple, pour ne pas accumuler des notes vides.
   discardIfEmpty: async (id) => {
     if (!id) return;
-    const note = await db.notes.get(id);
+    const note = get().notes.find((n) => n.id === id);
     if (!note) return;
     const tmp = document.createElement('div');
     tmp.innerHTML = note.content || '';
     const text = (tmp.innerText || '').trim();
-    if (!text) await db.notes.delete(id);
+    if (!text) {
+      await supabase.from('notes').delete().eq('id', id);
+      set((s) => ({ notes: s.notes.filter((n) => n.id !== id) }));
+    }
   },
 
   duplicateNote: async (id) => {
-    const note = await db.notes.get(id);
+    const uid = await requireUserId();
+    const note = get().notes.find((n) => n.id === id);
     if (!note) return null;
     const now = Date.now();
     const copy = {
@@ -88,25 +138,33 @@ export const useNotesStore = create((set, get) => ({
       deleted: false,
       deletedAt: null,
     };
-    await db.notes.put(copy);
-    set({ currentNoteId: copy.id });
+    await supabase.from('notes').insert(noteToRow(copy, uid));
+    set((s) => ({ notes: [...s.notes, copy], currentNoteId: copy.id }));
     return copy.id;
   },
 
   // Suppression = déplacement vers "Récemment supprimées" (récupérable 30 jours), jamais
   // définitif tant que l'utilisatrice ne vide pas la corbeille elle-même.
   deleteNote: async (id) => {
-    await db.notes.update(id, { deleted: true, deletedAt: Date.now(), pinned: false });
-    if (get().currentNoteId === id) set({ currentNoteId: null });
+    const deletedAt = Date.now();
+    await supabase.from('notes').update({ deleted: true, deleted_at: deletedAt, pinned: false }).eq('id', id);
+    set((s) => ({
+      notes: s.notes.map((n) => (n.id === id ? { ...n, deleted: true, deletedAt, pinned: false } : n)),
+      currentNoteId: s.currentNoteId === id ? null : s.currentNoteId,
+    }));
   },
 
   restoreNote: async (id) => {
-    await db.notes.update(id, { deleted: false, deletedAt: null });
+    await supabase.from('notes').update({ deleted: false, deleted_at: null }).eq('id', id);
+    set((s) => ({ notes: s.notes.map((n) => (n.id === id ? { ...n, deleted: false, deletedAt: null } : n)) }));
   },
 
   deleteForever: async (id) => {
-    await db.notes.delete(id);
-    if (get().currentNoteId === id) set({ currentNoteId: null });
+    await supabase.from('notes').delete().eq('id', id);
+    set((s) => ({
+      notes: s.notes.filter((n) => n.id !== id),
+      currentNoteId: s.currentNoteId === id ? null : s.currentNoteId,
+    }));
   },
 
   purgeOldTrash: async () => {
@@ -114,38 +172,46 @@ export const useNotesStore = create((set, get) => ({
     const stale = get().notes.filter(
       (n) => n.deleted && n.deletedAt && now - n.deletedAt > TRASH_RETENTION_MS
     );
-    if (stale.length) await db.notes.bulkDelete(stale.map((n) => n.id));
+    if (!stale.length) return;
+    const ids = stale.map((n) => n.id);
+    await supabase.from('notes').delete().in('id', ids);
+    set((s) => ({ notes: s.notes.filter((n) => !ids.includes(n.id)) }));
   },
 
   togglePin: async (id) => {
     const note = get().notes.find((n) => n.id === id);
     if (!note) return;
-    await db.notes.update(id, { pinned: !note.pinned });
+    const pinned = !note.pinned;
+    await supabase.from('notes').update({ pinned }).eq('id', id);
+    set((s) => ({ notes: s.notes.map((n) => (n.id === id ? { ...n, pinned } : n)) }));
   },
 
   moveNoteToFolder: async (id, folderId) => {
-    await db.notes.update(id, { folderId });
+    await supabase.from('notes').update({ folder_id: folderId }).eq('id', id);
+    set((s) => ({ notes: s.notes.map((n) => (n.id === id ? { ...n, folderId } : n)) }));
   },
 
   // ---------- Verrouillage (code local, pas une vraie sécurité) ----------
 
   setPasscode: async (code) => {
     set({ passcode: code });
-    await db.meta.put({ key: 'passcode', value: code });
+    const uid = await requireUserId();
+    await supabase.from('notes_meta').upsert({ user_id: uid, passcode: code });
   },
 
   toggleLock: async (id) => {
     const note = get().notes.find((n) => n.id === id);
     if (!note) return;
-    await db.notes.update(id, { locked: !note.locked });
-    if (note.locked) {
+    const locked = !note.locked;
+    await supabase.from('notes').update({ locked }).eq('id', id);
+    set((s) => {
+      const notes = s.notes.map((n) => (n.id === id ? { ...n, locked } : n));
+      if (!locked) return { notes };
       // On reverrouille : la note ne doit plus être "déverrouillée pour cette session".
-      set((s) => {
-        const next = new Set(s.unlockedIds);
-        next.delete(id);
-        return { unlockedIds: next };
-      });
-    }
+      const next = new Set(s.unlockedIds);
+      next.delete(id);
+      return { notes, unlockedIds: next };
+    });
   },
 
   unlockNote: (id) =>
@@ -160,28 +226,30 @@ export const useNotesStore = create((set, get) => ({
   createFolder: async (name) => {
     const trimmed = (name || '').trim();
     if (!trimmed) return;
-    const folder = {
-      id: newId('f'),
-      name: trimmed,
-      parentId: null,
-      position: get().folders.length,
-      expanded: true,
-    };
-    await db.folders.put(folder);
-    set({ currentFolderId: folder.id });
+    const uid = await requireUserId();
+    const folder = { id: newId('f'), name: trimmed, parentId: null, position: get().folders.length, expanded: true };
+    await supabase.from('folders').insert(folderToRow(folder, uid));
+    set((s) => ({ folders: [...s.folders, folder], currentFolderId: folder.id }));
   },
 
   renameFolder: async (id, name) => {
     const trimmed = (name || '').trim();
     if (!trimmed) return;
-    await db.folders.update(id, { name: trimmed });
+    await supabase.from('folders').update({ name: trimmed }).eq('id', id);
+    set((s) => ({ folders: s.folders.map((f) => (f.id === id ? { ...f, name: trimmed } : f)) }));
   },
 
   deleteFolder: async (id) => {
-    await db.folders.delete(id);
-    const affected = get().notes.filter((n) => n.folderId === id);
-    await Promise.all(affected.map((n) => db.notes.update(n.id, { folderId: null })));
-    if (get().currentFolderId === id) set({ currentFolderId: 'all' });
+    const affectedIds = get().notes.filter((n) => n.folderId === id).map((n) => n.id);
+    await supabase.from('folders').delete().eq('id', id);
+    if (affectedIds.length) {
+      await supabase.from('notes').update({ folder_id: null }).in('id', affectedIds);
+    }
+    set((s) => ({
+      folders: s.folders.filter((f) => f.id !== id),
+      notes: s.notes.map((n) => (n.folderId === id ? { ...n, folderId: null } : n)),
+      currentFolderId: s.currentFolderId === id ? 'all' : s.currentFolderId,
+    }));
   },
 
   // ---------- Import depuis Apple Notes ----------
@@ -190,12 +258,15 @@ export const useNotesStore = create((set, get) => ({
   // via appleId), donc rejouable si on ajoute des notes côté Apple Notes plus tard : seules
   // les nouvelles sont importées, rien n'est dupliqué ni écrasé.
   importAppleNotes: async (rawItems) => {
+    const uid = await requireUserId();
     const existingAppleIds = new Set(get().notes.filter((n) => n.appleId).map((n) => n.appleId));
     const folderByName = new Map(get().folders.map((f) => [f.name, f.id]));
 
     let imported = 0;
     let skipped = 0;
     const withAttachments = [];
+    const newFolders = [];
+    const newNotes = [];
 
     for (const item of rawItems) {
       if (!item.appleId || existingAppleIds.has(item.appleId)) {
@@ -214,13 +285,13 @@ export const useNotesStore = create((set, get) => ({
             position: folderByName.size,
             expanded: true,
           };
-          await db.folders.put(folder);
           folderByName.set(item.folder, folder.id);
+          newFolders.push(folder);
           folderId = folder.id;
         }
       }
 
-      await db.notes.put({
+      const note = {
         id: newId('n'),
         appleId: item.appleId,
         content: convertAppleBodyToHtml(item.body),
@@ -231,37 +302,19 @@ export const useNotesStore = create((set, get) => ({
         folderId,
         deleted: false,
         deletedAt: null,
-      });
+      };
+      newNotes.push(note);
 
       existingAppleIds.add(item.appleId);
       imported++;
       if (item.attachmentCount > 0) withAttachments.push(item.name);
     }
 
+    if (newFolders.length) await supabase.from('folders').insert(newFolders.map((f) => folderToRow(f, uid)));
+    if (newNotes.length) await supabase.from('notes').insert(newNotes.map((n) => noteToRow(n, uid)));
+
+    set((s) => ({ folders: [...s.folders, ...newFolders], notes: [...s.notes, ...newNotes] }));
+
     return { imported, skipped, withAttachments };
   },
 }));
-
-// ---------- Synchronisation Dexie -> store (source de vérité unique) ----------
-
-liveQuery(() => db.notes.toArray()).subscribe({
-  next: (notes) => useNotesStore.setState({ notes, dataLoaded: true }),
-  error: (err) => console.error('Erreur liveQuery notes :', err),
-});
-
-liveQuery(() => db.folders.toArray()).subscribe({
-  next: (folders) =>
-    useNotesStore.setState({ folders: [...folders].sort((a, b) => a.position - b.position) }),
-  error: (err) => console.error('Erreur liveQuery folders :', err),
-});
-
-liveQuery(() => db.meta.toArray()).subscribe({
-  next: (rows) => {
-    const map = Object.fromEntries(rows.map((r) => [r.key, r.value]));
-    useNotesStore.setState({
-      sortKey: map.sortKey || 'updated',
-      passcode: map.passcode || null,
-    });
-  },
-  error: (err) => console.error('Erreur liveQuery meta :', err),
-});

@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from 'react';
-import { migrateFromLocalStorage } from './db/migrateFromLocalStorage';
 import { useNotesStore } from './store/useNotesStore';
 import FoldersSidebar from './components/FoldersSidebar';
 import NotesList from './components/NotesList';
@@ -8,6 +7,7 @@ import ContextMenu from './components/ContextMenu';
 
 export default function App() {
   const [ready, setReady] = useState(false);
+  const [initError, setInitError] = useState(null);
   const notes = useNotesStore((s) => s.notes);
   const dataLoaded = useNotesStore((s) => s.dataLoaded);
   const currentNoteId = useNotesStore((s) => s.currentNoteId);
@@ -15,11 +15,23 @@ export default function App() {
   const createNote = useNotesStore((s) => s.createNote);
   const purgeOldTrash = useNotesStore((s) => s.purgeOldTrash);
   const sidebarCollapsed = useNotesStore((s) => s.sidebarCollapsed);
+  const initialize = useNotesStore((s) => s.initialize);
 
   const [menu, setMenu] = useState(null);
 
   useEffect(() => {
-    migrateFromLocalStorage().then(() => setReady(true));
+    // Race contre un timeout : si l'initialisation reste bloquée (ex. bug connu de Safari
+    // avec IndexedDB au chargement), on affiche une erreur au lieu d'un spinner infini.
+    const timeout = new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('Le chargement prend trop de temps.')), 10000)
+    );
+    Promise.race([initialize(), timeout])
+      .then(() => setReady(true))
+      .catch((err) => {
+        console.error('Erreur au chargement des notes :', err);
+        setInitError(err);
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -58,6 +70,17 @@ export default function App() {
     document.addEventListener('keydown', onKeyDown);
     return () => document.removeEventListener('keydown', onKeyDown);
   }, [createNote]);
+
+  if (initError) {
+    return (
+      <div className="flex h-screen w-screen flex-col items-center justify-center gap-3 text-sm text-text-secondary">
+        <p>Impossible de charger tes notes.</p>
+        <button type="button" className="text-accent underline" onClick={() => window.location.reload()}>
+          Réessayer
+        </button>
+      </div>
+    );
+  }
 
   if (!ready) {
     return (
