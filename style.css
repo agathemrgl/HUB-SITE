@@ -32,3 +32,80 @@ p, a {
   outline: none;
   font-weight: bold;
 }
+
+/* Bouton de connexion
+------------------------------------------------------------------------------*/
+.login-toggle {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.login-button {
+  position: fixed;
+  top: 1.5em;
+  right: 1.5em;
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 50%;
+  background-color: #1b34ed;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1em;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.login-panel {
+  position: fixed;
+  top: 3.2em;
+  right: 1.5em;
+  display: none;
+  flex-direction: column;
+  gap: 0.5em;
+  padding: 1em;
+  background-color: #fff;
+  border-radius: 0.5em;
+  box-shadow: 0 0.2em 0.6em rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.login-toggle:checked ~ .login-panel {
+  display: flex;
+}
+
+.login-panel form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.login-panel input,
+.login-panel button {
+  font-family: monospace;
+  font-size: 0.8em;
+  padding: 0.4em 0.6em;
+  border: 1px solid #1b34ed;
+  border-radius: 0.3em;
+}
+
+.login-panel button {
+  background-color: #1b34ed;
+  color: #fff;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 640px) {
+  .login-button {
+    top: 1em;
+    right: 1em;
+  }
+  .login-panel {
+    top: 3.75em;
+    right: 1em;
+    left: 1em;
+  }
+}

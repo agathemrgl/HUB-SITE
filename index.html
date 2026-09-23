@@ -32,6 +32,17 @@
 </head>
 
 <body>
+	<input type="checkbox" id="login-toggle" class="login-toggle">
+	<label for="login-toggle" class="login-button" aria-label="Se connecter"></label>
+	<div class="login-panel" id="login-panel">
+		<form id="login-form">
+			<input type="email" name="email" placeholder="Email" autocomplete="email" required>
+			<input type="password" name="password" placeholder="Mot de passe" autocomplete="current-password" required>
+			<button type="submit">Connecter</button>
+			<p class="login-error" id="login-error" hidden></p>
+		</form>
+	</div>
+
 	<p><strong>
 		Agathe Margely<br/>
 		Designer.<br/>
@@ -47,8 +58,9 @@
 		<a href="https://biblio.agathe.space" target="_blank">Bibliopée</a><br/>
 		<a href="https://popolitique.agathe.space" target="_blank">Popolitique</a><br/>
 		<a href="/armoire/" target="_blank">Armoire</a><br/>
-		<a href="/notes/" target="_blank">Notes</a><br/>
 	</p>
+	<p id="private-links" hidden></p>
 
+	<script type="module" src="auth.js"></script>
 </body>
 </html>

@@ -5,11 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "node scripts/clean-build.js",
     "build": "vite build",
     "lint": "oxlint",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.117.0",
     "@tiptap/extension-bubble-menu": "^3.30.2",
     "@tiptap/extension-image": "^3.30.2",
     "@tiptap/extension-placeholder": "^3.30.2",
