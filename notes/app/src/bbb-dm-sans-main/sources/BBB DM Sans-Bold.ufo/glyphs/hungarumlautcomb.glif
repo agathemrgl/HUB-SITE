@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="hungarumlautcomb" format="1">
+  <advance width="419"/>
+  <unicode hex="030B"/>
+  <outline>
+    <contour>
+      <point x="193" y="539" type="line"/>
+      <point x="298" y="539" type="line"/>
+      <point x="419" y="748" type="line"/>
+      <point x="283" y="748" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="539" type="line"/>
+      <point x="105" y="539" type="line"/>
+      <point x="210" y="748" type="line"/>
+      <point x="75" y="748" type="line"/>
+    </contour>
+    <contour>
+      <point x="162" y="496" type="move" name="_top"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2019-05-10 10:24:02 +0000</string>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>=0</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>=0</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>4</integer>
+        <key>com.typesupply.AccentFactory.yCoordinates</key>
+        <dict>
+          <key>below</key>
+          <dict>
+            <key>name</key>
+            <string>xHeight</string>
+            <key>type</key>
+            <string>fontInfo</string>
+          </dict>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

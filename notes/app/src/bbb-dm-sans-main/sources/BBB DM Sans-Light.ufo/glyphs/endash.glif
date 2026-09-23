@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="endash" format="1">
+  <advance width="639"/>
+  <unicode hex="2013"/>
+  <outline>
+    <contour>
+      <point x="60" y="261" type="line"/>
+      <point x="579" y="261" type="line"/>
+      <point x="579" y="320" type="line"/>
+      <point x="60" y="320" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2019-05-10 10:24:02 +0000</string>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>hyphen</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>hyphen</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>4</integer>
+      </dict>
+      <key>com.schriftgestaltung.guides</key>
+      <array>
+        <dict>
+          <key>angle</key>
+          <integer>0</integer>
+          <key>x</key>
+          <integer>-2</integer>
+          <key>y</key>
+          <integer>320</integer>
+        </dict>
+        <dict>
+          <key>angle</key>
+          <integer>0</integer>
+          <key>x</key>
+          <integer>8</integer>
+          <key>y</key>
+          <integer>261</integer>
+        </dict>
+      </array>
+    </dict>
+  </lib>
+</glyph>

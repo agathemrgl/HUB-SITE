@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="onesuperior" format="1">
+  <advance width="195"/>
+  <unicode hex="00B9"/>
+  <outline>
+    <contour>
+      <point x="95" y="352" type="line"/>
+      <point x="152" y="352" type="line"/>
+      <point x="152" y="704" type="line"/>
+      <point x="113" y="704" type="line"/>
+      <point x="29" y="664" type="line"/>
+      <point x="29" y="628" type="line"/>
+      <point x="95" y="647" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2019-05-16 10:02:34 +0000</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>4</integer>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

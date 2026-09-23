@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="onehalf" format="1">
+  <advance width="650"/>
+  <unicode hex="00BD"/>
+  <outline>
+    <contour>
+      <point x="52" y="0" type="line"/>
+      <point x="119" y="0" type="line"/>
+      <point x="479" y="700" type="line"/>
+      <point x="412" y="700" type="line"/>
+    </contour>
+    <component base="onesuperior" xOffset="9" identifier="7E73BB29"/>
+    <component base="twosuperior" xOffset="318" yOffset="-353" identifier="271D714C"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2019-05-16 10:02:34 +0000</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>4</integer>
+      </dict>
+      <key>public.objectLibs</key>
+      <dict>
+        <key>271D714C</key>
+        <dict>
+          <key>com.schriftgestaltung.alignment</key>
+          <integer>-1</integer>
+        </dict>
+        <key>7E73BB29</key>
+        <dict>
+          <key>com.schriftgestaltung.alignment</key>
+          <integer>-1</integer>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

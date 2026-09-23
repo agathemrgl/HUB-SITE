@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="uF1810" format="2">
+	<advance width="974"/>
+	<unicode hex="F1810"/>
+	<outline>
+		<contour>
+			<point x="572" y="0" type="line"/>
+			<point x="572" y="88" type="line"/>
+			<point x="205" y="88" type="line"/>
+			<point x="205" y="302" type="line"/>
+			<point x="778" y="302" type="line"/>
+			<point x="853" y="74" type="line"/>
+			<point x="972" y="74" type="line"/>
+			<point x="731" y="764" type="line"/>
+			<point x="589" y="764" type="line"/>
+			<point x="561" y="690" type="line"/>
+			<point x="95" y="690" type="line"/>
+			<point x="95" y="0" type="line"/>
+		</contour>
+		<contour>
+			<point x="205" y="389" type="line"/>
+			<point x="205" y="603" type="line"/>
+			<point x="529" y="603" type="line"/>
+			<point x="449" y="389" type="line"/>
+		</contour>
+		<contour>
+			<point x="562" y="389" type="line"/>
+			<point x="658" y="673" type="line"/>
+			<point x="749" y="389" type="line"/>
+		</contour>
+	</outline>
+	<lib>
+		<dict>
+			<key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+			<string>E</string>
+			<key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+			<string>A</string>
+		</dict>
+	</lib>
+</glyph>

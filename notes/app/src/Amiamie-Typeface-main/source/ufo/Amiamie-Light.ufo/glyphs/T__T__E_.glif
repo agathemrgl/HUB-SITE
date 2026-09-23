@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="T_T_E" format="2">
+	<advance width="1082"/>
+	<unicode hex="F4880"/>
+	<outline>
+		<contour>
+			<point x="348" y="639" type="line"/>
+			<point x="605" y="639" type="line"/>
+			<point x="605" y="-320" type="line"/>
+			<point x="1052" y="-320" type="line"/>
+			<point x="1052" y="-269" type="line"/>
+			<point x="667" y="-269" type="line"/>
+			<point x="667" y="-1" type="line"/>
+			<point x="1016" y="-1" type="line"/>
+			<point x="1016" y="51" type="line"/>
+			<point x="667" y="51" type="line"/>
+			<point x="667" y="319" type="line"/>
+			<point x="1042" y="319" type="line"/>
+			<point x="1042" y="370" type="line"/>
+			<point x="667" y="370" type="line"/>
+			<point x="667" y="639" type="line"/>
+			<point x="920" y="639" type="line"/>
+			<point x="920" y="690" type="line"/>
+			<point x="33" y="690" type="line"/>
+			<point x="33" y="639" type="line"/>
+			<point x="286" y="639" type="line"/>
+			<point x="286" y="0" type="line"/>
+			<point x="348" y="0" type="line"/>
+		</contour>
+	</outline>
+	<lib>
+		<dict>
+			<key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+			<string>T</string>
+			<key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+			<string>E</string>
+		</dict>
+	</lib>
+</glyph>

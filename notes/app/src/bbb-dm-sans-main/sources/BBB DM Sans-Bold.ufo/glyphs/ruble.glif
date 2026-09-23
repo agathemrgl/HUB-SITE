@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="ruble" format="1">
+  <advance width="674"/>
+  <unicode hex="20BD"/>
+  <outline>
+    <contour>
+      <point x="112" y="0" type="line"/>
+      <point x="283" y="0" type="line"/>
+      <point x="283" y="572" type="line"/>
+      <point x="382" y="572" type="line" smooth="yes"/>
+      <point x="444" y="572"/>
+      <point x="473" y="536"/>
+      <point x="473" y="487" type="curve" smooth="yes"/>
+      <point x="473" y="437"/>
+      <point x="444" y="403"/>
+      <point x="382" y="403" type="curve" smooth="yes"/>
+      <point x="18" y="403" type="line"/>
+      <point x="18" y="272" type="line"/>
+      <point x="389" y="272" type="line" smooth="yes"/>
+      <point x="569" y="272"/>
+      <point x="647" y="372"/>
+      <point x="647" y="487" type="curve" smooth="yes"/>
+      <point x="647" y="608"/>
+      <point x="561" y="702"/>
+      <point x="389" y="702" type="curve" smooth="yes"/>
+      <point x="112" y="702" type="line"/>
+    </contour>
+    <contour>
+      <point x="18" y="82" type="line"/>
+      <point x="438" y="82" type="line"/>
+      <point x="438" y="212" type="line"/>
+      <point x="18" y="212" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2019-05-10 10:24:02 +0000</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>P</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>8</integer>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="braceright" format="1">
+  <advance width="413"/>
+  <unicode hex="007D"/>
+  <outline>
+    <contour>
+      <point x="49" y="-145" type="line"/>
+      <point x="99" y="-145" type="line" smooth="yes"/>
+      <point x="186" y="-145"/>
+      <point x="244" y="-98"/>
+      <point x="244" y="0" type="curve" smooth="yes"/>
+      <point x="244" y="68"/>
+      <point x="222" y="108"/>
+      <point x="222" y="187" type="curve" smooth="yes"/>
+      <point x="222" y="236"/>
+      <point x="243" y="285"/>
+      <point x="327" y="305" type="curve"/>
+      <point x="327" y="362" type="line"/>
+      <point x="243" y="381"/>
+      <point x="222" y="430"/>
+      <point x="222" y="479" type="curve" smooth="yes"/>
+      <point x="222" y="559"/>
+      <point x="244" y="598"/>
+      <point x="244" y="666" type="curve" smooth="yes"/>
+      <point x="244" y="764"/>
+      <point x="186" y="811"/>
+      <point x="99" y="811" type="curve" smooth="yes"/>
+      <point x="49" y="811" type="line"/>
+      <point x="49" y="750" type="line"/>
+      <point x="87" y="750" type="line" smooth="yes"/>
+      <point x="144" y="750"/>
+      <point x="176" y="725"/>
+      <point x="176" y="661" type="curve" smooth="yes"/>
+      <point x="176" y="599"/>
+      <point x="154" y="558"/>
+      <point x="154" y="477" type="curve" smooth="yes"/>
+      <point x="154" y="407"/>
+      <point x="187" y="352"/>
+      <point x="266" y="334" type="curve"/>
+      <point x="266" y="332" type="line"/>
+      <point x="187" y="314"/>
+      <point x="154" y="259"/>
+      <point x="154" y="189" type="curve" smooth="yes"/>
+      <point x="154" y="109"/>
+      <point x="176" y="67"/>
+      <point x="176" y="5" type="curve" smooth="yes"/>
+      <point x="176" y="-59"/>
+      <point x="144" y="-84"/>
+      <point x="87" y="-84" type="curve" smooth="yes"/>
+      <point x="49" y="-84" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2019-10-15 13:37:50 +0000</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>3</integer>
+      </dict>
+      <key>com.schriftgestaltung.guides</key>
+      <array>
+        <dict>
+          <key>angle</key>
+          <integer>0</integer>
+          <key>x</key>
+          <integer>-9</integer>
+          <key>y</key>
+          <integer>811</integer>
+        </dict>
+      </array>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="L_L_E" format="2">
+	<advance width="1336"/>
+	<unicode hex="F3230"/>
+	<outline>
+		<contour>
+			<point x="612" y="280" type="line"/>
+			<point x="642" y="420" type="line"/>
+			<point x="641" y="420" type="line"/>
+			<point x="698" y="690" type="line"/>
+			<point x="518" y="690" type="line"/>
+			<point x="461" y="420" type="line"/>
+			<point x="293" y="420" type="line"/>
+			<point x="407" y="958" type="line"/>
+			<point x="227" y="958" type="line"/>
+			<point x="83" y="280" type="line"/>
+			<point x="431" y="280" type="line"/>
+			<point x="372" y="0" type="line"/>
+			<point x="1250" y="0" type="line"/>
+			<point x="1279" y="140" type="line"/>
+			<point x="930" y="140" type="line"/>
+			<point x="959" y="276" type="line"/>
+			<point x="1278" y="276" type="line"/>
+			<point x="1308" y="416" type="line"/>
+			<point x="989" y="416" type="line"/>
+			<point x="1018" y="550" type="line"/>
+			<point x="1357" y="550" type="line"/>
+			<point x="1386" y="690" type="line"/>
+			<point x="867" y="690" type="line"/>
+			<point x="750" y="140" type="line"/>
+			<point x="581" y="140" type="line"/>
+			<point x="611" y="280" type="line"/>
+		</contour>
+	</outline>
+	<lib>
+		<dict>
+			<key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+			<string>L</string>
+			<key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+			<string>E</string>
+		</dict>
+	</lib>
+</glyph>

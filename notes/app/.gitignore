@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# Exports Apple Notes (données perso, jamais à committer)
+scripts/export.json
+scripts/*.json
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

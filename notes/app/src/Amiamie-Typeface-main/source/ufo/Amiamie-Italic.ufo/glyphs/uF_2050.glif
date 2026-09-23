@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="uF2050" format="2">
+	<advance width="1063"/>
+	<unicode hex="F2050"/>
+	<outline>
+		<contour>
+			<point x="231" y="389" type="line"/>
+			<point x="277" y="603" type="line"/>
+			<point x="545" y="603" type="line"/>
+			<point x="628" y="0" type="line"/>
+			<point x="770" y="0" type="line"/>
+			<point x="1164" y="690" type="line"/>
+			<point x="1047" y="690" type="line"/>
+			<point x="719" y="84" type="line"/>
+			<point x="652" y="690" type="line"/>
+			<point x="185" y="690" type="line"/>
+			<point x="39" y="0" type="line"/>
+			<point x="149" y="0" type="line"/>
+			<point x="213" y="302" type="line"/>
+			<point x="532" y="302" type="line"/>
+			<point x="550" y="389" type="line"/>
+		</contour>
+	</outline>
+	<lib>
+		<dict>
+			<key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+			<string>F</string>
+			<key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+			<string>V</string>
+		</dict>
+	</lib>
+</glyph>

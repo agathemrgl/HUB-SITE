@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="uF2030" format="2">
+	<advance width="1385"/>
+	<unicode hex="F2030"/>
+	<outline>
+		<contour>
+			<point x="231" y="389" type="line"/>
+			<point x="277" y="603" type="line"/>
+			<point x="633" y="603" type="line"/>
+			<point x="505" y="0" type="line"/>
+			<point x="615" y="0" type="line"/>
+			<point x="679" y="302" type="line"/>
+			<point x="888" y="302" type="line"/>
+			<point x="824" y="0" type="line"/>
+			<point x="1301" y="0" type="line"/>
+			<point x="1319" y="88" type="line"/>
+			<point x="952" y="88" type="line"/>
+			<point x="998" y="302" type="line"/>
+			<point x="1327" y="302" type="line"/>
+			<point x="1345" y="389" type="line"/>
+			<point x="1016" y="389" type="line"/>
+			<point x="1062" y="603" type="line"/>
+			<point x="1419" y="603" type="line"/>
+			<point x="1437" y="690" type="line"/>
+			<point x="185" y="690" type="line"/>
+			<point x="39" y="0" type="line"/>
+			<point x="149" y="0" type="line"/>
+			<point x="213" y="302" type="line"/>
+			<point x="532" y="302" type="line"/>
+			<point x="550" y="389" type="line"/>
+		</contour>
+		<contour>
+			<point x="697" y="389" type="line"/>
+			<point x="743" y="603" type="line"/>
+			<point x="952" y="603" type="line"/>
+			<point x="906" y="389" type="line"/>
+		</contour>
+	</outline>
+	<lib>
+		<dict>
+			<key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+			<string>F</string>
+			<key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+			<string>E</string>
+		</dict>
+	</lib>
+</glyph>

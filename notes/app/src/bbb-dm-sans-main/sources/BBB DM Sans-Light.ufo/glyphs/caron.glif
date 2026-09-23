@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="caron" format="1">
+  <advance width="316"/>
+  <unicode hex="02C7"/>
+  <outline>
+    <contour>
+      <point x="158" y="553" type="line"/>
+      <point x="292" y="635" type="line"/>
+      <point x="292" y="691" type="line"/>
+      <point x="158" y="608" type="line"/>
+      <point x="24" y="691" type="line"/>
+      <point x="24" y="635" type="line"/>
+    </contour>
+    <contour>
+      <point x="158" y="496" type="move" name="_top"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2019-05-10 10:24:02 +0000</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>4</integer>
+        <key>com.typesupply.AccentFactory.yCoordinates</key>
+        <dict>
+          <key>below</key>
+          <dict>
+            <key>name</key>
+            <string>xHeight</string>
+            <key>type</key>
+            <string>fontInfo</string>
+          </dict>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

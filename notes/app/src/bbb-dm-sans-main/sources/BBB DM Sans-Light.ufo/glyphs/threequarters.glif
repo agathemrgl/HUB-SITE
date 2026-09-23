@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="threequarters" format="1">
+  <advance width="686"/>
+  <unicode hex="00BE"/>
+  <outline>
+    <contour>
+      <point x="146" y="0" type="line"/>
+      <point x="212" y="0" type="line"/>
+      <point x="589" y="700" type="line"/>
+      <point x="523" y="700" type="line"/>
+    </contour>
+    <contour>
+      <point x="545" y="0" type="line"/>
+      <point x="602" y="0" type="line"/>
+      <point x="602" y="71" type="line"/>
+      <point x="652" y="71" type="line"/>
+      <point x="652" y="110" type="line"/>
+      <point x="602" y="110" type="line"/>
+      <point x="602" y="354" type="line"/>
+      <point x="529" y="354" type="line"/>
+      <point x="366" y="106" type="line"/>
+      <point x="366" y="71" type="line"/>
+      <point x="545" y="71" type="line"/>
+    </contour>
+    <contour>
+      <point x="425" y="110" type="line"/>
+      <point x="547" y="296" type="line"/>
+      <point x="547" y="110" type="line"/>
+    </contour>
+    <component base="threesuperior" xOffset="10" identifier="DB21902D"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2019-05-20 08:55:26 +0000</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>onequarter</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>4</integer>
+      </dict>
+      <key>public.objectLibs</key>
+      <dict>
+        <key>DB21902D</key>
+        <dict>
+          <key>com.schriftgestaltung.alignment</key>
+          <integer>-1</integer>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="uni013C" format="2">
+	<advance width="262"/>
+	<unicode hex="013C"/>
+	<note>
+		lcommaaccent
+	</note>
+	<outline>
+		<contour>
+			<point x="175" y="162" type="curve" smooth="yes"/>
+			<point x="175" y="735" type="line"/>
+			<point x="65" y="735" type="line"/>
+			<point x="65" y="159" type="line" smooth="yes"/>
+			<point x="65" y="127"/>
+			<point x="65" y="103"/>
+			<point x="66" y="83" type="curve" smooth="yes"/>
+			<point x="70" y="15"/>
+			<point x="109" y="-6"/>
+			<point x="167" y="-6" type="curve" smooth="yes"/>
+			<point x="192" y="-6"/>
+			<point x="217" y="-4"/>
+			<point x="239" y="-1" type="curve"/>
+			<point x="239" y="76" type="line"/>
+			<point x="192" y="72"/>
+			<point x="178" y="82"/>
+			<point x="176" y="112" type="curve" smooth="yes"/>
+			<point x="175" y="128"/>
+			<point x="175" y="144"/>
+		</contour>
+		<contour>
+			<point x="109" y="-200" type="line"/>
+			<point x="180" y="-59" type="line"/>
+			<point x="180" y="-48" type="line"/>
+			<point x="99" y="-48" type="line"/>
+			<point x="39" y="-200" type="line"/>
+		</contour>
+	</outline>
+</glyph>

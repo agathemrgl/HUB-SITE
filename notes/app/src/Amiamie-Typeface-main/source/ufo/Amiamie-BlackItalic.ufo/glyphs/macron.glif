@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="macron" format="2">
+	<advance width="300"/>
+	<unicode hex="00AF"/>
+	<note>
+		macron
+	</note>
+	<outline>
+		<contour>
+			<point x="68" y="586" type="line"/>
+			<point x="368" y="586" type="line"/>
+			<point x="389" y="682" type="line"/>
+			<point x="89" y="682" type="line"/>
+		</contour>
+	</outline>
+</glyph>

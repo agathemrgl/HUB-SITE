@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="N_E" format="2">
+	<advance width="1027"/>
+	<unicode hex="F3620"/>
+	<outline>
+		<contour>
+			<point x="517" y="0" type="line"/>
+			<point x="612" y="0" type="line"/>
+			<point x="997" y="0" type="line"/>
+			<point x="997" y="52" type="line"/>
+			<point x="612" y="52" type="line"/>
+			<point x="612" y="320" type="line"/>
+			<point x="961" y="320" type="line"/>
+			<point x="961" y="372" type="line"/>
+			<point x="612" y="372" type="line"/>
+			<point x="612" y="640" type="line"/>
+			<point x="987" y="640" type="line"/>
+			<point x="987" y="691" type="line"/>
+			<point x="550" y="691" type="line"/>
+			<point x="550" y="65" type="line"/>
+			<point x="193" y="690" type="line"/>
+			<point x="99" y="690" type="line"/>
+			<point x="99" y="0" type="line"/>
+			<point x="161" y="0" type="line"/>
+			<point x="161" y="356" type="line" smooth="yes"/>
+			<point x="161" y="442"/>
+			<point x="160" y="545"/>
+			<point x="158" y="630" type="curve"/>
+		</contour>
+	</outline>
+	<lib>
+		<dict>
+			<key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+			<string>N</string>
+			<key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+			<string>E</string>
+		</dict>
+	</lib>
+</glyph>

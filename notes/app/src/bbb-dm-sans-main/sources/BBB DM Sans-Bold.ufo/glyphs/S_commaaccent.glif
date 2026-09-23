@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Scommaaccent" format="1">
+  <advance width="616"/>
+  <unicode hex="0218"/>
+  <outline>
+    <contour>
+      <point x="267" y="-310" type="line"/>
+      <point x="362" y="-310"/>
+      <point x="407" y="-248"/>
+      <point x="407" y="-158" type="curve" smooth="yes"/>
+      <point x="407" y="-122"/>
+      <point x="401" y="-82"/>
+      <point x="387" y="-40" type="curve"/>
+      <point x="256" y="-40" type="line"/>
+      <point x="256" y="-163" type="line"/>
+      <point x="319" y="-163" type="line"/>
+      <point x="319" y="-179" type="line" smooth="yes"/>
+      <point x="319" y="-224"/>
+      <point x="301" y="-245"/>
+      <point x="267" y="-245" type="curve"/>
+    </contour>
+    <component base="S" identifier="4B1163CA"/>
+    <contour>
+      <point x="324" y="0" type="move" name="_bottom"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2025-11-04 15:13:57 +0000</string>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>S</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>S</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>8</integer>
+        <key>com.typesupply.AccentFactory.compileType</key>
+        <string>manual</string>
+      </dict>
+      <key>public.objectLibs</key>
+      <dict>
+        <key>4B1163CA</key>
+        <dict>
+          <key>com.schriftgestaltung.alignment</key>
+          <integer>-1</integer>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="ncommaaccent" format="1">
+  <advance width="643"/>
+  <unicode hex="0146"/>
+  <outline>
+    <contour>
+      <point x="273" y="-310" type="line"/>
+      <point x="368" y="-310"/>
+      <point x="413" y="-248"/>
+      <point x="413" y="-158" type="curve" smooth="yes"/>
+      <point x="413" y="-122"/>
+      <point x="407" y="-82"/>
+      <point x="393" y="-40" type="curve"/>
+      <point x="262" y="-40" type="line"/>
+      <point x="262" y="-163" type="line"/>
+      <point x="325" y="-163" type="line"/>
+      <point x="325" y="-179" type="line" smooth="yes"/>
+      <point x="325" y="-224"/>
+      <point x="307" y="-245"/>
+      <point x="273" y="-245" type="curve"/>
+    </contour>
+    <component base="n" identifier="2ECCD917"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2025-11-04 15:13:57 +0000</string>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>n</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>n</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>8</integer>
+        <key>com.typesupply.AccentFactory.compileType</key>
+        <string>manual</string>
+      </dict>
+      <key>public.objectLibs</key>
+      <dict>
+        <key>2ECCD917</key>
+        <dict>
+          <key>com.schriftgestaltung.alignment</key>
+          <integer>-1</integer>
+        </dict>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

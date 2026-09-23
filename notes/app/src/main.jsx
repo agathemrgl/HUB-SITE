@@ -1,22 +1,39 @@
-import { StrictMode } from 'react'
+import { StrictMode, useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import AuthGate from './AuthGate.jsx'
 import { supabase } from './lib/supabaseClient'
 
-const root = createRoot(document.getElementById('root'))
+function Root() {
+  // undefined = vérification initiale de session en cours, null = pas connecté
+  const [session, setSession] = useState(undefined)
 
-async function boot() {
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data }) => setSession(data.session))
 
-  root.render(
-    <StrictMode>
-      {session ? <App /> : <AuthGate />}
-    </StrictMode>,
-  )
+    // Réagit à une connexion (formulaire dans AuthGate) ou déconnexion (autre onglet, hub)
+    // sans avoir besoin de recharger la page.
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, newSession) => setSession(newSession))
+
+    return () => subscription.unsubscribe()
+  }, [])
+
+  if (session === undefined) {
+    return (
+      <div className="flex h-screen w-screen items-center justify-center text-sm text-text-secondary">
+        Chargement…
+      </div>
+    )
+  }
+
+  return session ? <App /> : <AuthGate />
 }
 
-boot()
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <Root />
+  </StrictMode>,
+)

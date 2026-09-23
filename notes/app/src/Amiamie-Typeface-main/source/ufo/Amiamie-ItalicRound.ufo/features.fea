@@ -1,0 +1,360 @@
+@Uppercase = [ A Aacute Abreve Acircumflex Adieresis Agrave Amacron Aogonek Aring Atilde AE B C Cacute Ccaron Ccedilla Cdotaccent D Eth Dcaron Dcroat E Eacute Ecaron Ecircumflex Edieresis Edotaccent Egrave Emacron Eogonek F G Gbreve Gdotaccent H Hbar I Iacute Icircumflex Idieresis Idotaccent Igrave Imacron Iogonek J K L Lacute Lcaron Ldot Lslash M N Nacute Ncaron Ntilde Eng O Oacute Ocircumflex Odieresis Ograve Ohungarumlaut Omacron Oslash Otilde OE P Thorn Q R Racute Rcaron S Sacute Scaron Scedilla T Tbar Tcaron U Uacute Ucircumflex Udieresis Ugrave Uhungarumlaut Umacron Uogonek Uring V W Wacute Wcircumflex Wdieresis Wgrave X Y Yacute Ycircumflex Ydieresis Ygrave Z Zacute Zcaron Zdotaccent uF1010 uF1030 uF1410 uF1440 uF1610 uF1810 uF1820 uF1850 uF18A0 uF1A00 uF2030 uF2050 uF2610 uF2640 uF3210 uF3230 uF3250 uF3410 uF3610 uF3620 uF3650 uF3810 uF3850 uF3870 uF4010 uF4410 uF4490 uF44C0 uF4640 uF4660 uF46A0 uF46E0 uF4810 uF4880 uF5010 uF5070 uF5620 uF5640 uF56B0 uF56D0 
+ ];
+
+# Prefix: Languagesystems
+languagesystem DFLT dflt;
+languagesystem latn dflt;
+languagesystem latn AZE;
+languagesystem latn CAT;
+languagesystem latn CRT;
+languagesystem latn KAZ;
+languagesystem latn MOL;
+languagesystem latn ROM;
+languagesystem cyrl TAT;
+languagesystem latn TRK;
+
+# Prefix: Prefix
+lookup lookup_0 {
+sub i by dotlessi;
+} lookup_0;
+
+lookup lookup_2 {
+sub L periodcentered by Ldot;
+sub l periodcentered by ldot;
+} lookup_2;
+
+feature aalt {
+# automatic
+feature case;
+feature locl;
+feature mark;
+} aalt;
+
+feature case {
+sub uF1110 by uF1010;
+sub uF1130 by uF1030;
+sub uF1510 by uF1410;
+sub uF1540 by uF1440;
+sub uF1710 by uF1610; 
+sub uF1910 by uF1810;
+sub uF1920 by uF1820;
+sub uF1950 by uF1850;
+sub uF19A0 by uF18A0; 
+sub uF1B00 by uF1A00;
+sub uF2130 by uF2030;
+sub uF2150 by uF2050;
+sub uF2710 by uF2610;
+sub uF2740 by uF2640;
+sub uF3310 by uF3210;
+sub uF3330 by uF3230;
+sub uF3350 by uF3250;
+sub uF3510 by uF3410;
+sub uF3710 by uF3610;
+sub uF3720 by uF3620;
+sub uF3750 by uF3650;
+sub uF3910 by uF3810;
+sub uF3950 by uF3850;
+sub uF3970 by uF3870;
+sub uF4110 by uF4010;
+sub uF4510 by uF4410;
+sub uF4590 by uF4490;
+sub uF45C0 by uF44C0;
+sub uF4740 by uF4640;
+sub uF4760 by uF4660;
+sub uF47A0 by uF46A0;
+sub uF47E0 by uF46E0;
+sub uF4910 by uF4810; 
+sub uF4980 by uF4880; 
+sub uF5110 by uF5010;
+sub uF5170 by uF5070; 
+sub uF5720 by uF5620;
+sub uF5740 by uF5640; 
+sub uF57B0 by uF56B0; 
+sub uF56D0 by uF56D0; 
+} case;
+
+feature liga {
+lookup point {
+    sub period period by periodcentered;
+    sub period period period by ellipsis;
+      } point;
+
+sub @Uppercase periodcentered' by periodcentered.case;
+sub periodcentered' @Uppercase by periodcentered.case;
+
+lookup macron {
+    sub e' r periodcentered by emacron;
+    sub egrave' r periodcentered by emacron;
+    sub E' R periodcentered.case by Emacron;
+    sub Egrave' R periodcentered.case by Emacron;
+    sub e' c periodcentered h by emacron;
+    sub egrave' c periodcentered h by emacron;
+    sub E' C periodcentered.case H by Emacron;
+    sub Egrave' C periodcentered.case H by Emacron;
+    sub eacute' t e periodcentered s s by emacron;
+    sub egrave' t e periodcentered s s by emacron;
+    sub Eacute' T E periodcentered.case S S by Emacron;
+    sub Egrave' T E periodcentered.case S S by Emacron;
+      } macron;
+
+lookup ligaturesinclusives {
+sub A periodcentered.case E by uF1010;
+sub a periodcentered e by uF1110;
+sub A periodcentered.case O by uF1030;
+sub a periodcentered o by uF1130;
+sub C periodcentered.case H by uF1410;
+sub c periodcentered h by uF1510;
+sub C periodcentered.case Q by uF1440;
+sub c periodcentered q by uF1540;
+sub D periodcentered.case E by uF1610;
+sub d periodcentered e by uF1710;
+sub E periodcentered.case A by uF1810;
+sub e periodcentered a by uF1910;
+sub Eacute periodcentered.case E by uF1820;
+sub eacute periodcentered e by uF1920;
+sub E periodcentered.case S by uF1850;
+sub e periodcentered s by uF1950;
+sub E T periodcentered.case E by uF1A00;
+sub e t periodcentered e by uF1B00;
+sub E periodcentered.case U by uF18A0;
+sub e periodcentered u by uF19A0;
+sub F periodcentered.case F E by uF2030;
+sub f periodcentered f e by uF2130;
+sub F periodcentered.case V by uF2050;
+sub f periodcentered v by uF2150;
+sub I periodcentered.case E by uF2610;
+sub i periodcentered e by uF2710;
+sub I periodcentered.case L by uF2640;
+sub i periodcentered l by uF2740;
+sub L periodcentered.case E by uF3210;
+sub l periodcentered e by uF3310;
+sub L periodcentered.case L E by uF3230;
+sub l periodcentered l e by uF3330;
+sub L periodcentered.case U by uF3250;
+sub l periodcentered u by uF3350;
+sub M periodcentered.case P by uF3410;
+sub m periodcentered p by uF3510;
+sub N periodcentered.case A  by uF3610;
+sub n periodcentered a  by uF3710;
+sub N periodcentered.case E by uF3620;
+sub n periodcentered e by uF3720;
+sub N periodcentered.case N E by uF3650;
+sub n periodcentered n e by uF3750;
+sub O periodcentered.case F by uF3810;
+sub o periodcentered f by uF3910;
+sub O periodcentered.case Idieresis by uF3870;
+sub o periodcentered idieresis by uF3970;
+sub O periodcentered.case T E by uF3850;
+sub o periodcentered t e by uF3950;
+sub P periodcentered.case M by uF4010;
+sub p periodcentered m by uF4110;
+sub R periodcentered.case E by uF4410;
+sub r periodcentered e by uF4510;
+sub R periodcentered.case I C E by uF4490;
+sub r periodcentered i c e by uF4590;
+sub R periodcentered.case S by uF44C0;
+sub r periodcentered s by uF45C0;
+sub S periodcentered.case E by uF4640;
+sub s periodcentered e by uF4740;
+sub S periodcentered.case L by uF4660;
+sub s periodcentered l by uF4760;
+sub S periodcentered.case S E by uF46A0;
+sub s periodcentered s by uF47A0;
+sub S periodcentered.case T E S by uF46E0;
+sub s periodcentered t e s by uF47E0;
+sub T periodcentered.case E by uF4810;
+sub t periodcentered e by uF4910;
+sub T periodcentered.case T E by uF4880;
+sub t periodcentered t e by uF4980;
+sub U periodcentered.case E by uF5010;
+sub u periodcentered e by uF5110;
+sub U periodcentered.case L L E by uF5070;
+sub u periodcentered l l e by uF5170;
+sub X periodcentered.case C E by uF5620;
+sub x periodcentered c e by uF5720;
+sub X periodcentered.case L by uF5640;
+sub x periodcentered l by uF5740;
+sub X periodcentered.case S E by uF56B0;
+sub x periodcentered s e by uF57B0;
+sub X periodcentered.case S S by uF56D0;
+sub x periodcentered s s by uF57D0;
+} ligaturesinclusives;
+} liga;
+
+feature rlig {
+lookup point2 {
+    sub period period by periodcentered;
+    sub period period period by ellipsis;
+      } point2;
+
+sub @Uppercase periodcentered' by periodcentered.case;
+sub periodcentered' @Uppercase by periodcentered.case;
+
+lookup macron2 {
+    sub e' r periodcentered by emacron;
+    sub egrave' r periodcentered by emacron;
+    sub E' R periodcentered.case by Emacron;
+    sub Egrave' R periodcentered.case by Emacron;
+    sub e' c periodcentered h by emacron;
+    sub egrave' c periodcentered h by emacron;
+    sub E' C periodcentered.case H by Emacron;
+    sub Egrave' C periodcentered.case H by Emacron;
+    sub eacute' t e periodcentered s s by emacron;
+    sub egrave' t e periodcentered s s by emacron;
+    sub Eacute' T E periodcentered.case S S by Emacron;
+    sub Egrave' T E periodcentered.case S S by Emacron;
+      } macron2;
+
+lookup ligaturesinclusives2 {
+sub A periodcentered.case E by uF1010;
+sub a periodcentered e by uF1110;
+sub A periodcentered.case O by uF1030;
+sub a periodcentered o by uF1130;
+sub C periodcentered.case H by uF1410;
+sub c periodcentered h by uF1510;
+sub C periodcentered.case Q by uF1440;
+sub c periodcentered q by uF1540;
+sub D periodcentered.case E by uF1610;
+sub d periodcentered e by uF1710;
+sub E periodcentered.case A by uF1810;
+sub e periodcentered a by uF1910;
+sub Eacute periodcentered.case E by uF1820;
+sub eacute periodcentered e by uF1920;
+sub E periodcentered.case S by uF1850;
+sub e periodcentered s by uF1950;
+sub E T periodcentered.case E by uF1A00;
+sub e t periodcentered e by uF1B00;
+sub E periodcentered.case U by uF18A0;
+sub e periodcentered u by uF19A0;
+sub F periodcentered.case F E by uF2030;
+sub f periodcentered f e by uF2130;
+sub F periodcentered.case V by uF2050;
+sub f periodcentered v by uF2150;
+sub I periodcentered.case E by uF2610;
+sub i periodcentered e by uF2710;
+sub I periodcentered.case L by uF2640;
+sub i periodcentered l by uF2740;
+sub L periodcentered.case E by uF3210;
+sub l periodcentered e by uF3310;
+sub L periodcentered.case L E by uF3230;
+sub l periodcentered l e by uF3330;
+sub L periodcentered.case U by uF3250;
+sub l periodcentered u by uF3350;
+sub M periodcentered.case P by uF3410;
+sub m periodcentered p by uF3510;
+sub N periodcentered.case A  by uF3610;
+sub n periodcentered a  by uF3710;
+sub N periodcentered.case E by uF3620;
+sub n periodcentered e by uF3720;
+sub N periodcentered.case N E by uF3650;
+sub n periodcentered n e by uF3750;
+sub O periodcentered.case F by uF3810;
+sub o periodcentered f by uF3910;
+sub O periodcentered.case Idieresis by uF3870;
+sub o periodcentered idieresis by uF3970;
+sub O periodcentered.case T E by uF3850;
+sub o periodcentered t e by uF3950;
+sub P periodcentered.case M by uF4010;
+sub p periodcentered m by uF4110;
+sub R periodcentered.case E by uF4410;
+sub r periodcentered e by uF4510;
+sub R periodcentered.case I C E by uF4490;
+sub r periodcentered i c e by uF4590;
+sub R periodcentered.case S by uF44C0;
+sub r periodcentered s by uF45C0;
+sub S periodcentered.case E by uF4640;
+sub s periodcentered e by uF4740;
+sub S periodcentered.case L by uF4660;
+sub s periodcentered l by uF4760;
+sub S periodcentered.case S E by uF46A0;
+sub s periodcentered s by uF47A0;
+sub S periodcentered.case T E S by uF46E0;
+sub s periodcentered t e s by uF47E0;
+sub T periodcentered.case E by uF4810;
+sub t periodcentered e by uF4910;
+sub T periodcentered.case T E by uF4880;
+sub t periodcentered t e by uF4980;
+sub U periodcentered.case E by uF5010;
+sub u periodcentered e by uF5110;
+sub U periodcentered.case L L E by uF5070;
+sub u periodcentered l l e by uF5170;
+sub X periodcentered.case C E by uF5620;
+sub x periodcentered c e by uF5720;
+sub X periodcentered.case L by uF5640;
+sub x periodcentered l by uF5740;
+sub X periodcentered.case S E by uF56B0;
+sub x periodcentered s e by uF57B0;
+sub X periodcentered.case S S by uF56D0;
+sub x periodcentered s s by uF57D0;
+      } ligaturesinclusives2;
+} rlig;
+
+feature locl {
+lookup locl_latn_0 {
+	script latn;
+	language AZE;
+	language CRT;
+	language KAZ;
+	language TAT;
+	language TRK;
+} locl_latn_0;
+
+lookup locl_latn_1 {
+	script latn;
+	language CAT;
+	sub  l' periodcentered' l by ldot;
+	sub  L' periodcentered' L by Ldot;
+} locl_latn_1;
+} locl;
+
+feature cpsp {
+script DFLT;
+language dflt;
+lookup POS_0 {
+	sub Scedilla by uni0218;
+	sub uni0162 by uni021A;
+	sub scedilla by uni0219;
+	sub uni0163 by uni021B;
+} POS_0;
+script latn;
+language dflt;
+lookup POS_0;
+language CAT;
+lookup POS_0;
+language MOL;
+lookup POS_0;
+language ROM;
+lookup POS_0;
+} cpsp;
+
+feature mark {
+script DFLT;
+language dflt;
+lookup POS_2 {
+	sub Scedilla by uni0218;
+	sub uni0162 by uni021A;
+	sub scedilla by uni0219;
+	sub uni0163 by uni021B;
+} POS_2;
+script latn;
+language dflt;
+lookup POS_2;
+language CAT;
+lookup POS_2;
+language MOL;
+lookup POS_2;
+language ROM;
+lookup POS_2;
+} mark;
+
+feature ccmp {
+# automatic
+lookup ccmp_latn_1 {
+	sub fi by f i;
+	sub fl by f l;
+} ccmp_latn_1;
+
+script latn;
+lookup ccmp_latn_1;
+} ccmp;
+

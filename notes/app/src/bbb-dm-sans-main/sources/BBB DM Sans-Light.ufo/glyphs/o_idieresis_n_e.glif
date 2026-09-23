@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="o_idieresis_n_e" format="1">
+  <advance width="1476"/>
+  <unicode hex="F3980"/>
+  <outline>
+    <contour>
+      <point x="398" y="414" type="curve"/>
+      <point x="398" y="487" type="line"/>
+      <point x="367" y="501"/>
+      <point x="332" y="508"/>
+      <point x="295" y="508" type="curve" smooth="yes"/>
+      <point x="156" y="508"/>
+      <point x="48" y="407"/>
+      <point x="48" y="248" type="curve" smooth="yes"/>
+      <point x="48" y="89"/>
+      <point x="154" y="-12"/>
+      <point x="293" y="-12" type="curve" smooth="yes"/>
+      <point x="428" y="-12"/>
+      <point x="538" y="83"/>
+      <point x="538" y="238" type="curve" smooth="yes"/>
+      <point x="538" y="496" type="line"/>
+      <point x="468" y="496" type="line"/>
+      <point x="468" y="238" type="line" smooth="yes"/>
+      <point x="468" y="110"/>
+      <point x="381" y="48"/>
+      <point x="293" y="48" type="curve" smooth="yes"/>
+      <point x="203" y="48"/>
+      <point x="120" y="115"/>
+      <point x="120" y="248" type="curve" smooth="yes"/>
+      <point x="120" y="381"/>
+      <point x="204" y="448"/>
+      <point x="295" y="448" type="curve" smooth="yes"/>
+      <point x="332" y="448"/>
+      <point x="368" y="437"/>
+    </contour>
+    <component base="dieresis" xOffset="345"/>
+    <component base="n_e" xOffset="578"/>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2025-11-04 15:06:21 +0000</string>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>o</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>e</string>
+      <key>public.markColor</key>
+      <string>0.04,0.57,0.04,0.5</string>
+    </dict>
+  </lib>
+</glyph>

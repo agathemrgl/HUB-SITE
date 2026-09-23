@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="F_V" format="2">
+	<advance width="1046"/>
+	<unicode hex="F2050"/>
+	<outline>
+		<contour>
+			<point x="184" y="371" type="line"/>
+			<point x="240" y="639" type="line"/>
+			<point x="567" y="639" type="line"/>
+			<point x="662" y="0" type="line"/>
+			<point x="745" y="0" type="line"/>
+			<point x="1147" y="690" type="line"/>
+			<point x="1080" y="690" type="line"/>
+			<point x="715" y="48" type="line"/>
+			<point x="626" y="690" type="line"/>
+			<point x="189" y="690" type="line"/>
+			<point x="43" y="0" type="line"/>
+			<point x="105" y="0" type="line"/>
+			<point x="172" y="319" type="line"/>
+			<point x="511" y="319" type="line"/>
+			<point x="523" y="371" type="line"/>
+		</contour>
+	</outline>
+	<lib>
+		<dict>
+			<key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+			<string>F</string>
+			<key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+			<string>V</string>
+		</dict>
+	</lib>
+</glyph>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="uF3210" format="2">
+	<advance width="838"/>
+	<unicode hex="F3210"/>
+	<outline>
+		<contour>
+			<point x="39" y="0" type="line"/>
+			<point x="754" y="0" type="line"/>
+			<point x="772" y="92" type="line"/>
+			<point x="406" y="92" type="line"/>
+			<point x="451" y="302" type="line"/>
+			<point x="780" y="302" type="line"/>
+			<point x="798" y="389" type="line"/>
+			<point x="469" y="389" type="line"/>
+			<point x="515" y="603" type="line"/>
+			<point x="872" y="603" type="line"/>
+			<point x="890" y="690" type="line"/>
+			<point x="423" y="690" type="line"/>
+			<point x="296" y="91" type="line"/>
+			<point x="168" y="91" type="line"/>
+			<point x="295" y="690" type="line"/>
+			<point x="185" y="690" type="line"/>
+		</contour>
+	</outline>
+	<lib>
+		<dict>
+			<key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+			<string>L</string>
+			<key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+			<string>E</string>
+		</dict>
+	</lib>
+</glyph>

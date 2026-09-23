@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="guilsinglright" format="1">
+  <advance width="265"/>
+  <unicode hex="203A"/>
+  <outline>
+    <contour>
+      <point x="50" y="120" type="line"/>
+      <point x="121" y="120" type="line"/>
+      <point x="220" y="295" type="line"/>
+      <point x="121" y="470" type="line"/>
+      <point x="50" y="470" type="line"/>
+      <point x="152" y="295" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>com.schriftgestaltung.Glyphs.lastChange</key>
+      <string>2019-05-20 09:34:29 +0000</string>
+      <key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+      <string>guillemetright</string>
+      <key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+      <string>guillemetright</string>
+      <key>com.schriftgestaltung.glyph.userData</key>
+      <dict>
+        <key>com.schriftgestaltung.Glyphs.ColorIndex</key>
+        <integer>4</integer>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

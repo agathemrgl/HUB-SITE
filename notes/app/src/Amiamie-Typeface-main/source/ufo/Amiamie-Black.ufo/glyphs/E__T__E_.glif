@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="E_T_E" format="2">
+	<advance width="1436"/>
+	<unicode hex="F1A00"/>
+	<outline>
+		<contour>
+			<point x="609" y="0" type="line"/>
+			<point x="609" y="140" type="line"/>
+			<point x="260" y="140" type="line"/>
+			<point x="260" y="276" type="line"/>
+			<point x="579" y="276" type="line"/>
+			<point x="579" y="416" type="line"/>
+			<point x="260" y="416" type="line"/>
+			<point x="260" y="550" type="line"/>
+			<point x="599" y="550" type="line"/>
+			<point x="599" y="690" type="line"/>
+			<point x="80" y="690" type="line"/>
+			<point x="80" y="0" type="line"/>
+		</contour>
+		<contour>
+			<point x="190" y="760" type="line"/>
+			<point x="490" y="760" type="line"/>
+			<point x="490" y="856" type="line"/>
+			<point x="190" y="856" type="line"/>
+		</contour>
+		<contour>
+			<point x="653" y="550" type="line"/>
+			<point x="877" y="550" type="line"/>
+			<point x="877" y="-276" type="line"/>
+			<point x="1406" y="-276" type="line"/>
+			<point x="1406" y="-136" type="line"/>
+			<point x="1057" y="-136" type="line"/>
+			<point x="1057" y="0" type="line"/>
+			<point x="1376" y="0" type="line"/>
+			<point x="1376" y="140" type="line"/>
+			<point x="1057" y="140" type="line"/>
+			<point x="1057" y="274" type="line"/>
+			<point x="1396" y="274" type="line"/>
+			<point x="1396" y="414" type="line"/>
+			<point x="1057" y="414" type="line"/>
+			<point x="1057" y="550" type="line"/>
+			<point x="1281" y="550" type="line"/>
+			<point x="1281" y="690" type="line"/>
+			<point x="653" y="690" type="line"/>
+		</contour>
+	</outline>
+	<lib>
+		<dict>
+			<key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+			<string>E</string>
+			<key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+			<string>E</string>
+		</dict>
+	</lib>
+</glyph>

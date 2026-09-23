@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="uF1A00" format="2">
+	<advance width="1376"/>
+	<unicode hex="F1A00"/>
+	<outline>
+		<contour>
+			<point x="572" y="0" type="line"/>
+			<point x="572" y="88" type="line"/>
+			<point x="205" y="88" type="line"/>
+			<point x="205" y="302" type="line"/>
+			<point x="534" y="302" type="line"/>
+			<point x="534" y="389" type="line"/>
+			<point x="205" y="389" type="line"/>
+			<point x="205" y="603" type="line"/>
+			<point x="562" y="603" type="line"/>
+			<point x="562" y="690" type="line"/>
+			<point x="95" y="690" type="line"/>
+			<point x="95" y="0" type="line"/>
+		</contour>
+		<contour>
+			<point x="210" y="758" type="line"/>
+			<point x="465" y="758" type="line"/>
+			<point x="465" y="821" type="line"/>
+			<point x="210" y="821" type="line"/>
+		</contour>
+		<contour>
+			<point x="629" y="603" type="line"/>
+			<point x="870" y="603" type="line"/>
+			<point x="870" y="0" type="line"/>
+			<point x="871" y="-302" type="line"/>
+			<point x="1348" y="-302" type="line"/>
+			<point x="1348" y="-214" type="line"/>
+			<point x="981" y="-214" type="line"/>
+			<point x="981" y="0" type="line"/>
+			<point x="1310" y="0" type="line"/>
+			<point x="1310" y="87" type="line"/>
+			<point x="981" y="87" type="line"/>
+			<point x="981" y="301" type="line"/>
+			<point x="1338" y="301" type="line"/>
+			<point x="1338" y="388" type="line"/>
+			<point x="979" y="388" type="line"/>
+			<point x="979" y="603" type="line"/>
+			<point x="1220" y="603" type="line"/>
+			<point x="1220" y="690" type="line"/>
+			<point x="629" y="690" type="line"/>
+		</contour>
+	</outline>
+	<lib>
+		<dict>
+			<key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+			<string>E</string>
+			<key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+			<string>E</string>
+		</dict>
+	</lib>
+</glyph>

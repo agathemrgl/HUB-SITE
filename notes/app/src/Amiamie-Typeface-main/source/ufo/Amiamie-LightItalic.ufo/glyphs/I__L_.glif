@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="I_L" format="2">
+	<advance width="761"/>
+	<unicode hex="F2640"/>
+	<outline>
+		<contour>
+			<point x="689" y="0" type="line"/>
+			<point x="700" y="51" type="line"/>
+			<point x="315" y="51" type="line"/>
+			<point x="450" y="690" type="line"/>
+			<point x="388" y="690" type="line"/>
+			<point x="242" y="0" type="line"/>
+		</contour>
+		<contour>
+			<point x="43" y="161" type="line"/>
+			<point x="105" y="161" type="line"/>
+			<point x="217" y="690" type="line"/>
+			<point x="155" y="690" type="line"/>
+		</contour>
+		<contour>
+			<point x="181" y="838" type="line"/>
+			<point x="166" y="766" type="line"/>
+			<point x="238" y="766" type="line"/>
+			<point x="253" y="838" type="line"/>
+		</contour>
+	</outline>
+	<lib>
+		<dict>
+			<key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+			<string>I</string>
+			<key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+			<string>L</string>
+		</dict>
+	</lib>
+</glyph>

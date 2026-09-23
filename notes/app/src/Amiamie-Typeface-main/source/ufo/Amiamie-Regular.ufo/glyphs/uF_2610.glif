@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<glyph name="uF2610" format="2">
+	<advance width="882"/>
+	<unicode hex="F2610"/>
+	<outline>
+		<contour>
+			<point x="854" y="0" type="line"/>
+			<point x="854" y="88" type="line"/>
+			<point x="487" y="88" type="line"/>
+			<point x="487" y="302" type="line"/>
+			<point x="816" y="302" type="line"/>
+			<point x="816" y="389" type="line"/>
+			<point x="487" y="389" type="line"/>
+			<point x="487" y="603" type="line"/>
+			<point x="844" y="603" type="line"/>
+			<point x="844" y="690" type="line"/>
+			<point x="377" y="690" type="line"/>
+			<point x="377" y="0" type="line"/>
+		</contour>
+		<contour>
+			<point x="95" y="159" type="line"/>
+			<point x="205" y="159" type="line"/>
+			<point x="205" y="690" type="line"/>
+			<point x="95" y="690" type="line"/>
+		</contour>
+		<contour>
+			<point x="95" y="875" type="line"/>
+			<point x="95" y="748" type="line"/>
+			<point x="206" y="748" type="line"/>
+			<point x="206" y="875" type="line"/>
+		</contour>
+	</outline>
+	<lib>
+		<dict>
+			<key>com.schriftgestaltung.Glyphs.leftMetricsKey</key>
+			<string>I</string>
+			<key>com.schriftgestaltung.Glyphs.rightMetricsKey</key>
+			<string>E</string>
+		</dict>
+	</lib>
+</glyph>
