@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="/Img/poisson.jpg" type="image/jpeg" />
+    <link rel="manifest" href="/notes/manifest.json" />
+    <!-- Storage persistante (session Supabase incluse) fiable d'un lancement à l'autre
+         uniquement si l'icône écran d'accueil est ajoutée avec ce manifeste présent —
+         sans lui, iOS relance l'app dans un mode "web clip" léger qui peut perdre le
+         stockage à chaque ouverture. -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Notes" />
+    <link rel="apple-touch-icon" href="/Img/poisson.jpg" />
+    <meta name="theme-color" content="#9ac4ee" />
     <title>Notes</title>
     <script type="module" crossorigin src="/notes/assets/index-DspbdbJm.js"></script>
     <link rel="stylesheet" crossorigin href="/notes/assets/index-DD58sGDh.css">
