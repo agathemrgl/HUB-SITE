@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNotesStore } from './store/useNotesStore';
+import { useIsMobile } from './hooks/useIsMobile';
 import FoldersSidebar from './components/FoldersSidebar';
 import NotesList from './components/NotesList';
 import EditorPane from './components/EditorPane';
@@ -16,6 +17,8 @@ export default function App() {
   const purgeOldTrash = useNotesStore((s) => s.purgeOldTrash);
   const sidebarCollapsed = useNotesStore((s) => s.sidebarCollapsed);
   const initialize = useNotesStore((s) => s.initialize);
+  const mobileView = useNotesStore((s) => s.mobileView);
+  const isMobile = useIsMobile();
 
   const [menu, setMenu] = useState(null);
 
@@ -86,6 +89,18 @@ export default function App() {
     return (
       <div className="flex h-screen w-screen items-center justify-center text-sm text-text-secondary">
         Chargement…
+      </div>
+    );
+  }
+
+  if (isMobile) {
+    return (
+      <div className="flex h-screen w-screen flex-col overflow-hidden">
+        {mobileView === 'folders' && <FoldersSidebar />}
+        {mobileView === 'notes' && <NotesList onContextMenu={openContextMenu} />}
+        {mobileView === 'editor' && <EditorPane onOpenMenu={openContextMenuFromButton} />}
+
+        {menu && <ContextMenu x={menu.x} y={menu.y} noteId={menu.noteId} onClose={closeContextMenu} />}
       </div>
     );
   }

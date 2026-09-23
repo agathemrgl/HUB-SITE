@@ -6,6 +6,7 @@ export default function FoldersSidebar() {
   const folders = useNotesStore((s) => s.folders);
   const currentFolderId = useNotesStore((s) => s.currentFolderId);
   const setCurrentFolderId = useNotesStore((s) => s.setCurrentFolderId);
+  const setMobileView = useNotesStore((s) => s.setMobileView);
   const createFolder = useNotesStore((s) => s.createFolder);
   const deleteFolder = useNotesStore((s) => s.deleteFolder);
   const importAppleNotes = useNotesStore((s) => s.importAppleNotes);
@@ -14,6 +15,11 @@ export default function FoldersSidebar() {
 
   const allCount = notes.filter((n) => !n.deleted).length;
   const trashCount = notes.filter((n) => n.deleted).length;
+
+  function openFolder(id) {
+    setCurrentFolderId(id);
+    setMobileView('notes');
+  }
 
   function handleCreateFolder() {
     const name = prompt('Nom du nouveau dossier :');
@@ -66,7 +72,7 @@ export default function FoldersSidebar() {
           icon={StickyNote}
           count={allCount}
           active={currentFolderId === 'all'}
-          onClick={() => setCurrentFolderId('all')}
+          onClick={() => openFolder('all')}
         />
 
         {folders.map((f) => (
@@ -75,7 +81,7 @@ export default function FoldersSidebar() {
             label={f.name}
             count={notes.filter((n) => !n.deleted && n.folderId === f.id).length}
             active={currentFolderId === f.id}
-            onClick={() => setCurrentFolderId(f.id)}
+            onClick={() => openFolder(f.id)}
             onContextMenu={(e) => handleDeleteFolder(e, f)}
           />
         ))}
@@ -87,7 +93,7 @@ export default function FoldersSidebar() {
           icon={Trash2}
           count={trashCount}
           active={currentFolderId === 'trash'}
-          onClick={() => setCurrentFolderId('trash')}
+          onClick={() => openFolder('trash')}
           danger
         />
 

@@ -26,6 +26,10 @@ async function requireUserId() {
   return userId;
 }
 
+function persistLastFolderId(id) {
+  requireUserId().then((uid) => supabase.from('notes_meta').upsert({ user_id: uid, last_folder_id: id }));
+}
+
 export const useNotesStore = create((set, get) => ({
   // Supabase (Postgres) est la seule source de vérité : ce store en garde un miroir en
   // mémoire, mis à jour localement après chaque écriture réussie (pas de resync globale).
@@ -42,7 +46,16 @@ export const useNotesStore = create((set, get) => ({
   sidebarCollapsed: false,
   unlockedIds: new Set(),
 
-  setCurrentFolderId: (id) => set({ currentFolderId: id }),
+  // Écran actif en navigation mobile (un seul pane visible à la fois, voir useIsMobile) :
+  // 'folders' | 'notes' | 'editor'. Ignoré en desktop (3 colonnes toujours visibles). On
+  // démarre directement sur 'notes' (dernier dossier ouvert), pas sur l'écran Dossiers.
+  mobileView: 'notes',
+  setMobileView: (view) => set({ mobileView: view }),
+
+  setCurrentFolderId: (id) => {
+    set({ currentFolderId: id });
+    persistLastFolderId(id);
+  },
   setCurrentNoteId: (id) => set({ currentNoteId: id }),
   setSearchQuery: (q) => set({ searchQuery: q }),
   toggleSidebar: () => set((s) => ({ sidebarCollapsed: !s.sidebarCollapsed })),
@@ -69,6 +82,7 @@ export const useNotesStore = create((set, get) => ({
       folders: (folderRows || []).map(folderFromRow).sort((a, b) => a.position - b.position),
       sortKey: metaRow?.sort_key || 'updated',
       passcode: metaRow?.passcode || null,
+      currentFolderId: metaRow?.last_folder_id || 'all',
       dataLoaded: true,
     });
   },
@@ -230,6 +244,7 @@ export const useNotesStore = create((set, get) => ({
     const folder = { id: newId('f'), name: trimmed, parentId: null, position: get().folders.length, expanded: true };
     await supabase.from('folders').insert(folderToRow(folder, uid));
     set((s) => ({ folders: [...s.folders, folder], currentFolderId: folder.id }));
+    persistLastFolderId(folder.id);
   },
 
   renameFolder: async (id, name) => {
@@ -245,11 +260,13 @@ export const useNotesStore = create((set, get) => ({
     if (affectedIds.length) {
       await supabase.from('notes').update({ folder_id: null }).in('id', affectedIds);
     }
+    const wasCurrent = get().currentFolderId === id;
     set((s) => ({
       folders: s.folders.filter((f) => f.id !== id),
       notes: s.notes.map((n) => (n.folderId === id ? { ...n, folderId: null } : n)),
-      currentFolderId: s.currentFolderId === id ? 'all' : s.currentFolderId,
+      currentFolderId: wasCurrent ? 'all' : s.currentFolderId,
     }));
+    if (wasCurrent) persistLastFolderId('all');
   },
 
   // ---------- Import depuis Apple Notes ----------

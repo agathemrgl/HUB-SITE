@@ -5,6 +5,7 @@ import { getDisplayPreview, formatListDate } from '../lib/notesUtils';
 export default function NoteListItem({ note, onContextMenu }) {
   const currentNoteId = useNotesStore((s) => s.currentNoteId);
   const setCurrentNoteId = useNotesStore((s) => s.setCurrentNoteId);
+  const setMobileView = useNotesStore((s) => s.setMobileView);
   const unlockedIds = useNotesStore((s) => s.unlockedIds);
 
   const { title, snippet } = getDisplayPreview(note, unlockedIds);
@@ -13,7 +14,10 @@ export default function NoteListItem({ note, onContextMenu }) {
   return (
     <li className="border-b border-border/70 last:border-none">
       <div
-        onClick={() => setCurrentNoteId(note.id)}
+        onClick={() => {
+          setCurrentNoteId(note.id);
+          setMobileView('editor');
+        }}
         onContextMenu={(e) => {
           e.preventDefault();
           onContextMenu(e.clientX, e.clientY, note.id);

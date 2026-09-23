@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { Search, SquarePen, ArrowUpDown, PanelLeft } from 'lucide-react';
+import { Search, SquarePen, ArrowUpDown, PanelLeft, ChevronLeft } from 'lucide-react';
 import { useNotesStore } from '../store/useNotesStore';
 import { getVisibleNotes } from '../lib/notesUtils';
+import { useIsMobile } from '../hooks/useIsMobile';
 import NoteListItem from './NoteListItem';
 
 const SORT_OPTIONS = [
@@ -20,6 +21,8 @@ export default function NotesList({ onContextMenu }) {
   const unlockedIds = useNotesStore((s) => s.unlockedIds);
   const createNote = useNotesStore((s) => s.createNote);
   const toggleSidebar = useNotesStore((s) => s.toggleSidebar);
+  const setMobileView = useNotesStore((s) => s.setMobileView);
+  const isMobile = useIsMobile();
 
   const [sortOpen, setSortOpen] = useState(false);
 
@@ -29,14 +32,25 @@ export default function NotesList({ onContextMenu }) {
   return (
     <div className="flex h-full w-full flex-col bg-list-bg">
       <div className="flex h-11 items-center gap-2 border-b border-border px-3">
-        <button
-          type="button"
-          title="Afficher/masquer les dossiers"
-          onClick={toggleSidebar}
-          className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-accent-strong hover:bg-black/5"
-        >
-          <PanelLeft size={16} strokeWidth={1.8} />
-        </button>
+        {isMobile ? (
+          <button
+            type="button"
+            onClick={() => setMobileView('folders')}
+            className="flex h-7 shrink-0 items-center gap-0.5 rounded pr-1 text-[13px] text-accent-strong hover:bg-black/5"
+          >
+            <ChevronLeft size={18} strokeWidth={2} />
+            Dossiers
+          </button>
+        ) : (
+          <button
+            type="button"
+            title="Afficher/masquer les dossiers"
+            onClick={toggleSidebar}
+            className="flex h-7 w-7 shrink-0 items-center justify-center rounded text-accent-strong hover:bg-black/5"
+          >
+            <PanelLeft size={16} strokeWidth={1.8} />
+          </button>
+        )}
 
         <div className="relative flex-1">
           <Search size={13} strokeWidth={2.4} className="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-text-secondary" />
@@ -84,7 +98,7 @@ export default function NotesList({ onContextMenu }) {
         <button
           type="button"
           title="Nouvelle note (⌘N)"
-          onClick={() => createNote()}
+          onClick={() => createNote().then(() => setMobileView('editor'))}
           className="flex h-7 w-7 items-center justify-center rounded text-accent-strong hover:bg-black/5"
         >
           <SquarePen size={16} strokeWidth={1.8} />

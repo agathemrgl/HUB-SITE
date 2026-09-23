@@ -16,6 +16,7 @@ export default function ContextMenu({ x, y, noteId, onClose }) {
   const restoreNote = useNotesStore((s) => s.restoreNote);
   const deleteForever = useNotesStore((s) => s.deleteForever);
   const moveNoteToFolder = useNotesStore((s) => s.moveNoteToFolder);
+  const setMobileView = useNotesStore((s) => s.setMobileView);
 
   const [moveOpen, setMoveOpen] = useState(false);
   const ref = useRef(null);
@@ -90,10 +91,10 @@ export default function ContextMenu({ x, y, noteId, onClose }) {
             {note.locked ? 'Déverrouiller la note' : 'Verrouiller la note'}
           </button>
           <Sep />
-          <button className={itemClass} onClick={() => { createNote(); onClose(); }}>
+          <button className={itemClass} onClick={() => { createNote().then(() => setMobileView('editor')); onClose(); }}>
             Nouvelle note
           </button>
-          <button className={itemClass} onClick={() => { duplicateNote(note.id); onClose(); }}>
+          <button className={itemClass} onClick={() => { duplicateNote(note.id).then(() => setMobileView('editor')); onClose(); }}>
             Dupliquer la note
           </button>
           <Sep />
@@ -134,7 +135,7 @@ export default function ContextMenu({ x, y, noteId, onClose }) {
             </div>
           )}
           <Sep />
-          <button className={itemClass + ' text-danger'} onClick={() => { deleteNote(note.id); onClose(); }}>
+          <button className={itemClass + ' text-danger'} onClick={() => { deleteNote(note.id).then(() => setMobileView('notes')); onClose(); }}>
             Supprimer
           </button>
         </>
@@ -144,7 +145,7 @@ export default function ContextMenu({ x, y, noteId, onClose }) {
             Récupérer
           </button>
           <Sep />
-          <button className={itemClass + ' text-danger'} onClick={() => { deleteForever(note.id); onClose(); }}>
+          <button className={itemClass + ' text-danger'} onClick={() => { deleteForever(note.id).then(() => setMobileView('notes')); onClose(); }}>
             Supprimer définitivement
           </button>
         </>

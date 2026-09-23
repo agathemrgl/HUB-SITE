@@ -1,9 +1,21 @@
 import { useRef } from 'react';
-import { ListChecks, Table as TableIcon, Image as ImageIcon, Lock, Unlock, Share2, MoreHorizontal } from 'lucide-react';
+import {
+  ListChecks,
+  Table as TableIcon,
+  Image as ImageIcon,
+  Lock,
+  Unlock,
+  Share2,
+  MoreHorizontal,
+  ChevronLeft,
+} from 'lucide-react';
 import { useNotesStore } from '../store/useNotesStore';
 import { shareNote } from '../lib/share';
+import { useIsMobile } from '../hooks/useIsMobile';
 import AaFormatPanel from './AaFormatPanel';
 import IconButton from './IconButton';
+
+const FOLDER_LABELS = { all: 'Toutes les notes', trash: 'Récemment supprimées' };
 
 function insertImageFile(editor, file) {
   if (!file || !file.type.startsWith('image/')) return;
@@ -20,6 +32,13 @@ export default function EditorToolbar({ editor, note, isLockedHidden, onOpenMenu
   const setPasscode = useNotesStore((s) => s.setPasscode);
   const passcode = useNotesStore((s) => s.passcode);
   const unlockNote = useNotesStore((s) => s.unlockNote);
+  const setMobileView = useNotesStore((s) => s.setMobileView);
+  const currentFolderId = useNotesStore((s) => s.currentFolderId);
+  const folders = useNotesStore((s) => s.folders);
+  const isMobile = useIsMobile();
+
+  const folderLabel =
+    FOLDER_LABELS[currentFolderId] || folders.find((f) => f.id === currentFolderId)?.name || 'Notes';
 
   function handleLockClick() {
     if (!note) return;
@@ -44,7 +63,18 @@ export default function EditorToolbar({ editor, note, isLockedHidden, onOpenMenu
   }
 
   return (
-    <div className="flex h-11 items-center gap-0.5 border-b border-border px-3">
+    <div className="flex h-11 items-center gap-0.5 overflow-x-auto border-b border-border px-3">
+      {isMobile && (
+        <button
+          type="button"
+          onClick={() => setMobileView('notes')}
+          className="mr-1 flex h-7 shrink-0 items-center gap-0.5 truncate rounded pr-1 text-[13px] text-accent-strong hover:bg-black/5"
+        >
+          <ChevronLeft size={18} strokeWidth={2} className="shrink-0" />
+          <span className="truncate">{folderLabel}</span>
+        </button>
+      )}
+
       {editor && (
         <>
           <AaFormatPanel editor={editor} />

@@ -28,7 +28,8 @@ create table public.folders (
 create table public.notes_meta (
   user_id uuid primary key default auth.uid() references auth.users (id) on delete cascade,
   sort_key text not null default 'updated',
-  passcode text
+  passcode text,
+  last_folder_id text
 );
 
 alter table public.notes enable row level security;
@@ -43,3 +44,7 @@ create policy "folders_owner" on public.folders
 
 create policy "notes_meta_owner" on public.notes_meta
   for all using (auth.uid() = user_id) with check (auth.uid() = user_id);
+
+-- Ajouté après coup (mémorisation du dernier dossier ouvert) : si la table notes_meta
+-- existe déjà sans cette colonne, exécuter juste la ligne suivante.
+-- alter table public.notes_meta add column if not exists last_folder_id text;
