@@ -9,9 +9,15 @@
   "theme_color": "#9ac4ee",
   "icons": [
     {
-      "src": "/Img/poisson.jpg",
-      "sizes": "any",
-      "type": "image/jpeg",
+      "src": "/notes/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/notes/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any"
     }
   ]
