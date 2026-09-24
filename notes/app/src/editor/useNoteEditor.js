@@ -23,6 +23,9 @@ export function useNoteEditor() {
 
   const currentNote = notes.find((n) => n.id === currentNoteId) || null;
   const isLockedHidden = !!currentNote?.locked && !unlockedIds.has(currentNote?.id);
+  // Le contenu complet d'une note issue de la liste est chargé à la demande (voir
+  // setCurrentNoteId dans le store) : reste `undefined` le temps de ce chargement.
+  const contentLoading = !!currentNote && currentNote.content === undefined;
 
   const editor = useEditor({
     extensions,
@@ -58,7 +61,7 @@ export function useNoteEditor() {
 
     loadingRef.current = true;
     try {
-      if (!currentNote || isLockedHidden) {
+      if (!currentNote || isLockedHidden || contentLoading) {
         editingNoteIdRef.current = null;
         editor.commands.setContent('', { emitUpdate: false });
       } else {
@@ -84,7 +87,7 @@ export function useNoteEditor() {
     // currentNote est dérivé de `notes` (qui change à chaque frappe sauvegardée) : on ne
     // veut recharger le contenu que sur un vrai changement de note, pas à chaque re-render.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [editor, currentNoteId, isLockedHidden]);
+  }, [editor, currentNoteId, isLockedHidden, contentLoading]);
 
   function flushPendingSave() {
     if (!editor || editor.isDestroyed || !saveTimer.current) return;
@@ -94,5 +97,5 @@ export function useNoteEditor() {
     if (id) updateNoteContent(id, editor.getHTML());
   }
 
-  return { editor, currentNote, isLockedHidden, flushPendingSave };
+  return { editor, currentNote, isLockedHidden, contentLoading, flushPendingSave };
 }

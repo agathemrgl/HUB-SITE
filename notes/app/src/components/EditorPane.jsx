@@ -8,7 +8,7 @@ import EditorToolbar from './EditorToolbar';
 import BubbleToolbar from './BubbleToolbar';
 
 export default function EditorPane({ onOpenMenu }) {
-  const { editor, currentNote, isLockedHidden } = useNoteEditor();
+  const { editor, currentNote, isLockedHidden, contentLoading } = useNoteEditor();
   const unlockNote = useNotesStore((s) => s.unlockNote);
   const passcode = useNotesStore((s) => s.passcode);
   const isMobile = useIsMobile();
@@ -24,7 +24,7 @@ export default function EditorPane({ onOpenMenu }) {
   return (
     <main className="flex h-full w-full flex-col overflow-y-auto overscroll-contain bg-editor-bg [-webkit-overflow-scrolling:touch]">
       <EditorToolbar
-        editor={currentNote && !isLockedHidden ? usableEditor : null}
+        editor={currentNote && !isLockedHidden && !contentLoading ? usableEditor : null}
         note={currentNote}
         isLockedHidden={isLockedHidden}
         onOpenMenu={onOpenMenu}
@@ -34,6 +34,12 @@ export default function EditorPane({ onOpenMenu }) {
         {!currentNote && (
           <div className="absolute inset-0 flex items-center justify-center px-6 text-center text-[15px] max-md:text-[17px] text-text-secondary">
             Sélectionne une note, ou crée-en une nouvelle.
+          </div>
+        )}
+
+        {currentNote && !isLockedHidden && contentLoading && (
+          <div className="absolute inset-0 flex items-center justify-center px-6 text-center text-[15px] max-md:text-[17px] text-text-secondary">
+            Chargement…
           </div>
         )}
 
@@ -51,7 +57,7 @@ export default function EditorPane({ onOpenMenu }) {
           </div>
         )}
 
-        {currentNote && !isLockedHidden && (
+        {currentNote && !isLockedHidden && !contentLoading && (
           <>
             <div className="pt-6 text-center text-xs max-md:text-sm text-text-secondary">{formatFullDate(currentNote.updatedAt)}</div>
             <div className="max-w-[700px] px-8 pb-6 pt-3">

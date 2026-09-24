@@ -1,6 +1,7 @@
 import { db } from './db';
 import { supabase } from '../lib/supabaseClient';
 import { noteToRow, folderToRow } from './rows';
+import { computePreviewText } from '../lib/notesUtils';
 
 const MIGRATION_FLAG_KEY = 'hub-notes-cloud-migration-done-v1';
 
@@ -28,7 +29,8 @@ export async function migrateLocalDbToSupabase(userId) {
   ]);
 
   if (localNotes.length) {
-    await supabase.from('notes').insert(localNotes.map((n) => noteToRow(n, userId)));
+    const notesWithPreview = localNotes.map((n) => ({ ...n, preview: computePreviewText(n.content) }));
+    await supabase.from('notes').insert(notesWithPreview.map((n) => noteToRow(n, userId)));
   }
   if (localFolders.length) {
     await supabase.from('folders').insert(localFolders.map((f) => folderToRow(f, userId)));

@@ -4,7 +4,11 @@
 export function noteFromRow(row) {
   return {
     id: row.id,
+    // Absent des lignes issues du chargement en liste (voir initialize() dans le store,
+    // qui ne sélectionne pas cette colonne) : reste `undefined` tant que le contenu complet
+    // n'a pas été chargé à la demande, plutôt qu'une chaîne vide (note réellement vide).
     content: row.content,
+    preview: row.preview ?? '',
     createdAt: row.created_at,
     updatedAt: row.updated_at,
     pinned: row.pinned,
@@ -21,6 +25,7 @@ export function noteToRow(note, userId) {
     id: note.id,
     user_id: userId,
     content: note.content,
+    preview: note.preview ?? '',
     created_at: note.createdAt,
     updated_at: note.updatedAt,
     pinned: note.pinned,

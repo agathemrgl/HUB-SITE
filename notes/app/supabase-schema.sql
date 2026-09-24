@@ -48,3 +48,24 @@ create policy "notes_meta_owner" on public.notes_meta
 -- Ajouté après coup (mémorisation du dernier dossier ouvert) : si la table notes_meta
 -- existe déjà sans cette colonne, exécuter juste la ligne suivante.
 -- alter table public.notes_meta add column if not exists last_folder_id text;
+
+-- Ajouté après coup : index nécessaire pour éviter les timeouts sur le chargement des
+-- notes une fois la table suffisamment grande (ex. après un import Apple Notes conséquent).
+-- create index if not exists notes_user_id_idx on public.notes (user_id);
+-- create index if not exists folders_user_id_idx on public.folders (user_id);
+
+-- Ajouté après coup : le rôle "authenticated" (utilisé par l'appli via l'API) a un
+-- statement_timeout plus court que le SQL Editor, insuffisant une fois plusieurs
+-- centaines de notes (dont certaines avec des images collées en base64, donc lourdes)
+-- chargées d'un coup au démarrage.
+-- alter role authenticated set statement_timeout = '30s';
+
+-- Ajouté après coup : chargement paresseux du contenu des notes. La liste n'a besoin que
+-- d'un aperçu texte léger (colonne preview, recalculée à chaque sauvegarde côté appli) ;
+-- le contenu complet (HTML, images en base64 comprises) n'est chargé qu'à l'ouverture
+-- d'une note précise. Sans ça, chaque démarrage rechargeait tout le contenu de toutes les
+-- notes d'un coup, causant des timeouts une fois plusieurs centaines de notes accumulées.
+-- alter table public.notes add column if not exists preview text;
+-- update public.notes
+--   set preview = left(regexp_replace(coalesce(content, ''), '<[^>]+>', ' ', 'g'), 500)
+--   where preview is null;

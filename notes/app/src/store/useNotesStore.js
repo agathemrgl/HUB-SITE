@@ -1,9 +1,16 @@
 import { create } from 'zustand';
 import { supabase } from '../lib/supabaseClient';
 import { convertAppleBodyToHtml } from '../lib/appleImport';
+import { computePreviewText } from '../lib/notesUtils';
 import { migrateFromLocalStorage } from '../db/migrateFromLocalStorage';
 import { migrateLocalDbToSupabase } from '../db/migrateToSupabase';
 import { noteFromRow, noteToRow, folderFromRow, folderToRow } from '../db/rows';
+
+// Colonnes chargées pour la liste : jamais `content`, potentiellement lourd (HTML, images
+// en base64) — seulement `preview`, un extrait texte léger recalculé à chaque sauvegarde.
+// Le contenu complet n'est chargé qu'à la demande, voir ensureNoteContentLoaded ci-dessous.
+const NOTE_LIST_COLUMNS =
+  'id, created_at, updated_at, pinned, locked, folder_id, deleted, deleted_at, apple_id, preview';
 
 const TRASH_RETENTION_MS = 30 * 24 * 60 * 60 * 1000; // 30 jours, comme "Récemment supprimées"
 
@@ -28,6 +35,21 @@ async function requireUserId() {
 
 function persistLastFolderId(id) {
   requireUserId().then((uid) => supabase.from('notes_meta').upsert({ user_id: uid, last_folder_id: id }));
+}
+
+// Charge le contenu complet d'une note si ce n'est pas déjà fait (note issue de la liste,
+// jamais ouverte). Idempotent : ne refait pas la requête si content est déjà en mémoire.
+async function ensureNoteContentLoaded(get, set, id) {
+  const note = get().notes.find((n) => n.id === id);
+  if (!note || note.content !== undefined) return note;
+  const { data, error } = await supabase.from('notes').select('content').eq('id', id).single();
+  if (error || !data) {
+    console.error('Erreur chargement contenu note :', error);
+    return note;
+  }
+  const loaded = { ...note, content: data.content };
+  set((s) => ({ notes: s.notes.map((n) => (n.id === id ? loaded : n)) }));
+  return loaded;
 }
 
 export const useNotesStore = create((set, get) => ({
@@ -56,7 +78,10 @@ export const useNotesStore = create((set, get) => ({
     set({ currentFolderId: id });
     persistLastFolderId(id);
   },
-  setCurrentNoteId: (id) => set({ currentNoteId: id }),
+  setCurrentNoteId: (id) => {
+    set({ currentNoteId: id });
+    if (id) ensureNoteContentLoaded(get, set, id);
+  },
   setSearchQuery: (q) => set({ searchQuery: q }),
   toggleSidebar: () => set((s) => ({ sidebarCollapsed: !s.sidebarCollapsed })),
 
@@ -69,7 +94,7 @@ export const useNotesStore = create((set, get) => ({
 
     const [{ data: noteRows, error: notesError }, { data: folderRows, error: foldersError }, { data: metaRow }] =
       await Promise.all([
-        supabase.from('notes').select('*').eq('user_id', uid),
+        supabase.from('notes').select(NOTE_LIST_COLUMNS).eq('user_id', uid),
         supabase.from('folders').select('*').eq('user_id', uid),
         supabase.from('notes_meta').select('*').eq('user_id', uid).maybeSingle(),
       ]);
@@ -102,6 +127,7 @@ export const useNotesStore = create((set, get) => ({
     const note = {
       id: newId('n'),
       content: '',
+      preview: '',
       createdAt: now,
       updatedAt: now,
       pinned: false,
@@ -118,8 +144,9 @@ export const useNotesStore = create((set, get) => ({
   updateNoteContent: async (id, content) => {
     if (!id) return;
     const updatedAt = Date.now();
-    await supabase.from('notes').update({ content, updated_at: updatedAt }).eq('id', id);
-    set((s) => ({ notes: s.notes.map((n) => (n.id === id ? { ...n, content, updatedAt } : n)) }));
+    const preview = computePreviewText(content);
+    await supabase.from('notes').update({ content, preview, updated_at: updatedAt }).eq('id', id);
+    set((s) => ({ notes: s.notes.map((n) => (n.id === id ? { ...n, content, preview, updatedAt } : n)) }));
   },
 
   // Une note vide (jamais remplie) quittée est supprimée silencieusement, comme dans Notes
@@ -139,7 +166,10 @@ export const useNotesStore = create((set, get) => ({
 
   duplicateNote: async (id) => {
     const uid = await requireUserId();
-    const note = get().notes.find((n) => n.id === id);
+    // Peut être appelé depuis le menu contextuel d'une note jamais ouverte (donc sans
+    // contenu chargé) : on s'assure de l'avoir avant de dupliquer, sinon on copierait une
+    // note vide.
+    const note = await ensureNoteContentLoaded(get, set, id);
     if (!note) return null;
     const now = Date.now();
     const copy = {
@@ -308,10 +338,12 @@ export const useNotesStore = create((set, get) => ({
         }
       }
 
+      const content = convertAppleBodyToHtml(item.body);
       const note = {
         id: newId('n'),
         appleId: item.appleId,
-        content: convertAppleBodyToHtml(item.body),
+        content,
+        preview: computePreviewText(content),
         createdAt: item.createdAt || Date.now(),
         updatedAt: item.updatedAt || Date.now(),
         pinned: false,

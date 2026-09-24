@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNotesStore } from './store/useNotesStore';
 import { useIsMobile } from './hooks/useIsMobile';
+import { useEdgeSwipeBack } from './hooks/useEdgeSwipeBack';
 import FoldersSidebar from './components/FoldersSidebar';
 import NotesList from './components/NotesList';
 import EditorPane from './components/EditorPane';
@@ -18,15 +19,21 @@ export default function App() {
   const sidebarCollapsed = useNotesStore((s) => s.sidebarCollapsed);
   const initialize = useNotesStore((s) => s.initialize);
   const mobileView = useNotesStore((s) => s.mobileView);
+  const setMobileView = useNotesStore((s) => s.setMobileView);
   const isMobile = useIsMobile();
 
   const [menu, setMenu] = useState(null);
+
+  const swipeBackHandlers = useEdgeSwipeBack(() => {
+    if (mobileView === 'editor') setMobileView('notes');
+    else if (mobileView === 'notes') setMobileView('folders');
+  });
 
   useEffect(() => {
     // Race contre un timeout : si l'initialisation reste bloquée (ex. bug connu de Safari
     // avec IndexedDB au chargement), on affiche une erreur au lieu d'un spinner infini.
     const timeout = new Promise((_, reject) =>
-      setTimeout(() => reject(new Error('Le chargement prend trop de temps.')), 10000)
+      setTimeout(() => reject(new Error('Le chargement prend trop de temps.')), 45000)
     );
     Promise.race([initialize(), timeout])
       .then(() => setReady(true))
@@ -95,7 +102,7 @@ export default function App() {
 
   if (isMobile) {
     return (
-      <div className="flex h-dvh w-screen flex-col overflow-hidden">
+      <div className="flex h-dvh w-screen flex-col overflow-hidden" {...swipeBackHandlers}>
         {mobileView === 'folders' && <FoldersSidebar />}
         {mobileView === 'notes' && <NotesList onContextMenu={openContextMenu} />}
         {mobileView === 'editor' && <EditorPane onOpenMenu={openContextMenuFromButton} />}
