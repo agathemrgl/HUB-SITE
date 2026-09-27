@@ -4,7 +4,7 @@
  */
 (() => {
   const PAR_PAGE = 30;
-  const ACCUEIL = "recettes.html";
+  const ACCUEIL = "index.html";
 
   // ---------- Utilitaires ----------
 
