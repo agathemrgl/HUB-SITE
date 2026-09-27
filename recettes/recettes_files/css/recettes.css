@@ -1,0 +1,547 @@
+/* Styles propres au carnet de recettes (page recette).
+   Le thème utilise html { font-size: 62.5% } : 1rem = 10px. */
+
+:root {
+  --noir: #000;
+  --vert: #56cb56; /* vert du logo assiettes */
+  --vert-clair: #d1ffd4; /* fond du logo assiettes */
+  --rose: #d3129c; /* contour de l'assiette rose */
+  --rose-clair: #ffd1ed; /* fond de l'assiette rose */
+  --bleu-gris: rgb(160 168 182);
+  --gris: rgb(229 229 229);
+}
+
+.recettes-vide {
+  grid-column: 1 / -1;
+  padding: 4rem 0 8rem;
+}
+
+/* ---------- Page recette ----------
+   Construction inspirée du blog Stripe (Inspi/) : grille 24 colonnes,
+   colonne « Infos / Ingrédients » fixe au défilement, article « Préparation » à droite. */
+
+.recette {
+  --pointilles: rgb(0 0 0 / 0.27);
+  padding: 2.4rem 0 8rem;
+}
+
+.recette__entete {
+  max-width: 95rem;
+  margin-bottom: 3.2rem;
+}
+
+.recette__date {
+  color: var(--bleu-gris); /* même gris que la date des cartes de l'accueil */
+  font-size: 1.8rem;
+  line-height: 2.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.recette__titre {
+  font-size: clamp(4rem, 3rem + 3vw, 7.2rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-weight: 500;
+  margin-bottom: 1.6rem;
+}
+
+.recette__sous-titre {
+  font-size: clamp(2rem, 1.6rem + 1vw, 2.8rem);
+  line-height: 1.25;
+  margin-bottom: 1.6rem;
+}
+
+/* Grille : une colonne sur mobile, 24 colonnes à partir de 960px */
+.recette__grille {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  row-gap: 5.6rem;
+}
+
+/* En-têtes de section « Infos », « Ingrédients », « Préparation » */
+.recette__table-entete {
+  padding-bottom: 0.8rem;
+  border-bottom: 0.5px solid var(--noir);
+  font-size: clamp(1.5rem, 1.3rem + 0.4vw, 1.8rem); /* même taille que les lignes d'infos / ingrédients */
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-weight: 400; /* Regular, comme le reste de la page */
+}
+
+/* Lignes séparées par des pointillés, écrites telles quelles (pas de capitales forcées) */
+.recette__infos {
+  margin-bottom: 2.4rem;
+}
+
+.recette__info,
+.recette__ingredients li {
+  padding: 1.2rem 0;
+  border-bottom: 1px dotted var(--pointilles);
+  font-size: clamp(1.5rem, 1.3rem + 0.4vw, 1.8rem);
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+}
+
+.recette__info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1.2rem;
+}
+
+.recette__info dd {
+  font-weight: 500;
+}
+
+/* Boutons ÷3 ÷2 ×1 ×2 ×3 au-dessus des ingrédients */
+.recette__quantites {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 1.2rem 0;
+  border-bottom: 1px dotted var(--pointilles);
+}
+
+.recette__quantites button {
+  cursor: pointer;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Bouton actif : toujours rempli de noir, même survolé ou après le clic
+   (contrairement aux filtres de l'accueil, il ne s'inverse pas : on ne « retire » pas un multiplicateur) */
+.recette__quantites .tag.tag--filter-active,
+.recette__quantites .tag.tag--filter-active:hover,
+.recette__quantites .tag.tag--filter-active:focus {
+  color: var(--vert-clair);
+  border-color: var(--noir);
+  background-color: var(--noir);
+}
+
+/* Bouton inactif : fond noir seulement au survol, pas juste parce qu'il a le focus */
+.recette__quantites .tag.tag--filter-inactive:focus:not(:hover) {
+  color: var(--noir);
+  background-color: transparent;
+}
+
+.recette__quantites .tag:focus-visible {
+  outline: 2px solid var(--noir);
+  outline-offset: 2px;
+}
+
+/* Article : texte en Regular, intertitres */
+.recette__article {
+  display: grid;
+  row-gap: 1.6rem;
+  align-self: start;
+}
+
+.recette__corps {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6rem;
+  line-height: 1.3;
+  font-weight: 400;
+}
+
+.recette__corps > p {
+  margin-top: 2.4rem;
+}
+
+.recette__corps > :first-child {
+  margin-top: 0;
+}
+
+.recette__corps h2 {
+  margin-top: 4rem;
+  font-size: clamp(3.2rem, 2.4rem + 1.4vw, 4.8rem);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  font-weight: 400;
+}
+
+.recette__etapes {
+  display: grid;
+  gap: 2.4rem;
+  margin-top: 2.4rem;
+}
+
+.recette__etapes li {
+  display: grid;
+  gap: 0.6rem;
+  padding-bottom: 2.4rem;
+  border-bottom: 1px dotted var(--pointilles);
+}
+
+.recette__etape-num {
+  font-size: clamp(1.4rem, 1.1rem + 0.2083vw, 1.5rem); /* même taille que les tags (.tag--teaser) */
+  line-height: 2rem;
+  letter-spacing: 0.02em;
+  font-weight: 400;
+}
+
+/* Questions fréquentes : même titre que « Infos », « Ingrédients », « Préparation »,
+   question en intertitre, réponse en texte courant */
+.recette__table-entete--faq {
+  margin-top: 5.6rem;
+}
+
+.recette__faq {
+  display: grid;
+  margin-top: 2.4rem;
+}
+
+.recette__faq > div {
+  display: grid;
+  gap: 0.8rem;
+  padding: 2.4rem 0;
+  border-bottom: 1px dotted var(--pointilles);
+}
+
+.recette__faq > div:first-child {
+  padding-top: 0;
+}
+
+.recette__faq dt {
+  font-size: clamp(2rem, 1.7rem + 0.6vw, 2.4rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+.recette__vide {
+  color: rgb(0 0 0 / 0.45);
+}
+
+.recette__retour a,
+.recette__introuvable a {
+  color: var(--vert);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.recette__retour {
+  margin-top: 8rem;
+  font-size: 1.8rem;
+}
+
+.recette__introuvable {
+  padding: 4rem 0 8rem;
+  font-size: 2.4rem;
+}
+
+@media (min-width: 960px) {
+  .recette__grille {
+    grid-template-columns: repeat(24, minmax(0, 1fr));
+    column-gap: 1.2rem;
+  }
+
+  /* Colonne gauche fixe pendant le défilement, sous le header fixé (4.9rem) + un peu d'air */
+  .recette__colonne {
+    grid-column: 1 / 7;
+    position: sticky;
+    top: 6.4rem;
+    align-self: start;
+  }
+
+  .recette__article {
+    grid-column: 8 / 25;
+  }
+
+  /* Texte limité à 13 colonnes sur 17, comme l'inspiration */
+  .recette__corps {
+    max-width: 76%;
+    font-size: 1.8rem;
+  }
+}
+
+/* ---------- Logo ---------- */
+
+/* Logo en puce ronde de 25px partout (desktop, mobile, header fixé) :
+   pas de mise à l'échelle du thème (réduction au défilement, agrandissement du menu mobile). */
+.site .logo--header.logo--assiettes {
+  position: relative;
+  width: 2.5rem;
+  height: 2.5rem;
+  transform: none;
+}
+
+/* Conteneur : la puce + 2rem de marge à gauche du lien sur mobile */
+.site .site-header__logo {
+  width: 4.5rem;
+}
+
+.logo__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.logo__image--survol {
+  opacity: 0;
+}
+
+a:hover > .logo--assiettes .logo__image--survol,
+a:focus-visible > .logo--assiettes .logo__image--survol {
+  opacity: 1;
+}
+
+a:hover > .logo--assiettes .logo__image--repos,
+a:focus-visible > .logo--assiettes .logo__image--repos {
+  opacity: 0;
+}
+
+/* ---------- Header ---------- */
+
+/* Pas de trait gris sous le header : bordures mobiles (-md:border-b)
+   et bordure du header fixé au défilement (.js-site-header-scrolling-up) */
+.site .site-header,
+.site-header .-md\:border-b {
+  border-bottom: 0;
+}
+
+/* Mobile : la barre garde sa hauteur (7.2rem, pour le bouton du menu), la puce y est centrée */
+@media screen and (max-width: 767px) {
+  #site-branding > a {
+    padding-top: 2.35rem; /* (7.2 - 2.5) / 2 */
+  }
+
+  /* Menu ouvert : le thème agrandissait la zone du logo (10.7rem), ce qui décalait la puce
+     par rapport au « − » ; on la garde à la hauteur de la barre pour qu'ils restent alignés */
+  .site.js-site-header-menu-open .site-header__logo {
+    height: 7.2rem;
+  }
+
+  /* Pictos « + » / « − » du menu : 16px au lieu de 28px, même zone cliquable (7.2rem) */
+  .site .site-header__menu-toggle {
+    padding: 2.8rem 2rem 2.8rem 3.6rem;
+  }
+
+  /* Menu ouvert : panneau à la hauteur de son contenu (plus en plein écran),
+     liens juste sous la barre du header, fond qui s'arrête sous le dernier lien */
+  .site .site-header__mobile-menu {
+    bottom: auto;
+  }
+
+  .site .site-header__mobile-menu-wrap {
+    min-height: 0;
+  }
+
+  .site .site-header__menu {
+    flex-grow: 0;
+    padding-top: 8.8rem; /* barre du header (7.2rem) + 1.6rem */
+    padding-bottom: 1.6rem;
+  }
+
+  .site .site-header__menu > div:first-child {
+    padding-top: 0;
+  }
+}
+
+/* Desktop : header compact, identique sur toutes les pages, calé sur la puce (2.5rem) ;
+   20px au-dessus, 16px en dessous. (.site devant : l'emporte aussi sur les règles du thème pour le header fixé) */
+@media screen and (min-width: 768px) {
+  .site .site-header {
+    min-height: 0;
+    padding-top: 2rem;
+    padding-bottom: 1.6rem;
+  }
+
+  .site .site-header__logo {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .site .site-header__eyebrow {
+    min-height: 0;
+    align-items: center;
+  }
+
+  /* Puce centrée à hauteur des liens (le thème la posait en bas) */
+  .site-header__eyebrow > :first-child {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .site .site-header__mobile-menu {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  /* Le contenu commence sous le header : 2rem + puce 2.5rem + 1.6rem */
+  .site-header + section {
+    padding-top: 6.1rem;
+  }
+
+  /* Page liste : moins d'espace sous le header (le thème prévoyait 16rem) */
+  body[data-page="liste"] #main-content > div {
+    padding-top: 8rem;
+  }
+
+  /* Header fixé au défilement : un peu plus serré */
+  .site.js-site-header-stuck .site-header,
+  .site.js-site-header-scrolling-up .site-header {
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+  }
+}
+
+/* ---------- Titre de l'accueil ---------- */
+
+/* « Recettes de vie » : plus grand que le thème (26px mobile, 60px desktop) */
+.front-hero-statement {
+  font-size: clamp(4.4rem, 2.4rem + 5.6vw, 10.4rem);
+  line-height: 0.95;
+  max-width: none;
+}
+
+/* ---------- Tags ---------- */
+
+/* Tags des filtres, des cartes et de la liste : contour et texte noirs */
+.tag.tag--filter,
+.tag.tag--teaser,
+.tag.tag--directory {
+  color: var(--noir);
+  border-color: var(--noir);
+  background-color: transparent;
+}
+
+/* Survol (et tag de filtre sélectionné) : fond noir */
+.tag.tag--filter-inactive:hover,
+.tag.tag--filter-inactive:focus,
+.tag.tag--teaser:hover,
+.tag.tag--teaser:focus,
+.tag.tag--filter-active {
+  color: var(--vert-clair);
+  border-color: var(--noir);
+  background-color: var(--noir);
+}
+
+/* Centrage vertical : le thème mettait plus de marge en bas (réglé pour Franklin Gothic).
+   Amiamie étant déjà centrée dans sa ligne, on répartit la même hauteur totale à parts égales. */
+.tag.tag--filter {
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
+.tag.tag--teaser {
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+
+@media (min-width: 768px) {
+  .tag.tag--directory {
+    padding-top: 0.3rem;
+    padding-bottom: 0.3rem;
+  }
+}
+
+/* Tag sélectionné survolé : s'inverse pour indiquer qu'un clic le retire */
+.tag.tag--filter-active:hover,
+.tag.tag--filter-active:focus {
+  color: var(--noir);
+  border-color: var(--noir);
+  background-color: var(--vert-clair);
+}
+
+/* ---------- Recherche ---------- */
+
+/* Champ noir ; au survol et pendant la saisie il se remplit de noir, comme les tags */
+.recherche {
+  color: var(--noir);
+  border-color: var(--noir);
+}
+
+.site-header__search .recherche:hover,
+.site-header__search .recherche:focus-within {
+  color: var(--vert-clair);
+  border-color: var(--noir);
+  background-color: var(--noir);
+}
+
+/* Même centrage vertical que les tags (le thème avait 0.3rem en haut, 0.5rem en bas) */
+.site-header__search .recherche {
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
+.recherche .search-wrap button {
+  color: currentColor;
+}
+
+/* Loupe dessinée comme les assiettes : intérieur vert clair, contour noir */
+.recherche__loupe {
+  display: inline-block;
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-right: 0.6rem;
+  vertical-align: -0.2rem;
+  fill: var(--vert-clair);
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  transition: fill 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.recherche:hover .recherche__loupe,
+.recherche:focus-within .recherche__loupe {
+  fill: var(--noir);
+}
+
+/* ---------- Liste ---------- */
+
+.liste__titre:hover,
+.liste__titre:focus {
+  color: var(--rose);
+}
+
+/* ---------- Cadres des images ---------- */
+
+/* Cadre autour des photos (cartes de l'accueil, page recette) : vert au lieu du gris ;
+   au survol d'une carte, vert plus clair (comme le gris clair du thème) */
+figure.bg-grey {
+  background-color: var(--vert);
+}
+
+.group:hover figure.bg-grey,
+.group:focus figure.bg-grey {
+  background-color: color-mix(in srgb, var(--vert) 55%, var(--vert-clair));
+}
+
+/* ---------- Art génératif (js/art.js) ---------- */
+
+/* Couleurs lues par le générateur : trait et remplissage des formes */
+.art {
+  --art-trait: var(--noir);
+  --art-fond: var(--vert-clair);
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ---------- Footer ---------- */
+
+.text-vert-clair {
+  color: var(--vert-clair);
+}
+
+.border-vert-clair {
+  border-color: var(--vert-clair);
+}
+
+/* Crédits DA et police côte à côte sur desktop */
+@media screen and (min-width: 1024px) {
+  .footer-credits {
+    column-gap: 6.4rem;
+  }
+}
+
+/* ---------- Test fond vert clair ----------
+   Supprimer ce bloc pour revenir au fond blanc. */
+
+body,
+.bg-white,
+.-md\:bg-white {
+  background-color: var(--vert-clair);
+}

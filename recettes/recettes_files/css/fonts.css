@@ -1,0 +1,67 @@
+/*
+ * Amiamie — police non binaire de Mirat-Masson (www.miratmasson.com).
+ * Licence : SIL Open Font License 1.1, voir ../fonts/LICENCE-Amiamie.txt
+ *
+ * Graisses : Light = 300, Regular = 400 à 600 (dont le « medium » 500 du thème),
+ * Black = 700 à 900.
+ */
+
+@font-face {
+  font-family: "Amiamie";
+  src:
+    url("../fonts/Amiamie-Light.woff2") format("woff2"),
+    url("../fonts/Amiamie-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Amiamie";
+  src:
+    url("../fonts/Amiamie-LightItalic.woff2") format("woff2"),
+    url("../fonts/Amiamie-LightItalic.woff") format("woff");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Amiamie";
+  src:
+    url("../fonts/Amiamie-Regular.woff2") format("woff2"),
+    url("../fonts/Amiamie-Regular.woff") format("woff");
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Amiamie";
+  src:
+    url("../fonts/Amiamie-Italic.woff2") format("woff2"),
+    url("../fonts/Amiamie-Italic.woff") format("woff");
+  font-weight: 400 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Amiamie";
+  src:
+    url("../fonts/Amiamie-Black.woff2") format("woff2"),
+    url("../fonts/Amiamie-Black.woff") format("woff");
+  font-weight: 700 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Amiamie";
+  src:
+    url("../fonts/Amiamie-BlackItalic.woff2") format("woff2"),
+    url("../fonts/Amiamie-BlackItalic.woff") format("woff");
+  font-weight: 700 900;
+  font-style: italic;
+  font-display: swap;
+}
