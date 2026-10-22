@@ -1,4 +1,7 @@
+import { useCarnet } from '@/store/Carnet';
+
 export default function Footer() {
+  const { session, setConnexion, deconnexion } = useCarnet();
   return (
     <footer className="bg-vert pt-5 pb-8 text-vert-clair md:pt-[74px] md:pb-12 print:hidden">
       <div className="mx-auto max-w-[1152px] px-5 xl:px-0">
@@ -14,6 +17,18 @@ export default function Footer() {
             <a href="https://www.miratmasson.com/" target="_blank" rel="noreferrer" className="hover:underline focus-visible:underline">
               Amiamie par Mirat-Masson
             </a>
+          </p>
+          <p className="lg:ml-auto">
+            Carnet :<br />
+            {session ? (
+              <button type="button" onClick={deconnexion} className="hover:underline focus-visible:underline">
+                Déconnexion
+              </button>
+            ) : (
+              <button type="button" onClick={() => setConnexion(true)} className="hover:underline focus-visible:underline">
+                Connexion
+              </button>
+            )}
           </p>
         </div>
       </div>

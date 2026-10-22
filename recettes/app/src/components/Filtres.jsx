@@ -1,6 +1,6 @@
 import { Toggle } from '@/components/ui/toggle';
 import { tagVariants } from '@/components/tag';
-import { TAGS } from '@/data/recettes';
+import { TAGS } from '@/data/tags';
 import { slug } from '@/lib/recettes';
 import { cn } from '@/lib/utils';
 

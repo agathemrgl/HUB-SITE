@@ -14,7 +14,7 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from '@/components/ui/drawer';
-import { RECETTES } from '@/data/recettes';
+import { useCarnet } from '@/store/Carnet';
 import { filtrer, parDate } from '@/lib/recettes';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 
@@ -33,6 +33,7 @@ export default function Accueil() {
   const [params, setParams] = useSearchParams();
   const etat = lireEtat(params);
   const ordinateur = useMediaQuery('(min-width: 768px)');
+  const { recettes, chargement, erreur } = useCarnet();
 
   function changer(modif, { remplacer = false } = {}) {
     const e = { ...etat, page: 1, ...modif };
@@ -43,7 +44,7 @@ export default function Accueil() {
     setParams(p, { replace: remplacer });
   }
 
-  const liste = useMemo(() => filtrer(RECETTES, etat).sort(parDate), [params]); // eslint-disable-line react-hooks/exhaustive-deps
+  const liste = useMemo(() => filtrer(recettes, etat).sort(parDate), [params, recettes]); // eslint-disable-line react-hooks/exhaustive-deps
   const pages = Math.max(1, Math.ceil(liste.length / PAR_PAGE));
   const page = Math.min(etat.page, pages);
   const visibles = liste.slice((page - 1) * PAR_PAGE, page * PAR_PAGE);
@@ -128,7 +129,13 @@ export default function Accueil() {
             ))}
           </ul>
         ) : (
-          <p className="px-5 py-10 text-[18px] text-bleu-gris md:px-0">Aucune recette ne correspond à cette sélection.</p>
+          <p className="px-5 py-10 text-[18px] text-bleu-gris md:px-0">
+            {chargement
+              ? 'Chargement des recettes…'
+              : erreur && !recettes.length
+                ? 'Impossible de charger les recettes pour le moment.'
+                : 'Aucune recette ne correspond à cette sélection.'}
+          </p>
         )}
 
         {pages > 1 && (

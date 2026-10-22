@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { Plus, Search } from 'lucide-react';
+import { useCarnet } from '@/store/Carnet';
 import Logo from '@/components/Logo';
 import RechercheRapide from '@/components/RechercheRapide';
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
@@ -15,6 +16,7 @@ export default function Header() {
   const [recherche, setRecherche] = useState(false);
   const [menu, setMenu] = useState(false);
   const mac = /Mac|iPhone|iPad/.test(navigator.platform);
+  const { editeur, ouvrirFormulaire, session, setConnexion } = useCarnet();
 
   return (
     <header className="sticky top-0 z-30 bg-vert-clair print:hidden">
@@ -38,6 +40,16 @@ export default function Header() {
           <a href={DEMANDE} className="whitespace-nowrap text-vert underline-offset-4 hover:underline focus-visible:underline">
             Demander une recette
           </a>
+          {editeur && (
+            <button
+              type="button"
+              onClick={() => ouvrirFormulaire()}
+              className="flex items-center gap-1.5 rounded-full bg-black px-3.5 py-1 font-normal text-vert-clair transition-colors duration-300 ease-out-quart hover:bg-vert hover:text-black"
+            >
+              <Plus className="size-4" aria-hidden="true" />
+              Nouvelle recette
+            </button>
+          )}
         </nav>
 
         {/* Mobile : loupe + menu « + » */}
@@ -64,11 +76,38 @@ export default function Header() {
                     Liste
                   </Link>
                 </li>
-                <li>
+                <li className="mb-4">
                   <a href={DEMANDE} className="text-vert">
                     Demander une recette
                   </a>
                 </li>
+                {editeur && (
+                  <li className="mb-4">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMenu(false);
+                        ouvrirFormulaire();
+                      }}
+                    >
+                      Nouvelle recette
+                    </button>
+                  </li>
+                )}
+                {!session && (
+                  <li className="text-[20px] leading-6 font-normal">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setMenu(false);
+                        setConnexion(true);
+                      }}
+                      className="underline underline-offset-4"
+                    >
+                      Connexion
+                    </button>
+                  </li>
+                )}
               </ul>
             </SheetContent>
           </Sheet>

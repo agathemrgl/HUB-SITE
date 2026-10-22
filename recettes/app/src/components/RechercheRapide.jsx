@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CookingPot, Tag } from 'lucide-react';
+import { CookingPot, Plus, Tag } from 'lucide-react';
 import {
   CommandDialog,
   CommandEmpty,
@@ -10,7 +10,8 @@ import {
   CommandList,
   CommandSeparator,
 } from '@/components/ui/command';
-import { TAGS, RECETTES } from '@/data/recettes';
+import { TAGS } from '@/data/tags';
+import { useCarnet } from '@/store/Carnet';
 import { parTitre, sansAccents, slug } from '@/lib/recettes';
 
 /*
@@ -19,6 +20,7 @@ import { parTitre, sansAccents, slug } from '@/lib/recettes';
  */
 export default function RechercheRapide({ ouvert, setOuvert }) {
   const naviguer = useNavigate();
+  const { recettes, editeur, ouvrirFormulaire } = useCarnet();
 
   useEffect(() => {
     function surTouche(e) {
@@ -47,8 +49,24 @@ export default function RechercheRapide({ ouvert, setOuvert }) {
       <CommandInput placeholder="Une recette, un ingrédient, un tag…" className="text-[16px]" />
       <CommandList>
         <CommandEmpty>Rien de trouvé.</CommandEmpty>
+        {editeur && (
+          <CommandGroup heading="Actions">
+            <CommandItem
+              value="nouvelle-recette"
+              keywords={['ajouter', 'nouvelle', 'recette', 'creer']}
+              onSelect={() => {
+                setOuvert(false);
+                ouvrirFormulaire();
+              }}
+              className="text-[16px] data-[selected=true]:bg-black data-[selected=true]:text-vert-clair"
+            >
+              <Plus />
+              Nouvelle recette
+            </CommandItem>
+          </CommandGroup>
+        )}
         <CommandGroup heading="Recettes">
-          {[...RECETTES].sort(parTitre).map((r) => (
+          {[...recettes].sort(parTitre).map((r) => (
             <CommandItem
               key={r.id}
               value={r.id}

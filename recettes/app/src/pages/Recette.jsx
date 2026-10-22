@@ -1,15 +1,28 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
-import { ChefHat } from 'lucide-react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { ChefHat, Pencil, Trash2 } from 'lucide-react';
+import { toast } from 'sonner';
 import ModeCuisine from '@/components/ModeCuisine';
 import TagsRecette from '@/components/TagsRecette';
 import { tagVariants } from '@/components/tag';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
-import { RECETTES } from '@/data/recettes';
+import { supprimerRecette } from '@/lib/donnees';
+import { useCarnet } from '@/store/Carnet';
 import { FACTEURS, ilYA, multiplier } from '@/lib/recettes';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { cn } from '@/lib/utils';
@@ -21,7 +34,7 @@ import { cn } from '@/lib/utils';
 
 const ligne = 'border-b border-dotted border-[var(--pointilles)] py-3 text-[clamp(15px,13px+0.4vw,18px)] leading-[1.25] tracking-[0.02em]';
 
-function Entete({ children, className }) {
+export function Entete({ children, className }) {
   return (
     <h2 className={cn('border-b-[0.5px] border-black pb-2 text-[clamp(15px,13px+0.4vw,18px)] leading-[1.25] font-normal tracking-[0.02em] uppercase', className)}>
       {children}
@@ -29,7 +42,7 @@ function Entete({ children, className }) {
   );
 }
 
-function Infos({ recette, facteur }) {
+export function Infos({ recette, facteur }) {
   if (!recette.infos?.length) return null;
   return (
     <dl className="mb-6">
@@ -88,7 +101,7 @@ function Ingredients({ recette, facteur, setFacteur, coches, setCoches }) {
   );
 }
 
-function Preparation({ recette }) {
+export function Preparation({ recette }) {
   const histoire = [].concat(recette.histoire || []);
   const etapes = recette.etapes || [];
   const faq = recette.faq || [];
@@ -133,17 +146,38 @@ function Preparation({ recette }) {
 
 export default function Recette() {
   const { id } = useParams();
-  const recette = RECETTES.find((x) => x.id === id);
+  const { recettes, chargement, peutModifier, ouvrirFormulaire, retirer } = useCarnet();
+  const naviguer = useNavigate();
+  const recette = recettes.find((x) => x.id === id);
   const large = useMediaQuery('(min-width: 960px)');
   const [facteur, setFacteur] = useState(1);
   const [coches, setCoches] = useState(new Set());
   const [cuisine, setCuisine] = useState(false);
 
+  // Remise à zéro seulement quand on change de recette (pas quand Supabase renvoie la même, à jour)
   useEffect(() => {
     setFacteur(1);
     setCoches(new Set());
+  }, [id]);
+
+  useEffect(() => {
     document.title = recette ? `${recette.titre} — Recettes de vie` : 'Recettes de vie';
-  }, [recette]);
+  }, [recette?.titre]);
+
+  async function supprimer() {
+    try {
+      await supprimerRecette(recette.id);
+      retirer(recette.id);
+      toast.success('Recette supprimée');
+      naviguer('/');
+    } catch {
+      toast.error('Suppression impossible. Réessaie plus tard.');
+    }
+  }
+
+  if (!recette && chargement) {
+    return <main id="contenu" className="mx-auto max-w-[1152px] px-5 py-16 text-[24px] text-bleu-gris xl:px-0">Chargement…</main>;
+  }
 
   if (!recette) {
     return (
@@ -166,11 +200,49 @@ export default function Recette() {
           <h1 className="mb-4 text-[clamp(40px,30px+3vw,72px)] leading-none font-medium tracking-[-0.03em]">{recette.titre}</h1>
           {recette.sousTitre && <p className="mb-4 text-[clamp(20px,16px+1vw,28px)] leading-[1.25]">{recette.sousTitre}</p>}
           <TagsRecette tags={recette.tags} className="mt-2.5" />
-          {recette.etapes?.length > 0 && (
-            <Button onClick={() => setCuisine(true)} className="mt-6 h-11 rounded-full px-5 text-[16px] md:text-[18px]">
-              <ChefHat className="size-5" /> Mode cuisine
-            </Button>
+          {recette.lien && (
+            <p className="mt-4 text-[16px]">
+              Source :{' '}
+              <a href={recette.lien} target="_blank" rel="noreferrer" className="underline underline-offset-4 hover:text-vert">
+                {recette.lien.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '')}
+              </a>
+            </p>
           )}
+          <div className="mt-6 flex flex-wrap gap-2 print:hidden">
+            {recette.etapes?.length > 0 && (
+              <Button onClick={() => setCuisine(true)} className="h-11 rounded-full px-5 text-[16px] md:text-[18px]">
+                <ChefHat className="size-5" /> Mode cuisine
+              </Button>
+            )}
+            {peutModifier(recette) && (
+              <>
+                <Button variant="outline" onClick={() => ouvrirFormulaire(recette)} className="h-11 rounded-full bg-transparent px-5 text-[16px] md:text-[18px]">
+                  <Pencil className="size-4" /> Modifier
+                </Button>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button variant="ghost" className="h-11 rounded-full px-4 text-[16px] text-destructive hover:bg-destructive hover:text-white md:text-[18px]">
+                      <Trash2 className="size-4" /> Supprimer
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent className="border-black bg-vert-clair">
+                    <AlertDialogHeader>
+                      <AlertDialogTitle className="text-[22px] font-normal">Supprimer « {recette.titre} » ?</AlertDialogTitle>
+                      <AlertDialogDescription className="text-[16px] text-black/70">
+                        La recette disparaît du carnet pour tout le monde. Impossible de revenir en arrière.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel className="rounded-full bg-transparent text-[16px]">Annuler</AlertDialogCancel>
+                      <AlertDialogAction onClick={supprimer} className="rounded-full bg-destructive text-[16px] text-white hover:bg-destructive/90">
+                        Supprimer
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              </>
+            )}
+          </div>
         </header>
 
         {large ? (

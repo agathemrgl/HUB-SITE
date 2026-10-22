@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import TagsRecette from '@/components/TagsRecette';
-import { RECETTES } from '@/data/recettes';
+import { useCarnet } from '@/store/Carnet';
 import { filtrer, parTitre } from '@/lib/recettes';
 
 // Index A–Z : grands titres (rose au survol) et leurs tags, avec un champ pour filtrer la liste.
 export default function Liste() {
   const [q, setQ] = useState('');
-  const liste = filtrer(RECETTES, { tags: new Set(), q }).sort(parTitre);
+  const { recettes, chargement } = useCarnet();
+  const liste = filtrer(recettes, { tags: new Set(), q }).sort(parTitre);
 
   return (
     <main id="contenu" className="mx-auto max-w-[1152px] px-5 pt-8 pb-20 md:pt-20 xl:px-0">
@@ -39,7 +40,7 @@ export default function Liste() {
           ))}
         </ul>
       ) : (
-        <p className="text-[18px] text-bleu-gris">Aucune recette ne correspond.</p>
+        <p className="text-[18px] text-bleu-gris">{chargement ? 'Chargement des recettes…' : 'Aucune recette ne correspond.'}</p>
       )}
     </main>
   );

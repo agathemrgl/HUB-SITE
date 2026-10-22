@@ -1,6 +1,7 @@
 # Nouvelle recette — formulaire à remplir
 
-Copier ce bloc, le remplir, et le coller dans la conversation avec Claude.
+Le plus simple : se connecter sur le carnet et utiliser le bouton « Nouvelle recette » (mêmes champs que ci-dessous).
+Sinon : copier ce bloc, le remplir, et le coller dans la conversation avec Claude.
 Les lignes marquées (facultatif) peuvent être supprimées.
 
 ```
