@@ -66,6 +66,60 @@ const RECETTES = [
     ],
   },
   {
+    id: "club-sandwich-thon-mayo-vegetarien",
+    titre: "Club sandwich comme un thon mayo !",
+    sousTitre:
+      "Avec une garniture alternative gourmande, fraîche et riche en saveurs.",
+    date: "2026-09-28",
+    tags: ["Plat", "Végétarien", "Presque rien", "Printemps", "Été", "10 min"],
+    art: "feuillage",
+    infos: [
+      ["Préparation", "5 min"],
+      ["Cuisson", "5 min"],
+      ["Portions", "2 sandwiches"],
+    ],
+    histoire: [
+      "Inspirée d’une recette américaine de « Smashed Chickpea Salad Sandwich », cette version revisite le célèbre sandwich thon-mayo en version végétarienne.",
+      "L’autrice a adapté la recette avec des haricots blancs à la place des pois chiches et a ajouté citron et câpres pour retrouver les saveurs caractéristiques du thon-mayo.",
+    ],
+    ingredients: [
+      "250 g de haricots blancs ou pois chiches égouttés",
+      "2 cuillères à soupe de mayonnaise",
+      "1 cuillère à café de moutarde",
+      "1 échalote hachée",
+      "1 cuillère à soupe de jus de citron",
+      "1 cuillère à café de câpres hachées",
+      "1 cuillère à café d’aneth haché",
+      "1 cuillère à café de cornichons à l’américaine coupés en petits morceaux",
+      "1 pincée de sel",
+      "1 pincée de poivre",
+      "1 pincée de piment",
+      "Des crudités au choix (salade, tomate, graines germées, carottes râpées, concombre...)",
+      "4 tranches de pain complet",
+    ],
+    etapes: [
+      "Rincer et égoutter les haricots blancs ou les pois chiches.",
+      "Les écraser grossièrement à la fourchette ou au presse-purée en conservant quelques morceaux.",
+      "Ajouter la mayonnaise, la moutarde, l’échalote, le jus de citron, les câpres, l’aneth et les cornichons.",
+      "Mélanger puis ajuster l’assaisonnement avec le sel, le poivre et le piment.",
+      "Faire griller les tranches de pain complet.",
+      "Garnir le pain avec le mélange et les crudités de votre choix.",
+      "Refermer les sandwiches et servir immédiatement.",
+    ],
+    faq: [
+      {
+        question: "Puis-je utiliser des pois chiches à la place des haricots blancs ?",
+        reponse:
+          "Oui, la recette fonctionne parfaitement avec des pois chiches et se rapproche davantage de la version originale américaine.",
+      },
+      {
+        question: "Peut-on préparer la garniture à l’avance ?",
+        reponse:
+          "Oui, le mélange peut être préparé plusieurs heures à l’avance et gagne même en saveur après repos au réfrigérateur.",
+      },
+    ],
+  },
+  {
     id: "solace-general-store",
     titre: "Solace General Store",
     sousTitre:
