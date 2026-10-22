@@ -1,0 +1,109 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* Amiamie — police non binaire de Mirat-Masson (www.miratmasson.com).
+   Licence : SIL Open Font License 1.1, voir assets/fonts/LICENCE-Amiamie.txt
+   Light = 300, Regular = 400 à 600, Black = 700 à 900. */
+@font-face {
+  font-family: 'Amiamie';
+  src: url('./assets/fonts/Amiamie-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Amiamie';
+  src: url('./assets/fonts/Amiamie-Regular.woff2') format('woff2');
+  font-weight: 400 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Amiamie';
+  src: url('./assets/fonts/Amiamie-Italic.woff2') format('woff2');
+  font-weight: 400 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Amiamie';
+  src: url('./assets/fonts/Amiamie-Black.woff2') format('woff2');
+  font-weight: 700 900;
+  font-display: swap;
+}
+
+/* Couleurs du carnet, traduites en variables shadcn :
+   fond vert clair, texte et contours noirs, vert du logo en accent, rose au survol des titres. */
+:root {
+  --vert: #56cb56;
+  --vert-clair: #d1ffd4;
+  --rose: #d3129c;
+  --rose-clair: #ffd1ed;
+  --bleu-gris: rgb(160 168 182);
+  --pointilles: rgb(0 0 0 / 0.27);
+
+  --radius: 0.75rem;
+  --background: var(--vert-clair);
+  --foreground: #000;
+  --card: var(--vert-clair);
+  --card-foreground: #000;
+  --popover: var(--vert-clair);
+  --popover-foreground: #000;
+  --primary: #000;
+  --primary-foreground: var(--vert-clair);
+  --secondary: color-mix(in srgb, var(--vert) 35%, var(--vert-clair));
+  --secondary-foreground: #000;
+  --muted: color-mix(in srgb, var(--vert) 20%, var(--vert-clair));
+  --muted-foreground: rgb(0 0 0 / 0.55);
+  --accent: var(--vert);
+  --accent-foreground: #000;
+  --destructive: #d40808;
+  --border: #000;
+  --input: #000;
+  --ring: #000;
+}
+
+@theme inline {
+  --font-sans: 'Amiamie', ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-vert: var(--vert);
+  --color-vert-clair: var(--vert-clair);
+  --color-rose: var(--rose);
+  --color-rose-clair: var(--rose-clair);
+  --color-bleu-gris: var(--bleu-gris);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    letter-spacing: -0.01em;
+  }
+}

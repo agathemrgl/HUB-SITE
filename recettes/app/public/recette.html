@@ -1,0 +1,8 @@
+<!doctype html>
+<meta charset="utf-8" />
+<title>Recettes de vie</title>
+<script>
+  var id = new URLSearchParams(location.search).get('id');
+  location.replace('./#/' + (id ? 'recette/' + encodeURIComponent(id) : ''));
+</script>
+<a href="./">Recettes de vie</a>
