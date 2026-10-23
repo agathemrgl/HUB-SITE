@@ -42,7 +42,6 @@ R :
 Q :
 R :
 
-DESSIN : (facultatif — traits, ronds, rayons, petales, feuillage ou vague ; sinon tiré au hasard)
 ```
 
 ## Tags disponibles

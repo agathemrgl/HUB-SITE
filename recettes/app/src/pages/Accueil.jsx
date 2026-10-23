@@ -1,22 +1,11 @@
 import { useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Search, SlidersHorizontal, X } from 'lucide-react';
 import CarteRecette from '@/components/CarteRecette';
 import Filtres from '@/components/Filtres';
-import { Button } from '@/components/ui/button';
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from '@/components/ui/drawer';
-import { useCarnet } from '@/store/Carnet';
+import { tagVariants } from '@/components/tag';
 import { filtrer, parDate } from '@/lib/recettes';
-import { useMediaQuery } from '@/hooks/useMediaQuery';
+import { useCarnet } from '@/store/Carnet';
+import { cn } from '@/lib/utils';
 
 const PAR_PAGE = 30;
 
@@ -32,7 +21,6 @@ function lireEtat(params) {
 export default function Accueil() {
   const [params, setParams] = useSearchParams();
   const etat = lireEtat(params);
-  const ordinateur = useMediaQuery('(min-width: 768px)');
   const { recettes, chargement, erreur } = useCarnet();
 
   function changer(modif, { remplacer = false } = {}) {
@@ -48,80 +36,29 @@ export default function Accueil() {
   const pages = Math.max(1, Math.ceil(liste.length / PAR_PAGE));
   const page = Math.min(etat.page, pages);
   const visibles = liste.slice((page - 1) * PAR_PAGE, page * PAR_PAGE);
-
-  const recherche = (
-    <label className="group flex w-full items-center gap-2 rounded-full border border-black px-3 py-1 text-[18px] leading-6 transition-colors duration-300 ease-out-quart focus-within:bg-black focus-within:text-vert-clair hover:bg-black hover:text-vert-clair md:w-[320px]">
-      <Search className="size-4 shrink-0" aria-hidden="true" />
-      <span className="sr-only">Rechercher</span>
-      <input
-        type="search"
-        value={etat.q}
-        onChange={(e) => changer({ q: e.target.value }, { remplacer: true })}
-        placeholder="Rechercher"
-        className="w-full min-w-0 bg-transparent outline-none placeholder:text-current [&::-webkit-search-cancel-button]:hidden"
-      />
-      {etat.q && (
-        <button type="button" onClick={() => changer({ q: '' }, { remplacer: true })} aria-label="Effacer">
-          <X className="size-4" />
-        </button>
-      )}
-    </label>
-  );
+  const nbResultats = `${liste.length} recette${liste.length > 1 ? 's' : ''}`;
 
   return (
     <>
-      <section className="mx-auto max-w-[1152px] px-5 xl:px-0">
-        <h1 className="pt-4 pb-6 text-[clamp(44px,24px+5.6vw,104px)] leading-[0.95] tracking-[-0.1em] md:pt-6 md:pb-8">
-          Vie de recettes
-        </h1>
+      <section className="conteneur pt-4 md:pt-10">
+        <h1 className="text-[clamp(44px,24px+5.6vw,96px)] leading-[0.95] tracking-[-0.06em] text-pin">Vie de recettes</h1>
+        <p className="mt-3 max-w-[560px] text-[17px] leading-snug text-muted-foreground md:text-[19px]">
+          Mon carnet de recettes, entre héritage familial, origines et découvertes d’ailleurs.
+        </p>
 
-        {ordinateur ? (
-          <div className="flex items-start justify-between gap-8">
-            <Filtres selection={etat.tags} onChange={(tags) => changer({ tags })} />
-            <div className="shrink-0">{recherche}</div>
-          </div>
-        ) : (
-          <div className="flex items-center gap-2">
-            {recherche}
-            <Drawer>
-              <DrawerTrigger asChild>
-                <button
-                  type="button"
-                  className="flex shrink-0 items-center gap-2 rounded-full border border-black px-3 py-1 text-[18px] leading-6 data-[actif=true]:bg-black data-[actif=true]:text-vert-clair"
-                  data-actif={etat.tags.size > 0}
-                >
-                  <SlidersHorizontal className="size-4" aria-hidden="true" />
-                  Filtres{etat.tags.size ? ` · ${etat.tags.size}` : ''}
-                </button>
-              </DrawerTrigger>
-              <DrawerContent className="border-black bg-vert-clair">
-                <DrawerHeader>
-                  <DrawerTitle className="text-[24px] font-normal">Filtres</DrawerTitle>
-                  <DrawerDescription className="sr-only">Choisir des tags pour filtrer les recettes</DrawerDescription>
-                </DrawerHeader>
-                <div className="overflow-y-auto px-4">
-                  <Filtres selection={etat.tags} onChange={(tags) => changer({ tags }, { remplacer: true })} />
-                </div>
-                <DrawerFooter className="flex-row">
-                  <Button variant="outline" className="flex-1 rounded-full bg-transparent text-[16px]" disabled={!etat.tags.size} onClick={() => changer({ tags: new Set() }, { remplacer: true })}>
-                    Tout effacer
-                  </Button>
-                  <DrawerClose asChild>
-                    <Button className="flex-1 rounded-full text-[16px]">
-                      Voir {liste.length} recette{liste.length > 1 ? 's' : ''}
-                    </Button>
-                  </DrawerClose>
-                </DrawerFooter>
-              </DrawerContent>
-            </Drawer>
-          </div>
+        {/* Tous les filtres, une famille par ligne */}
+        <Filtres enLigne selection={etat.tags} onChange={(tags) => changer({ tags }, { remplacer: true })} className="mt-8 md:mt-10" />
+        {etat.tags.size > 0 && (
+          <button type="button" onClick={() => changer({ tags: new Set() })} className={cn(tagVariants({ taille: 'sm' }), 'mt-4 bg-muted')}>
+            Tout effacer
+          </button>
         )}
       </section>
 
-      <main id="contenu" className="mx-auto max-w-[1152px] pt-10 pb-20 md:px-5 md:pt-16 xl:px-0">
-        <h2 className="sr-only">Recettes</h2>
+      <main id="contenu" className="conteneur pt-6 pb-16">
+        <h2 className="surtitre mb-3">{etat.q || etat.tags.size ? nbResultats : 'Dernières recettes'}</h2>
         {visibles.length ? (
-          <ul className="grid gap-y-9 sm:grid-cols-2 sm:gap-x-3 sm:gap-y-14 lg:grid-cols-3">
+          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 min-[1920px]:grid-cols-5">
             {visibles.map((r) => (
               <li key={r.id}>
                 <CarteRecette recette={r} />
@@ -129,7 +66,7 @@ export default function Accueil() {
             ))}
           </ul>
         ) : (
-          <p className="px-5 py-10 text-[18px] text-bleu-gris md:px-0">
+          <p className="rounded-3xl bg-card px-6 py-10 text-center text-[17px] text-muted-foreground">
             {chargement
               ? 'Chargement des recettes…'
               : erreur && !recettes.length
@@ -139,7 +76,7 @@ export default function Accueil() {
         )}
 
         {pages > 1 && (
-          <nav aria-label="Pagination" className="mt-20 flex justify-center gap-2">
+          <nav aria-label="Pagination" className="mt-12 flex justify-center gap-1.5">
             {Array.from({ length: pages }, (_, i) => i + 1).map((n) => (
               <button
                 key={n}
@@ -149,7 +86,7 @@ export default function Accueil() {
                   changer({ tags: etat.tags, q: etat.q, page: n });
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
-                className="size-10 border border-bleu-gris text-[18px] text-bleu-gris hover:border-black aria-[current=page]:border-black aria-[current=page]:text-black"
+                className={cn(tagVariants({ taille: 'md', actif: n === page }), 'size-11 px-0')}
               >
                 {n}
               </button>

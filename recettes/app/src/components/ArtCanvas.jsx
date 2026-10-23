@@ -8,7 +8,8 @@ const reduireAnimations = window.matchMedia?.('(prefers-reduced-motion: reduce)'
  * Dessin génératif propre à une recette (voir lib/art.js).
  * L'animation ne tourne que quand le canvas est visible ; survoler (ou appuyer) le lien ou la figure parente l'accélère.
  */
-export default function ArtCanvas({ id, famille, className }) {
+// `teinte` : { fond, trait } (voir lib/teintes.js), Pine sur Seedling par défaut.
+export default function ArtCanvas({ id, famille, teinte, className }) {
   const ref = useRef(null);
 
   useEffect(() => {
@@ -17,7 +18,7 @@ export default function ArtCanvas({ id, famille, className }) {
     const ctx = canvas.getContext('2d');
     const style = getComputedStyle(canvas);
     const couleurs = {
-      trait: style.getPropertyValue('--art-trait').trim() || '#000',
+      trait: style.getPropertyValue('--art-trait').trim() || 'var(--pin)',
       fond: style.getPropertyValue('--art-fond').trim() || '#fff',
     };
     let P = config.depart;
@@ -83,13 +84,14 @@ export default function ArtCanvas({ id, famille, className }) {
       cible.removeEventListener('pointerenter', accelerer);
       cible.removeEventListener('pointerleave', ralentir);
     };
-  }, [id, famille]);
+  }, [id, famille, teinte?.fond, teinte?.trait]);
 
   return (
     <canvas
       ref={ref}
       aria-hidden="true"
-      className={cn('block size-full [--art-fond:var(--vert-clair)] [--art-trait:#000]', className)}
+      style={{ '--art-fond': teinte?.fond || 'var(--pousse)', '--art-trait': teinte?.trait || 'var(--pin)' }}
+      className={cn('block size-full', className)}
     />
   );
 }

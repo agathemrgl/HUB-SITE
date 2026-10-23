@@ -63,7 +63,7 @@ export default function ListeEditable({ valeurs, onChange, placeholder, multilig
           const aide = v.trim() && indice?.(v);
           return (
             <li key={i} className="grid gap-1">
-              {numero && <span className="text-[13px] tracking-[0.02em] text-black/60">{numero(i)}</span>}
+              {numero && <span className="text-[13px] text-muted-foreground">{numero(i)}</span>}
               <div className="flex items-start gap-1">
                 <Champ
                   ref={(el) => (refs.current[i] = el)}
@@ -96,12 +96,12 @@ export default function ListeEditable({ valeurs, onChange, placeholder, multilig
                   </Button>
                 </div>
               </div>
-              {aide && <p className="text-[13px] text-black/55">{aide}</p>}
+              {aide && <p className="text-[13px] text-pin">{aide}</p>}
             </li>
           );
         })}
       </ol>
-      <Button type="button" variant="outline" onClick={() => inserer(valeurs.length)} className="h-10 w-fit rounded-full border-dashed bg-transparent text-[15px]">
+      <Button type="button" variant="outline" onClick={() => inserer(valeurs.length)} className="h-10 w-fit rounded-full border-dashed border-foreground/20 bg-transparent text-[15px] shadow-none hover:bg-card">
         <Plus /> {ajouter}
       </Button>
     </div>

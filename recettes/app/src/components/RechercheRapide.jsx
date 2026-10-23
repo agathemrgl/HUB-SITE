@@ -44,7 +44,7 @@ export default function RechercheRapide({ ouvert, setOuvert }) {
       onOpenChange={setOuvert}
       title="Rechercher"
       description="Chercher une recette ou un tag"
-      className="border-black bg-vert-clair"
+      className="rounded-3xl border-0 bg-card"
     >
       <CommandInput placeholder="Une recette, un ingrédient, un tag…" className="text-[16px]" />
       <CommandList>
@@ -58,7 +58,7 @@ export default function RechercheRapide({ ouvert, setOuvert }) {
                 setOuvert(false);
                 ouvrirFormulaire();
               }}
-              className="text-[16px] data-[selected=true]:bg-black data-[selected=true]:text-vert-clair"
+              className="text-[16px] rounded-xl py-2.5 data-[selected=true]:bg-pin-clair data-[selected=true]:text-pin [&_svg]:text-current"
             >
               <Plus />
               Nouvelle recette
@@ -72,7 +72,7 @@ export default function RechercheRapide({ ouvert, setOuvert }) {
               value={r.id}
               keywords={[r.titre, sansAccents(r.titre), sansAccents((r.ingredients || []).join(' '))]}
               onSelect={() => aller(`/recette/${r.id}`)}
-              className="text-[16px] data-[selected=true]:bg-black data-[selected=true]:text-vert-clair"
+              className="text-[16px] rounded-xl py-2.5 data-[selected=true]:bg-pin-clair data-[selected=true]:text-pin [&_svg]:text-current"
             >
               <CookingPot />
               {r.titre}
@@ -88,7 +88,7 @@ export default function RechercheRapide({ ouvert, setOuvert }) {
                 value={`tag-${slug(t)}`}
                 keywords={[t, sansAccents(t), f.famille]}
                 onSelect={() => aller(`/?tags=${slug(t)}`)}
-                className="text-[16px] data-[selected=true]:bg-black data-[selected=true]:text-vert-clair"
+                className="text-[16px] rounded-xl py-2.5 data-[selected=true]:bg-pin-clair data-[selected=true]:text-pin [&_svg]:text-current"
               >
                 <Tag />
                 {t}

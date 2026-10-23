@@ -32,35 +32,40 @@
   font-display: swap;
 }
 
-/* Couleurs du carnet, traduites en variables shadcn :
-   fond vert clair, texte et contours noirs, vert du logo en accent, rose au survol des titres. */
+/* Couleurs du carnet : palette Wind / Pine / Seedling / Leaf / Solar / Ash.
+   Pine pour les titres et les actions, Ash pour le texte, les quatre couleurs vives pour les aplats.
+   Fond et cartes : un blanc cassé à peine vert, dérivé de la palette.
+   Chaque recette reçoit une teinte (pousse, feuille, soleil, vent : voir lib/teintes.js). */
 :root {
-  --vert: #56cb56;
-  --vert-clair: #d1ffd4;
-  --rose: #d3129c;
-  --rose-clair: #ffd1ed;
-  --bleu-gris: rgb(160 168 182);
-  --pointilles: rgb(0 0 0 / 0.27);
+  --pin: #066339;          /* Pine */
+  --pin-fonce: #04361f;    /* Pine assombri : texte lisible sur Leaf */
+  --cendre: #45524f;       /* Ash */
+  --pousse: #a9e000;       /* Seedling */
+  --feuille: #20ba20;      /* Leaf */
+  --soleil: #eee935;       /* Solar */
+  --vent: #c4e6ea;         /* Wind */
+  --pin-clair: color-mix(in srgb, var(--pin) 14%, white);
+  --pointilles: rgb(69 82 79 / 0.14);
 
-  --radius: 0.75rem;
-  --background: var(--vert-clair);
-  --foreground: #000;
-  --card: var(--vert-clair);
-  --card-foreground: #000;
-  --popover: var(--vert-clair);
-  --popover-foreground: #000;
-  --primary: #000;
-  --primary-foreground: var(--vert-clair);
-  --secondary: color-mix(in srgb, var(--vert) 35%, var(--vert-clair));
-  --secondary-foreground: #000;
-  --muted: color-mix(in srgb, var(--vert) 20%, var(--vert-clair));
-  --muted-foreground: rgb(0 0 0 / 0.55);
-  --accent: var(--vert);
-  --accent-foreground: #000;
-  --destructive: #d40808;
-  --border: #000;
-  --input: #000;
-  --ring: #000;
+  --radius: 1rem;
+  --background: #f4f6ef;
+  --foreground: var(--cendre);
+  --card: #fbfcf8;
+  --card-foreground: var(--cendre);
+  --popover: #fbfcf8;
+  --popover-foreground: var(--cendre);
+  --primary: var(--pin);
+  --primary-foreground: #fbfcf8;
+  --secondary: #fbfcf8;
+  --secondary-foreground: var(--cendre);
+  --muted: #e5eae3;
+  --muted-foreground: #7a8682;
+  --accent: #e5eae3;
+  --accent-foreground: var(--cendre);
+  --destructive: #c0261c;
+  --border: rgb(69 82 79 / 0.14);
+  --input: rgb(69 82 79 / 0.18);
+  --ring: color-mix(in srgb, var(--pin) 40%, transparent);
 }
 
 @theme inline {
@@ -83,15 +88,20 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-vert: var(--vert);
-  --color-vert-clair: var(--vert-clair);
-  --color-rose: var(--rose);
-  --color-rose-clair: var(--rose-clair);
-  --color-bleu-gris: var(--bleu-gris);
+  --color-pin: var(--pin);
+  --color-pin-fonce: var(--pin-fonce);
+  --color-pin-clair: var(--pin-clair);
+  --color-cendre: var(--cendre);
+  --color-pousse: var(--pousse);
+  --color-feuille: var(--feuille);
+  --color-soleil: var(--soleil);
+  --color-vent: var(--vent);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 16px);
   --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
@@ -105,5 +115,55 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     letter-spacing: -0.01em;
+  }
+}
+
+@layer components {
+  /* Largeur commune des pages : toute la largeur de l'écran, avec une gouttière fine qui grandit un peu */
+  :root {
+    --gouttiere: 16px;
+  }
+  @media (min-width: 768px) {
+    :root {
+      --gouttiere: 24px;
+    }
+  }
+  @media (min-width: 1280px) {
+    :root {
+      --gouttiere: 32px;
+    }
+  }
+  .conteneur {
+    width: 100%;
+    margin-inline: auto;
+    padding-inline: var(--gouttiere);
+  }
+  /* Rangée qui déborde jusqu'aux bords de l'écran depuis un .conteneur (rangées qui défilent) */
+  .pleine-largeur {
+    margin-inline: calc(-1 * var(--gouttiere));
+    padding-inline: var(--gouttiere);
+    scroll-padding-inline: var(--gouttiere);
+  }
+
+  /* Petites capitales grises au-dessus des sections (« ENVIES », « INGRÉDIENTS »…) */
+  .surtitre {
+    font-size: 13px;
+    line-height: 1.2;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+  }
+
+  /* Rangées qui défilent horizontalement sans barre visible */
+  .defilement {
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .defilement::-webkit-scrollbar {
+    display: none;
+  }
+  .defilement > * {
+    scroll-snap-align: start;
   }
 }

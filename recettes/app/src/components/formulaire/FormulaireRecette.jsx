@@ -2,23 +2,19 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
 import { toast } from 'sonner';
-import ArtCanvas from '@/components/ArtCanvas';
 import CarteRecette from '@/components/CarteRecette';
 import Filtres from '@/components/Filtres';
 import ListeEditable from '@/components/formulaire/ListeEditable';
 import { Faq, Infos } from '@/components/formulaire/Paires';
 import { champ, etiquette, zoneTexte } from '@/components/formulaire/styles';
-import { tagVariants } from '@/components/tag';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Sheet, SheetContent, SheetDescription, SheetTitle } from '@/components/ui/sheet';
 import { Textarea } from '@/components/ui/textarea';
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { Entete, Infos as InfosRecette, Preparation } from '@/pages/Recette';
 import { TAGS } from '@/data/tags';
-import { NOMS_FAMILLES_ART } from '@/lib/art';
 import { enregistrerRecette } from '@/lib/donnees';
 import { QUANTITE, slug } from '@/lib/recettes';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
@@ -47,7 +43,6 @@ const vide = () => ({
   sousTitre: '',
   date: aujourdhui(),
   tags: [],
-  art: '',
   infos: [
     { label: 'Préparation', valeur: '' },
     { label: 'Cuisson', valeur: '' },
@@ -68,7 +63,6 @@ function depuisRecette(r) {
     sousTitre: r.sousTitre || '',
     date: r.date,
     tags: r.tags || [],
-    art: r.art || '',
     infos: (r.infos || []).map(([label, valeur]) => ({ label, valeur })),
     ingredients: avecUneLigne(r.ingredients),
     histoire: avecUneLigne([].concat(r.histoire || [])),
@@ -88,7 +82,6 @@ function versRecette(v, id, userId) {
     sousTitre: v.sousTitre.trim(),
     date: v.date || aujourdhui(),
     tags: v.tags,
-    art: v.art || undefined,
     infos: v.infos.filter((x) => x.label.trim()).map((x) => [x.label.trim(), x.valeur.trim()]),
     ingredients: lignes(v.ingredients),
     histoire: lignes(v.histoire),
@@ -134,14 +127,13 @@ function Champ({ id, label, erreur, children, aide }) {
         {label}
       </Label>
       {children}
-      {aide && !erreur && <p className="text-[13px] text-black/55">{aide}</p>}
+      {aide && !erreur && <p className="text-[13px] text-muted-foreground">{aide}</p>}
       {erreur && <p className="text-[14px] text-destructive">{erreur}</p>}
     </div>
   );
 }
 
 function Essentiel({ v, maj, erreurs }) {
-  const idArt = slug(v.titre) || 'nouvelle-recette';
   return (
     <div className="grid gap-5">
       <Champ id="f-titre" label="Titre *" erreur={erreurs.titre}>
@@ -160,24 +152,6 @@ function Essentiel({ v, maj, erreurs }) {
           onChange={(s) => maj({ tags: TAGS.flatMap((f) => f.tags).filter((t) => s.has(slug(t))) })}
         />
       </div>
-      <div className="grid gap-2">
-        <p className={etiquette}>Dessin</p>
-        <ToggleGroup type="single" value={v.art || 'hasard'} onValueChange={(x) => x && maj({ art: x === 'hasard' ? '' : x })} spacing={2} className="grid w-full grid-cols-3 gap-2 sm:grid-cols-7">
-          {['hasard', ...NOMS_FAMILLES_ART].map((f) => (
-            <ToggleGroupItem
-              key={f}
-              value={f}
-              aria-label={f === 'hasard' ? 'Au hasard' : f}
-              className="flex h-auto flex-col items-stretch gap-1 rounded-lg border border-black/20 bg-transparent p-1.5 text-[13px] font-normal hover:bg-black/5 hover:text-black data-[spacing=2]:rounded-lg data-[state=on]:border-black data-[state=on]:bg-transparent data-[state=on]:text-black data-[state=on]:ring-2 data-[state=on]:ring-black"
-            >
-              <span className="block aspect-[335/210] w-full bg-vert-clair">
-                {f === 'hasard' ? <span className="grid size-full place-items-center text-[20px]">?</span> : <ArtCanvas id={idArt} famille={f} />}
-              </span>
-              {f === 'hasard' ? 'Au hasard' : f === 'petales' ? 'pétales' : f}
-            </ToggleGroupItem>
-          ))}
-        </ToggleGroup>
-      </div>
     </div>
   );
 }
@@ -191,7 +165,7 @@ function SectionIngredients({ v, maj }) {
       </div>
       <div className="grid gap-2">
         <p className={etiquette}>Ingrédients</p>
-        <p className="-mt-1 text-[13px] text-black/55">La quantité en premier (« 250 g de farine ») pour que ÷2 / ×2 la recalcule. Coller une liste entière la découpe en lignes.</p>
+        <p className="-mt-1 text-[13px] text-muted-foreground">La quantité en premier (« 250 g de farine ») pour que ÷2 / ×2 la recalcule. Coller une liste entière la découpe en lignes.</p>
         <ListeEditable nom="Ingrédient" valeurs={v.ingredients} onChange={(ingredients) => maj({ ingredients })} placeholder="250 g de farine" ajouter="Ajouter un ingrédient" indice={aideIngredient} />
       </div>
     </div>
@@ -203,7 +177,7 @@ function SectionPreparation({ v, maj }) {
     <div className="grid gap-6">
       <div className="grid gap-2">
         <p className={etiquette}>Histoire</p>
-        <p className="-mt-1 text-[13px] text-black/55">D’où vient la recette, qui me l’a transmise… Un paragraphe par case.</p>
+        <p className="-mt-1 text-[13px] text-muted-foreground">D’où vient la recette, qui me l’a transmise… Un paragraphe par case.</p>
         <ListeEditable nom="Paragraphe" multiligne valeurs={v.histoire} onChange={(histoire) => maj({ histoire })} ajouter="Ajouter un paragraphe" />
       </div>
       <div className="grid gap-2">
@@ -354,7 +328,7 @@ export default function FormulaireRecette() {
 
   const titreFormulaire = existante ? 'Modifier la recette' : 'Nouvelle recette';
   const boutonEnregistrer = (
-    <Button type="submit" disabled={envoi} className="h-11 rounded-full px-6 text-[16px]">
+    <Button type="submit" disabled={envoi} className="h-12 rounded-full px-6 text-[16px] shadow-none">
       <Check /> {envoi ? 'Enregistrement…' : 'Enregistrer'}
     </Button>
   );
@@ -370,11 +344,11 @@ export default function FormulaireRecette() {
   if (ordinateur) {
     return (
       <Sheet open={ouvert} onOpenChange={(o) => !o && fermerFormulaire()}>
-        <SheetContent side="right" className="w-full gap-0 border-black bg-vert-clair p-0 sm:max-w-[min(1180px,94vw)]">
+        <SheetContent side="right" className="w-full gap-0 border-0 bg-background p-0 sm:max-w-[min(1180px,94vw)]">
           <form onSubmit={surEnvoi} onKeyDown={surTouche} className="flex h-full flex-col">
-            <div className="border-b border-black px-8 py-5">
-              <SheetTitle className="text-[28px] font-normal tracking-[-0.03em]">{titreFormulaire}</SheetTitle>
-              <SheetDescription className="text-[15px] text-black/60">L’aperçu à droite se met à jour pendant la saisie.</SheetDescription>
+            <div className="px-8 pt-6 pb-4">
+              <SheetTitle className="text-[32px] font-normal tracking-[-0.04em] text-pin">{titreFormulaire}</SheetTitle>
+              <SheetDescription className="text-[15px] text-muted-foreground">L’aperçu à droite se met à jour pendant la saisie.</SheetDescription>
             </div>
             <div className="grid min-h-0 flex-1 grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
               <div className="overflow-y-auto px-8 py-6">
@@ -382,19 +356,19 @@ export default function FormulaireRecette() {
                   const Section = RENDU[id];
                   return (
                     <section key={id} className="mb-10">
-                      <Entete className="mb-4">{titre}</Entete>
+                      <h3 className="mb-5 text-[24px] leading-none tracking-[-0.03em]">{titre}</h3>
                       <Section v={v} maj={maj} erreurs={erreurs} />
                     </section>
                   );
                 })}
               </div>
-              <aside className="overflow-y-auto border-l border-black bg-[color-mix(in_srgb,var(--vert)_14%,var(--vert-clair))] px-8 py-6" aria-label="Aperçu">
-                <p className="mb-4 text-[13px] tracking-[0.02em] text-black/60 uppercase">Aperçu</p>
+              <aside className="m-3 ml-0 overflow-y-auto rounded-3xl bg-muted px-6 py-6" aria-label="Aperçu">
+                <p className="surtitre mb-4">Aperçu</p>
                 <Apercu recette={recette} />
               </aside>
             </div>
-            <div className="flex items-center justify-end gap-2 border-t border-black px-8 py-4">
-              <Button type="button" variant="ghost" onClick={fermerFormulaire} className="h-11 rounded-full text-[16px]">
+            <div className="flex items-center justify-end gap-2 border-t border-border px-8 py-4">
+              <Button type="button" variant="ghost" onClick={fermerFormulaire} className="h-12 rounded-full text-[16px] hover:bg-card">
                 {existante ? 'Annuler' : 'Fermer (brouillon gardé)'}
               </Button>
               {boutonEnregistrer}
@@ -411,11 +385,12 @@ export default function FormulaireRecette() {
 
   return (
     <Dialog open={ouvert} onOpenChange={(o) => !o && fermerFormulaire()}>
-      <DialogContent className="flex h-dvh max-w-none flex-col gap-0 rounded-none border-0 bg-vert-clair p-0 sm:max-w-none">
+      <DialogContent className="flex h-dvh max-w-none flex-col gap-0 rounded-none border-0 bg-background p-0 sm:max-w-none">
         <form onSubmit={surEnvoi} onKeyDown={surTouche} className="flex min-h-0 flex-1 flex-col">
-          <div className="border-b border-black px-5 pt-[max(16px,env(safe-area-inset-top))] pb-3">
-            <DialogTitle className="pr-10 text-[22px] font-normal tracking-[-0.02em]">{titreFormulaire}</DialogTitle>
+          <div className="px-5 pt-[max(16px,env(safe-area-inset-top))] pb-3">
+            <DialogTitle className="pr-10 text-[26px] font-normal tracking-[-0.04em] text-pin">{titreFormulaire}</DialogTitle>
             <DialogDescription className="sr-only">Formulaire en {etapes.length} étapes</DialogDescription>
+            {/* Progression : un segment par étape (touchable pour y aller), puis le nom de l'étape en cours */}
             <ol className="mt-3 flex gap-1" aria-label="Étapes">
               {etapes.map((s, i) => (
                 <li key={s.id} className="flex-1">
@@ -423,25 +398,32 @@ export default function FormulaireRecette() {
                     type="button"
                     onClick={() => setEtape(i)}
                     aria-current={i === etape ? 'step' : undefined}
-                    className={cn(tagVariants({ taille: 'sm', actif: i === etape }), 'w-full px-1 text-[12px] md:text-[12px]', i < etape && 'bg-black/10')}
+                    aria-label={`Étape ${i + 1} : ${s.titre}`}
+                    className="block w-full py-2"
                   >
-                    {s.titre}
+                    <span className={cn('block h-1 rounded-full transition-colors', i <= etape ? 'bg-pin' : 'bg-foreground/10')} />
                   </button>
                 </li>
               ))}
             </ol>
+            <p className="flex items-baseline justify-between text-[15px]">
+              <span>{courante.titre}</span>
+              <span className="text-[13px] text-muted-foreground">
+                Étape {etape + 1} sur {etapes.length}
+              </span>
+            </p>
           </div>
           <div className="min-h-0 flex-1 overflow-y-auto px-5 py-5">
             {Section ? <Section v={v} maj={maj} erreurs={erreurs} /> : <Apercu recette={recette} />}
           </div>
-          <div className="flex gap-2 border-t border-black px-5 pt-3 pb-[max(12px,env(safe-area-inset-bottom))]">
-            <Button type="button" variant="outline" disabled={etape === 0} onClick={() => setEtape(etape - 1)} className="h-11 flex-1 rounded-full bg-transparent text-[16px]">
+          <div className="flex gap-2 border-t border-border px-5 pt-3 pb-[max(12px,env(safe-area-inset-bottom))]">
+            <Button type="button" variant="secondary" disabled={etape === 0} onClick={() => setEtape(etape - 1)} className="h-12 flex-1 rounded-full bg-card text-[16px] shadow-none">
               <ArrowLeft /> Précédent
             </Button>
             {derniere ? (
               <div className="flex flex-1 [&>button]:flex-1">{boutonEnregistrer}</div>
             ) : (
-              <Button type="button" onClick={() => setEtape(etape + 1)} className="h-11 flex-1 rounded-full text-[16px]">
+              <Button type="button" onClick={() => setEtape(etape + 1)} className="h-12 flex-1 rounded-full text-[16px] shadow-none">
                 Suivant <ArrowRight />
               </Button>
             )}

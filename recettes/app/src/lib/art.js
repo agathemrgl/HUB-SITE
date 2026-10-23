@@ -413,4 +413,5 @@ function dessiner(ctx, j, P, largeurRef, hauteurRef, couleurs, r = 2) {
 }
 
 export const NOMS_FAMILLES_ART = NOMS_FAMILLES;
+export const graineTexte = graine;
 export { LARGEUR_REF, configPour, dessiner };

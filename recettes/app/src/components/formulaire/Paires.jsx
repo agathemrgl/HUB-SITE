@@ -25,7 +25,7 @@ export function Infos({ valeurs, onChange }) {
           </Button>
         </div>
       ))}
-      <Button type="button" variant="outline" onClick={() => onChange([...valeurs, { label: '', valeur: '' }])} className="h-10 w-fit rounded-full border-dashed bg-transparent text-[15px]">
+      <Button type="button" variant="outline" onClick={() => onChange([...valeurs, { label: '', valeur: '' }])} className="h-10 w-fit rounded-full border-dashed border-foreground/20 bg-transparent text-[15px] shadow-none hover:bg-card">
         <Plus /> Ajouter une info
       </Button>
     </div>
@@ -38,7 +38,7 @@ export function Faq({ valeurs, onChange }) {
   return (
     <div className="grid gap-3">
       {valeurs.map((x, i) => (
-        <div key={i} className="grid gap-1.5 border-b border-dotted border-[var(--pointilles)] pb-3">
+        <div key={i} className="grid gap-1.5 rounded-3xl bg-card/60 p-2">
           <div className="flex items-center gap-1">
             <Input value={x.question} onChange={(e) => changer(i, 'question', e.target.value)} placeholder="La question" aria-label={`Question ${i + 1}`} className={`${champ} flex-1`} />
             <Button type="button" variant="ghost" size="icon-sm" onClick={() => onChange(valeurs.filter((_, j) => j !== i))} aria-label="Retirer la question">
@@ -48,7 +48,7 @@ export function Faq({ valeurs, onChange }) {
           <Textarea value={x.reponse} onChange={(e) => changer(i, 'reponse', e.target.value)} placeholder="La réponse" aria-label={`Réponse ${i + 1}`} className={`${zoneTexte} mr-9`} />
         </div>
       ))}
-      <Button type="button" variant="outline" onClick={() => onChange([...valeurs, { question: '', reponse: '' }])} className="h-10 w-fit rounded-full border-dashed bg-transparent text-[15px]">
+      <Button type="button" variant="outline" onClick={() => onChange([...valeurs, { question: '', reponse: '' }])} className="h-10 w-fit rounded-full border-dashed border-foreground/20 bg-transparent text-[15px] shadow-none hover:bg-card">
         <Plus /> Ajouter une question
       </Button>
     </div>
