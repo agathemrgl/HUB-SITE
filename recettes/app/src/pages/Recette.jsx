@@ -224,7 +224,7 @@ export default function Recette() {
       <article>
         {/* Bandeau dans la teinte de la recette, dessin en filigrane */}
         <header className="relative overflow-hidden rounded-b-[32px] md:mx-[calc(var(--gouttiere)/2)] md:rounded-[32px]" style={{ backgroundColor: teinte.fond }}>
-          <div className="pointer-events-none absolute inset-y-0 right-[-10%] w-[85%] opacity-40 md:right-0 md:w-[55%] md:opacity-60" aria-hidden="true">
+          <div className="pointer-events-none absolute inset-y-0 right-[-10%] w-[85%] opacity-40 md:inset-x-0 md:w-full md:opacity-45" aria-hidden="true">
             <ArtCanvas id={recette.id} teinte={teinte} />
           </div>
           <div className="conteneur relative pt-4 pb-8 md:pt-6 md:pb-14">
