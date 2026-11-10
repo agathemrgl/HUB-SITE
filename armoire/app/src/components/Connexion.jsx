@@ -23,8 +23,7 @@ export default function Connexion() {
 
   return (
     <div className="conteneur grid min-h-dvh content-center justify-items-center gap-8 py-12">
-      <img src="/armoire/favicon.svg" alt="" className="size-16 md:size-20" />
-      <h1 className="-mt-2 text-center font-display text-[clamp(64px,16vw,200px)] leading-[0.82] text-titre lowercase">armoire</h1>
+      <h1 className="text-center font-display text-[48px] leading-none text-titre lowercase md:text-[64px]">armoire</h1>
 
       <form onSubmit={envoyer} className="grille-filets w-full max-w-md">
         <label className="grid gap-2 p-4 focus-within:bg-accent">
@@ -43,7 +42,6 @@ export default function Connexion() {
         </button>
       </form>
 
-      <p className="etiquette text-center text-encre/50">Même compte que le hub · agathe.space</p>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { HashRouter, Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom';
+import { HashRouter, Navigate, Outlet, Route, Routes, useLocation, useSearchParams } from 'react-router-dom';
 import { Toaster } from 'sonner';
 import Connexion from '@/components/Connexion';
 import Header, { BarreOnglets } from '@/components/Header';
@@ -18,8 +18,10 @@ function RemonterEnHaut() {
 
 function Gabarit() {
   const { session } = useArmoire();
+  const [params] = useSearchParams();
   if (session === undefined) return null;
-  if (!session) return <Connexion />;
+  // Aperçu de la page de connexion même connectée : …/armoire/#/?apercu=connexion
+  if (!session || params.get('apercu') === 'connexion') return <Connexion />;
   return (
     <div className="avec-barre flex min-h-dvh flex-col">
       <Header />
