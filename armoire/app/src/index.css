@@ -1,0 +1,186 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* Polices d'Armoire : BBB DM Sans (texte) et Crozet·te (titres), voir armoire/sources/typos. */
+@font-face { font-family: 'BBBDMSans'; src: url('./assets/fonts/BBBDMSans-Light.woff2') format('woff2'); font-weight: 300; font-display: swap; }
+@font-face { font-family: 'BBBDMSans'; src: url('./assets/fonts/BBBDMSans-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'BBBDMSans'; src: url('./assets/fonts/BBBDMSans-Medium.woff2') format('woff2'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'BBBDMSans'; src: url('./assets/fonts/BBBDMSans-Bold.woff2') format('woff2'); font-weight: 600 700; font-display: swap; }
+@font-face { font-family: 'Crozet'; src: url('./assets/fonts/Crozet-Regular.woff2') format('woff2'); font-weight: 400; font-display: swap; }
+
+/* Palette « papier & turquoise » : papier blanc cassé, turquoise #00C4A0 partout (aplats, filets,
+   titres, étiquettes), texte encre quasi noir. Angles droits partout (voir @layer base). */
+:root {
+  --fond: #eff0ea;
+  --carte: #f7f7f2;
+  --gris: #e4e5e0;
+  /* Une seule couleur pour toute l'interface : aplats, filets, titres et étiquettes */
+  --vert: #00c4a0;
+  --vert-clair: var(--vert);
+  --vert-texte: var(--vert);
+  --titre: var(--vert);     /* grand titre de l'en-tête */
+  --papier: #fbfbf7;
+  --encre: #1c1f22;
+
+  --radius: 0px;
+  --background: var(--fond);
+  --foreground: var(--encre);
+  --card: var(--carte);
+  --card-foreground: var(--encre);
+  --popover: var(--carte);
+  --popover-foreground: var(--encre);
+  --primary: var(--vert-clair);
+  --primary-foreground: var(--encre);
+  --secondary: var(--gris);
+  --secondary-foreground: var(--encre);
+  --muted: var(--gris);
+  --muted-foreground: #5b605c;
+  --accent: color-mix(in srgb, var(--vert) 22%, var(--carte));
+  --accent-foreground: var(--encre);
+  --destructive: #c4281c;
+  --border: var(--vert);
+  --input: color-mix(in srgb, var(--vert) 55%, transparent);
+  --ring: color-mix(in srgb, var(--vert) 50%, transparent);
+}
+
+@theme inline {
+  --font-sans: 'BBBDMSans', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Crozet', ui-serif, serif;
+  --font-mono: 'DM Mono', ui-monospace, monospace;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-fond: var(--fond);
+  --color-carte: var(--carte);
+  --color-gris: var(--gris);
+  --color-vert: var(--vert);
+  --color-vert-clair: var(--vert-clair);
+  --color-vert-texte: var(--vert-texte);
+  --color-titre: var(--titre);
+  --color-papier: var(--papier);
+  --color-encre: var(--encre);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 16px);
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { -webkit-tap-highlight-color: transparent; }
+  /* Angles droits partout ; seuls les éléments marqués .rond (pastilles, points) restent ronds */
+  *, *::before, *::after { border-radius: 0 !important; }
+  .rond { border-radius: 9999px !important; }
+  .font-display { font-weight: 400 !important; font-synthesis: none; letter-spacing: -0.01em !important; }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    letter-spacing: -0.005em;
+  }
+}
+
+@layer components {
+  :root { --gouttiere: 16px; }
+  @media (min-width: 768px) { :root { --gouttiere: 28px; } }
+  @media (min-width: 1280px) { :root { --gouttiere: 48px; } }
+  .conteneur {
+    width: 100%;
+    max-width: 1600px;
+    margin-inline: auto;
+    padding-inline: var(--gouttiere);
+  }
+  /* Petites étiquettes en mono capitales (façon fiche produit) */
+  .etiquette {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.3;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .surtitre {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.2;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--vert-texte);
+  }
+  /* Numéro dans un carré vert arrondi (« 01 ») */
+  .numero {
+    display: inline-grid;
+    place-items: center;
+    min-width: 2.1rem;
+    height: 1.6rem;
+    padding-inline: 0.35rem;
+    border-radius: 0.4rem;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+  }
+  /* Grille à filets : les cases sont séparées par un trait vert de 1 px */
+  /* (les cases vides d'une rangée incomplète restent en aplat vert) */
+  .grille-filets {
+    display: grid;
+    gap: 1px;
+    background: var(--vert);
+    border: 1px solid var(--vert);
+  }
+  .grille-filets > * { background: var(--carte); }
+  .defilement { scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .defilement::-webkit-scrollbar { display: none; }
+  /* Papier quadrillé des tenues */
+  .quadrillage {
+    background-color: var(--papier);
+    background-image:
+      linear-gradient(rgb(0 196 160 / 0.2) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(0 196 160 / 0.2) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  /* Barre d'onglets du bas : téléphone, et app installée (quelle que soit la taille d'écran) */
+  .barre-onglets { display: grid; }
+  .avec-barre { padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
+  @media (min-width: 768px) {
+    .barre-onglets { display: none; }
+    .avec-barre { padding-bottom: 0; }
+  }
+  @media (display-mode: standalone) {
+    .barre-onglets { display: grid; }
+    .avec-barre { padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
+    /* Dans l'app : pas de rebond élastique ni de sélection de texte accidentelle sur les onglets */
+    html, body { overscroll-behavior-y: none; }
+    .barre-onglets { -webkit-user-select: none; user-select: none; }
+  }
+  /* Croix fine des cases « ajouter » */
+  .croix {
+    position: relative;
+    width: 56px;
+    height: 56px;
+  }
+  .croix::before, .croix::after {
+    content: '';
+    position: absolute;
+    background: currentColor;
+  }
+  .croix::before { left: 50%; top: 0; bottom: 0; width: 1.5px; transform: translateX(-50%); }
+  .croix::after { top: 50%; left: 0; right: 0; height: 1.5px; transform: translateY(-50%); }
+}
