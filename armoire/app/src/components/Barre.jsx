@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
  * Boutons en capitales mono à gauche (filtres, tri, navigation…), action principale à droite, séparée par un filet.
  */
 export function Barre({ className, children }) {
-  return <div className={cn('sticky top-0 z-20 mt-3 flex h-11 items-stretch border border-vert bg-fond/90 text-vert-texte backdrop-blur md:mt-8', className)}>{children}</div>;
+  return <div className={cn('sticky top-0 z-20 mt-3 flex h-11 items-stretch border border-vert bg-fond/95 text-vert-texte md:mt-8', className)}>{children}</div>;
 }
 
 export const styleBoutonBarre = 'etiquette flex shrink-0 items-center gap-1.5 px-3 transition-colors hover:bg-accent disabled:opacity-40 md:px-4';

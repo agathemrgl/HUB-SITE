@@ -126,7 +126,7 @@ export default function FormulaireVetement({ ouvert, onOpenChange, vetement, cat
 
   return (
     <Dialog open={ouvert} onOpenChange={(o) => !envoi && onOpenChange(o)}>
-      <DialogContent className="max-h-[92dvh] gap-0 overflow-y-auto rounded-lg border border-vert bg-carte p-0 shadow-[8px_8px_0_var(--vert)] sm:max-w-2xl">
+      <DialogContent className="max-h-[92dvh] gap-0 overflow-y-auto overscroll-contain rounded-lg border border-vert bg-carte p-0 shadow-[8px_8px_0_var(--vert)] sm:max-w-2xl">
         <DialogHeader className={vetement ? 'sticky top-0 z-10 border-b border-vert bg-carte/95 px-6 pt-6 pb-4 backdrop-blur' : 'sr-only'}>
           <DialogTitle className="font-display text-[26px] leading-none text-vert-texte lowercase md:text-[32px]">{vetement ? 'modifier' : 'Ajouter des vêtements'}</DialogTitle>
           <DialogDescription className="sr-only">Photo et caractéristiques du vêtement</DialogDescription>

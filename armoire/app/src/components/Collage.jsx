@@ -15,11 +15,18 @@ export const LARGEUR_MAX = 1.2;
 export default function Collage({ composition, vetementsParId, editable = false, selection, onSelection, onChange, className }) {
   const cadre = useRef(null);
   const geste = useRef(null);
+  const toucher = useRef(null); // toucher simple sur une pièce non choisie (sélection, sans bloquer le défilement)
 
   const elements = composition.filter((e) => vetementsParId.has(e.v));
 
   function commencer(event, index, mode) {
     if (!editable) return;
+    // Au doigt : une pièce non choisie se sélectionne d'abord (le geste peut alors faire défiler la page) ;
+    // on ne la déplace / redimensionne qu'une fois choisie. À la souris, on attrape directement.
+    if (event.pointerType !== 'mouse' && mode === 'deplacer' && selection !== index) {
+      toucher.current = { index, x: event.clientX, y: event.clientY };
+      return;
+    }
     event.preventDefault();
     event.stopPropagation();
     onSelection?.(index);
@@ -46,15 +53,18 @@ export default function Collage({ composition, vetementsParId, editable = false,
     onChange(suivant);
   }
 
-  function finir() {
+  function finir(event) {
+    const t = toucher.current;
+    if (t && event?.type === 'pointerup' && Math.hypot(event.clientX - t.x, event.clientY - t.y) < 10) onSelection?.(t.index);
+    toucher.current = null;
     geste.current = null;
   }
 
   return (
     <div
       ref={cadre}
-      className={cn('relative aspect-[3/4] w-full touch-none overflow-hidden select-none', className)}
-      onPointerDown={() => editable && onSelection?.(null)}
+      className={cn('relative aspect-[3/4] w-full overflow-hidden select-none', className)}
+      onClick={(ev) => editable && ev.target === ev.currentTarget && onSelection?.(null)}
     >
       {composition.map((e, index) => {
         const vetement = vetementsParId.get(e.v);
@@ -64,14 +74,14 @@ export default function Collage({ composition, vetementsParId, editable = false,
           <div
             key={`${e.v}-${index}`}
             className={cn('absolute', editable && 'cursor-grab active:cursor-grabbing')}
-            style={{ left: `${e.x * 100}%`, top: `${e.y * 100}%`, width: `${e.l * 100}%`, zIndex: e.z ?? index }}
+            style={{ left: `${e.x * 100}%`, top: `${e.y * 100}%`, width: `${e.l * 100}%`, zIndex: e.z ?? index, touchAction: choisi ? 'none' : 'auto' }}
             onPointerDown={(ev) => commencer(ev, index, 'deplacer')}
             onPointerMove={bouger}
             onPointerUp={finir}
             onPointerCancel={finir}
           >
             {vetement.photo ? (
-              <img src={urlPhoto(vetement.photo)} alt={vetement.nom} draggable={false} className="pointer-events-none block w-full drop-shadow-[0_6px_10px_rgb(0_0_0/0.12)]" />
+              <img src={urlPhoto(vetement.photo)} alt={vetement.nom} draggable={false} className={cn('pointer-events-none block w-full', editable && 'drop-shadow-[0_6px_10px_rgb(0_0_0/0.12)]')} loading={editable ? undefined : 'lazy'} />
             ) : (
               <div className="grid aspect-square w-full place-items-center rounded-lg bg-muted text-center text-[11px]">{vetement.nom}</div>
             )}
@@ -82,7 +92,7 @@ export default function Collage({ composition, vetementsParId, editable = false,
                   role="slider"
                   aria-label="Redimensionner"
                   aria-valuenow={Math.round(e.l * 100)}
-                  className="absolute -right-3 -bottom-3 rond size-6 cursor-nwse-resize border-2 border-white bg-primary shadow"
+                  className="absolute -right-3 -bottom-3 rond size-7 touch-none cursor-nwse-resize after:absolute after:-inset-3 after:content-[''] border-2 border-white bg-primary shadow"
                   onPointerDown={(ev) => commencer(ev, index, 'taille')}
                   onPointerMove={bouger}
                   onPointerUp={finir}

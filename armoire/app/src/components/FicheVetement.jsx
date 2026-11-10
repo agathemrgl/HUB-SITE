@@ -37,11 +37,12 @@ export default function FicheVetement({ vetement, onClose, onModifier }) {
     <Sheet open={!!vetement} onOpenChange={(o) => !o && onClose()}>
       <SheetContent
         side={large ? 'right' : 'bottom'}
-        className={cn('gap-0 overflow-y-auto border-vert bg-carte p-0', large ? 'w-full border-l sm:max-w-md' : 'max-h-[90dvh] rounded-t-xl border-t')}
+        className={cn('block gap-0 overflow-hidden border-vert bg-carte p-0', large ? 'w-full border-l sm:max-w-md' : 'h-[88dvh] border-t')}
       >
+        {/* Bloc qui défile (pas de colonne flexible : sinon la photo est écrasée au lieu de défiler) */}
         {v && (
-          <>
-            <Photo vetement={v} className="quadrillage aspect-square w-full border-b border-vert" imgClassName="p-10" />
+          <div className="h-full overflow-y-auto overscroll-contain pb-[env(safe-area-inset-bottom)]">
+            <Photo vetement={v} className="quadrillage aspect-square max-h-[55dvh] w-full border-b border-vert" imgClassName="p-10" />
             <div className="grid gap-4 p-6">
               <SheetHeader className="p-0">
                 <div className="flex items-start justify-between gap-3">
@@ -122,7 +123,7 @@ export default function FicheVetement({ vetement, onClose, onModifier }) {
                 <Trash2 /> Supprimer ce vêtement
               </Button>
             </div>
-          </>
+          </div>
         )}
         <Confirmation
           ouvert={confirmer}

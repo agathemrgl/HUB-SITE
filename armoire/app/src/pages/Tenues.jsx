@@ -139,7 +139,7 @@ export default function Tenues() {
           {affichees.map((t, i) => (
             <CarteTenue key={t.id} tenue={t} n={i + 1} vetementsParId={vetementsParId} stats={usage.parTenue.get(t.id)} to={`/tenues/${t.id}`} />
           ))}
-          <CaseAjout label="Nouvelle tenue" onClick={() => naviguer('/tenues/nouvelle')} />
+          <CaseAjout forme="tenue" label="Nouvelle tenue" onClick={() => naviguer('/tenues/nouvelle')} />
         </div>
       )}
       </div>

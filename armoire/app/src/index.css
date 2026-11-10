@@ -166,8 +166,7 @@
   @media (display-mode: standalone) {
     .barre-onglets { display: grid; }
     .avec-barre { padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
-    /* Dans l'app : pas de rebond élastique ni de sélection de texte accidentelle sur les onglets */
-    html, body { overscroll-behavior-y: none; }
+    /* Dans l'app : pas de sélection de texte accidentelle sur les onglets */
     .barre-onglets { -webkit-user-select: none; user-select: none; }
   }
   /* Croix fine des cases « ajouter » */

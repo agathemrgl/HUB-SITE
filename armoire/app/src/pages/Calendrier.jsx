@@ -52,7 +52,7 @@ function FenetreJour({ jour, onClose }) {
 
   return (
     <Dialog open={!!jour} onOpenChange={(o) => !o && onClose()}>
-      <DialogContent className={`max-h-[92dvh] gap-5 overflow-y-auto ${cadre} sm:max-w-xl`}>
+      <DialogContent className={`max-h-[92dvh] gap-5 overflow-y-auto overscroll-contain ${cadre} sm:max-w-xl`}>
         <DialogHeader>
           <DialogTitle className="font-sans text-[26px] leading-tight font-medium text-vert-texte first-letter:uppercase">{formatJour(jour)}</DialogTitle>
           <DialogDescription className="etiquette text-encre/60">{tenue ? (passe ? 'Tenue portée' : 'Tenue prévue') : passe ? 'Rien de noté ce jour-là' : 'Rien de prévu pour l’instant'}</DialogDescription>

@@ -71,14 +71,34 @@ export function BlocVide({ label, onClick, children }) {
   );
 }
 
-// Case « + » qui termine une grille (ajouter un vêtement, une tenue…)
-export function CaseAjout({ label, className, ...props }) {
+// Case « + » qui termine une grille (ajouter un vêtement, une tenue…). Elle reprend la structure
+// invisible des cases voisines (`forme`) pour avoir exactement les mêmes proportions.
+export function CaseAjout({ label, forme = 'vetement', className, ...props }) {
+  const croix = (
+    <span className="grid h-full place-items-center content-center gap-4">
+      <span className="croix transition-transform duration-300 group-hover:rotate-90" aria-hidden />
+      <span className="etiquette">{label}</span>
+    </span>
+  );
   return (
-    <button type="button" className={cn('group grid min-h-48 place-items-center gap-3 p-6 text-vert-texte transition-colors hover:bg-accent', className)} {...props}>
-      <span className="grid place-items-center gap-4">
-        <span className="croix transition-transform duration-300 group-hover:rotate-90" aria-hidden />
-        <span className="etiquette">{label}</span>
-      </span>
+    <button type="button" aria-label={label} className={cn('group block w-full text-left text-vert-texte transition-colors hover:bg-accent', className)} {...props}>
+      {forme === 'tenue' ? (
+        <>
+          <span className="block aspect-[3/4]">{croix}</span>
+          <span aria-hidden className="invisible grid gap-1.5 p-3 md:p-4">
+            <span className="text-[15px] md:text-[17px]">.</span>
+            <span className="etiquette">.</span>
+            <span className="etiquette">.</span>
+          </span>
+        </>
+      ) : (
+        <span className="flex flex-col p-3 md:p-4">
+          <span aria-hidden className="invisible etiquette">.</span>
+          <span aria-hidden className="invisible etiquette">.</span>
+          <span className="mt-3 block aspect-square w-full">{croix}</span>
+          <span aria-hidden className="invisible numero mt-2 self-end">00</span>
+        </span>
+      )}
     </button>
   );
 }
