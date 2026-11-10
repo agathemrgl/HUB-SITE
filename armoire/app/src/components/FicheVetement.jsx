@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Heart, Pencil, Plus, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
+import { Drawer, DrawerContent, DrawerDescription, DrawerTitle } from '@/components/ui/drawer';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import Collage from '@/components/Collage';
 import Confirmation from '@/components/Confirmation';
@@ -22,6 +23,11 @@ function Ligne({ titre, children }) {
   );
 }
 
+// Sur ordinateur : panneau latéral. Sur téléphone : tiroir qui monte du bas, qu'on referme en le
+// faisant glisser vers le bas (poignée au centre, ou n'importe où quand on est en haut du contenu).
+const ORDINATEUR = { Racine: Sheet, Contenu: SheetContent, Entete: SheetHeader, Titre: SheetTitle, Description: SheetDescription };
+const TELEPHONE = { Racine: Drawer, Contenu: DrawerContent, Entete: 'div', Titre: DrawerTitle, Description: DrawerDescription };
+
 // Fiche d'un vêtement : caractéristiques, statistiques de port et tenues qui le contiennent
 export default function FicheVetement({ vetement, onClose, onModifier }) {
   const { usage, tenues, vetementsParId, basculerFavori, supprimerVetement } = useArmoire();
@@ -33,20 +39,25 @@ export default function FicheVetement({ vetement, onClose, onModifier }) {
   const stats = v && usage.parVetement.get(v.id);
   const avecLui = v ? tenues.filter((t) => t.composition.some((e) => e.v === v.id)) : [];
 
+  const { Racine, Contenu, Entete, Titre, Description } = large ? ORDINATEUR : TELEPHONE;
+
   return (
-    <Sheet open={!!vetement} onOpenChange={(o) => !o && onClose()}>
-      <SheetContent
-        side={large ? 'right' : 'bottom'}
-        className={cn('block gap-0 overflow-hidden border-vert bg-carte p-0', large ? 'w-full border-l sm:max-w-md' : 'h-[88dvh] border-t')}
+    <Racine open={!!vetement} onOpenChange={(o) => !o && onClose()}>
+      <Contenu
+        {...(large ? { side: 'right' } : {})}
+        className={cn(
+          'gap-0 overflow-hidden border-vert bg-carte p-0',
+          large ? 'block w-full border-l sm:max-w-md' : 'h-[92dvh] border-t data-[vaul-drawer-direction=bottom]:mt-0 data-[vaul-drawer-direction=bottom]:max-h-[92dvh]',
+        )}
       >
-        {/* Bloc qui défile (pas de colonne flexible : sinon la photo est écrasée au lieu de défiler) */}
+        {/* Bloc qui défile (en flux normal : dans une colonne flexible, la photo serait écrasée au lieu de défiler) */}
         {v && (
-          <div className="h-full overflow-y-auto overscroll-contain pb-[env(safe-area-inset-bottom)]">
+          <div className="h-full min-h-0 flex-1 overflow-y-auto overscroll-contain pb-[env(safe-area-inset-bottom)]">
             <Photo vetement={v} className="quadrillage aspect-square max-h-[55dvh] w-full border-b border-vert" imgClassName="p-10" />
             <div className="grid gap-4 p-6">
-              <SheetHeader className="p-0">
+              <Entete className="grid gap-1.5 p-0">
                 <div className="flex items-start justify-between gap-3">
-                  <SheetTitle className="font-sans text-[26px] leading-[1.1] font-medium text-vert-texte">{v.nom}</SheetTitle>
+                  <Titre className="font-sans text-[26px] leading-[1.1] font-medium text-vert-texte">{v.nom}</Titre>
                   <button
                     type="button"
                     aria-pressed={v.favori}
@@ -57,11 +68,11 @@ export default function FicheVetement({ vetement, onClose, onModifier }) {
                     <Heart className={cn('size-5', v.favori && 'fill-vert text-vert-texte')} />
                   </button>
                 </div>
-                <SheetDescription className="etiquette text-encre/60">
+                <Description className="etiquette text-encre/60">
                   {LABEL_CATEGORIE[v.categorie]}
                   {v.marque && ` · ${v.marque}`}
-                </SheetDescription>
-              </SheetHeader>
+                </Description>
+              </Entete>
 
               {/* Statistiques de port */}
               <div className="grille-filets grid-cols-2">
@@ -136,7 +147,7 @@ export default function FicheVetement({ vetement, onClose, onModifier }) {
             onClose();
           }}
         />
-      </SheetContent>
-    </Sheet>
+      </Contenu>
+    </Racine>
   );
 }

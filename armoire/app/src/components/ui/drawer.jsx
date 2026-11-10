@@ -62,7 +62,10 @@ function DrawerContent({
         )}
         {...props}
       >
-        <div className="mx-auto mt-4 hidden h-2 w-[100px] shrink-0 rounded-full bg-muted group-data-[vaul-drawer-direction=bottom]/drawer-content:block" />
+        {/* Poignée (Armoire) : trait turquoise au centre, zone de prise plus haute que le trait */}
+        <div className="hidden shrink-0 cursor-grab justify-center py-3 group-data-[vaul-drawer-direction=bottom]/drawer-content:flex" aria-hidden>
+          <span className="h-1 w-14 bg-vert" />
+        </div>
         {children}
       </DrawerPrimitive.Content>
     </DrawerPortal>
