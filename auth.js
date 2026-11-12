@@ -12,7 +12,7 @@ const loginPanel = document.getElementById('login-panel');
 const privateLinks = document.getElementById('private-links');
 
 // Sites privés à révéler une fois connectée. En ajouter ici pour les futurs sites.
-const PRIVATE_SITES = [{ href: '/notes/', label: 'Notes' }];
+const PRIVATE_SITES = [{ href: '/armoire/', label: 'Armoire' }];
 
 function renderPrivateLinks() {
 	privateLinks.innerHTML = PRIVATE_SITES.map(
